@@ -2,8 +2,9 @@ import Link from "next/link"
 import { ArrowLeft, Instagram, Mail, Phone, Send, PhoneIcon as WhatsApp } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Tabs } from '@/components/ui/tabs';
 import { BottomNavigation } from "@/components/bottom-navigation"
 
 export default function ContatoPage() {
