@@ -3,7 +3,8 @@ import Link from "next/link"
 import { ArrowLeft, Heart, Search, ShoppingCart } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { BottomNavigation } from "@/components/bottom-navigation"
 
