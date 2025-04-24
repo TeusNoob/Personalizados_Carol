@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Personalizados da Carol</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink-50: #fdf2f5;
+      --pink-100: #fce8ee;
+      --pink-200: #fad1dd;
+      --pink-300: #f7a9c2;
+      --pink-400: #f47aa0;
+      --pink-500: #f04c7e;
+      --pink-600: #e12c5e;
+      --pink-700: #c11a47;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-700: #374151;
+      --gray-800: #1f2937;
+      --gray-900: #111827;
+      --white: #ffffff;
+      --black: #000000;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background-color: var(--white);
+      color: var(--gray-800);
+      line-height: 1.5;
+      overscroll-behavior: none;
+      touch-action: manipulation;
+      -webkit-user-select: none;
+      user-select: none;
+      position: relative;
+      max-width: 500px;
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-image: url('imagens/layout/background.jpg');
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+    }
+    /* Hide scrollbar */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    /* Header */
+    .header {
+      padding: 1.5rem 1rem 1.5rem;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 2rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 10;
+      margin: 1rem 1rem 0.5rem;
+      border: 2px solid var(--pink-200);
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-right: 2px solid var(--pink-200);
+      border-bottom: 2px solid var(--pink-200);
+      transform: translateX(-50%) rotate(45deg);
+    }
+    .site-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--pink-600);
+      margin-bottom: 0.25rem;
+    }
+    .site-subtitle {
+      font-size: 0.875rem;
+      color: var(--gray-600);
+      font-weight: 300;
+    }
+    /* Social buttons */
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .social-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      width: 4rem;
+      transition: transform 0.3s ease;
+    }
+    .social-btn:hover {
+      transform: translateY(-5px);
+    }
+    .social-icon-wrapper {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    .social-btn:hover .social-icon-wrapper {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    .social-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+    .social-btn:hover .social-icon {
+      transform: scale(1.2);
+    }
+    .social-label {
+      font-size: 0.75rem;
+      color: var(--gray-700);
+      text-align: center;
+      font-weight: 500;
+    }
+    /* Main content */
+    main {
+      flex: 1;
+      padding-bottom: 5rem;
+      overflow-y: auto;
+    }
+    .section {
+      padding: 1.5rem 1rem;
+      margin: 1rem 0.5rem;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--gray-900);
+      margin-bottom: 1rem;
+      text-align: center;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--pink-400);
+      border-radius: 2px;
+    }
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--gray-600);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-weight: 300;
+    }
+    /* Products carousel */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+    .carousel {
+      display: flex;
+      transition: transform 0.5s ease;
+      width: 100%;
+    }
+    .carousel-item {
+      flex: 0 0 calc(33.333% - 0.5rem);
+      margin-right: 0.75rem;
+    }
+    .carousel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 2rem;
+      height: 2rem;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 5;
+      transition: all 0.3s ease;
+    }
+    .carousel-nav:hover {
+      background-color: var(--white);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    }
+    .carousel-prev {
+      left: -0.5rem;
+    }
+    .carousel-next {
+      right: -0.5rem;
+    }
+    .carousel-nav-icon {
+      width: 1rem;
+      height: 1rem;
+    }
+    /* Products grid */
+    .product-card {
+      background-color: var(--white);
+      border-radius: 0.75rem;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      height: 100%;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    .product-img-container {
+      position: relative;
+      aspect-ratio: 1/1;
+      background-color: var(--gray-100);
+      overflow: hidden;
+    }
+    .product-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .product-card:hover .product-img {
+      transform: scale(1.05);
+    }
+    .product-info {
+      padding: 0.75rem;
+    }
+    .product-title {
+      font-size: 0.75rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+      color: var(--gray-800);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .product-price {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--pink-600);
+      margin-bottom: 0.5rem;
+    }
+    .buy-button {
+      width: 100%;
+      padding: 0.5rem;
+      background-color: var(--pink-500);
+      color: white;
+      border: none;
+      border-radius: 0.25rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .buy-button:hover {
+      background-color: var(--pink-600);
+    }
+    .see-more-button {
+      display: block;
+      width: 80%;
+      margin: 1.5rem auto 0;
+      padding: 0.75rem;
+      background-color: var(--pink-500);
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    .see-more-button:hover {
+      background-color: var(--pink-600);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      transform: translateY(-2px);
+    }
+    /* Coupons */
+    .coupon-card {
+      background-color: var(--white);
+      border-radius: 0.75rem;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      border: 1px dashed var(--pink-400);
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .coupon-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    .coupon-discount {
+      position: absolute;
+      top: -0.75rem;
+      right: 1rem;
+      background-color: var(--pink-500);
+      color: white;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .coupon-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--gray-900);
+      margin-bottom: 0.5rem;
+    }
+    .coupon-description {
+      font-size: 0.75rem;
+      color: var(--gray-600);
+      margin-bottom: 0.75rem;
+    }
+    .coupon-code {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    .code-display {
+      flex: 1;
+      padding: 0.5rem;
+      background-color: var(--gray-100);
+      border-radius: 0.25rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--gray-900);
+      text-align: center;
+      letter-spacing: 1px;
+      margin-right: 0.5rem;
+      border: 1px dashed var(--gray-300);
+    }
+    .copy-button {
+      padding: 0.5rem;
+      background-color: var(--pink-500);
+      color: white;
+      border: none;
+      border-radius: 0.25rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .copy-button:hover {
+      background-color: var(--pink-600);
+    }
+    .coupon-validity {
+      font-size: 0.75rem;
+      color: var(--gray-500);
+      text-align: center;
+    }
+    /* Botão para a Shopee após copiar o cupom */
+    .shopee-button {
+      display: none;
+      width: 100%;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      background-color: #ee4d2d;
+      color: white;
+      border: none;
+      border-radius: 0.25rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.3s ease;
+    }
+    .shopee-button:hover {
+      background-color: #d03a18;
+    }
+    /* Bottom navigation */
+    .bottom-nav {
+      position: fixed;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 2rem;
+      display: flex;
+      height: 3.5rem;
+      z-index: 50;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 0 1rem;
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
+      color: var(--gray-500);
+      text-decoration: none;
+      position: relative;
+      padding: 0 1.5rem;
+      transition: color 0.3s ease;
+    }
+    .nav-item.active {
+      color: var(--pink-500);
+    }
+    .nav-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0.5rem;
+      width: 0;
+      height: 2px;
+      background-color: var(--pink-500);
+      border-radius: 9999px;
+      transition: width 0.3s ease;
+    }
+    .nav-item.active::after {
+      width: 1.5rem;
+    }
+    .nav-icon {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+    .nav-text {
+      font-size: 0.625rem;
+      font-weight: 500;
+    }
+    /* Content sections */
+    .content-section {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    .content-section.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    /* Footer */
+    .footer {
+      padding: 1.5rem 1rem;
+      text-align: center;
+      position: relative;
+      margin-bottom: 4rem;
+    }
+    .footer-content {
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 1rem;
+      padding: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+    .footer-decoration {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--pink-400);
+    }
+    .stationery-icon {
+      position: absolute;
+      width: 1.5rem;
+      height: 1.5rem;
+      opacity: 0.2;
+    }
+    .icon-1 {
+      top: 0.5rem;
+      left: 1rem;
+      transform: rotate(-15deg);
+    }
+    .icon-2 {
+      top: 1rem;
+      right: 1rem;
+      transform: rotate(25deg);
+    }
+    .icon-3 {
+      bottom: 0.5rem;
+      left: 2rem;
+      transform: rotate(10deg);
+    }
+    .icon-4 {
+      bottom: 1rem;
+      right: 2rem;
+      transform: rotate(-20deg);
+    }
+    /* Botão flutuante do WhatsApp */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      width: 80px;
+      height: 80px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+	    background-image: url('imagens/layout/Botao_flutuante.png');
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+    }
+    .whatsapp-icon {
+      width: 20px;
+      height: 20px;
+    }
+    /* Responsive */
+    @media (max-width: 360px) {
+      .carousel-item {
+        flex: 0 0 calc(50% - 0.5rem);
+      }
+      .social-buttons {
+        gap: 0.5rem;
+      }
+      .social-btn {
+        width: 3.5rem;
+      }
+      .social-icon-wrapper {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+      .nav-item {
+        padding: 0 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <!-- Home Section -->
+    <div id="inicio" class="content-section active">
+      <header class="header">
+        <h1 class="site-title">Personalizados da Carol</h1>
+        <p class="site-subtitle">Produtos digitais e personalizados</p>
+      </header>
+      <div class="social-buttons">
+        <a href="https://shopee.com.br/CarollShop" class="social-btn">
+          <div class="social-icon-wrapper" style="background-color: #ee4d2d;">
+            <img src="imagens/layout/shopee.png" alt="Shopee" class="social-icon">
+          </div>
+          <span class="social-label">Shopee</span>
+        </a>
+        <a href="https://tiktok.com/@personalizadosdacarol" class="social-btn">
+          <div class="social-icon-wrapper" style="background-color: black;">
+            <img src="imagens/layout/tiktok.png" alt="TikTok" class="social-icon">
+          </div>
+          <span class="social-label">TikTok</span>
+        </a>
+        <a href="https://instagram.com/carolartes.print" class="social-btn">
+          <div class="social-icon-wrapper" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);">
+            <img src="imagens/layout/instagram.png" alt="Instagram" class="social-icon">
+          </div>
+          <span class="social-label">Instagram</span>
+        </a>
+        <a href="https://api.whatsapp.com/send/?phone=5531987426591" class="social-btn">
+          <div class="social-icon-wrapper" style="background-color: #25d366;">
+            <img src="imagens/layout/whatsapp.png" alt="WhatsApp" class="social-icon">
+          </div>
+          <span class="social-label">WhatsApp</span>
+        </a>
+      </div>
+      <section class="section">
+  <h2 class="section-title">Moldes Digitais</h2>
+  <div class="carousel-container">
+    <div class="carousel" id="moldes-carousel">
+      <!-- Moldes Digitais -->
+      <div class="carousel-item">
+        <div class="product-card">
+          <div class="product-img-container">
+            <img src="imagens/produtos/molde1.jpg" alt="Pack de Moldes Essencial" class="product-img">
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Pack de Moldes Essencial</h3>
+            <div class="product-price">R$ 97,00</div>
+            <!-- Código do botão do Mercado Pago -->
+            <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
+			data-preference-id="1039323113-b37cc4a4-dd32-47d2-ab05-fcbb821d99f3" data-source="button">
+			</script>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="product-card">
+          <div class="product-img-container">
+            <img src="imagens/produtos/molde2.jpg" alt="Molde para Agenda" class="product-img">
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Molde para Agenda</h3>
+            <div class="product-price">R$ 27,00</div>
+            <!-- Código do botão do Mercado Pago -->
+            <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
+              data-preference-id="1039323113-b37cc4a4-dd32-47d2-ab05-fcbb821d99f3" data-source="button">
+            </script>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="product-card">
+          <div class="product-img-container">
+            <img src="imagens/produtos/molde3.jpg" alt="Planner Semanal" class="product-img">
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Planner Semanal</h3>
+            <div class="product-price">R$ 35,00</div>
+            <!-- Código do botão do Mercado Pago -->
+            <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
+              data-preference-id="ID_UNICO_PRODUTO_3" data-source="button">
+            </script>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="product-card">
+          <div class="product-img-container">
+            <img src="imagens/produtos/molde4.jpg" alt="Calendário 2024" class="product-img">
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Calendário 2024</h3>
+            <div class="product-price">R$ 19,90</div>
+            <!-- Código do botão do Mercado Pago -->
+            <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
+              data-preference-id="ID_UNICO_PRODUTO_4" data-source="button">
+            </script>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="product-card">
+          <div class="product-img-container">
+            <img src="imagens/produtos/molde5.jpg" alt="Kit Etiquetas" class="product-img">
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Kit Etiquetas</h3>
+            <div class="product-price">R$ 15,00</div>
+            <!-- Código do botão do Mercado Pago -->
+            <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
+              data-preference-id="ID_UNICO_PRODUTO_5" data-source="button">
+            </script>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="product-card">
+          <div class="product-img-container">
+            <img src="imagens/produtos/molde6.jpg" alt="Molde para Convites" class="product-img">
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Molde para Convites</h3>
+            <div class="product-price">R$ 22,50</div>
+            <!-- Código do botão do Mercado Pago -->
+            <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
+              data-preference-id="ID_UNICO_PRODUTO_6" data-source="button">
+            </script>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="product-card">
+          <div class="product-img-container">
+            <img src="imagens/produtos/molde7.jpg" alt="Molde Extra" class="product-img">
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Molde Extra</h3>
+            <div class="product-price">R$ 20,00</div>
+            <!-- Código do botão do Mercado Pago -->
+            <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
+              data-preference-id="ID_UNICO_PRODUTO_7" data-source="button">
+            </script>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="product-card">
+          <div class="product-img-container">
+            <img src="imagens/produtos/molde8.jpg" alt="Molde Personalizado" class="product-img">
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Molde Personalizado</h3>
+            <div class="product-price">R$ 30,00</div>
+            <!-- Código do botão do Mercado Pago -->
+            <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
+              data-preference-id="ID_UNICO_PRODUTO_8" data-source="button">
+            </script>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="product-card">
+          <div class="product-img-container">
+            <img src="imagens/produtos/molde9.jpg" alt="Molde Especial" class="product-img">
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Molde Especial</h3>
+            <div class="product-price">R$ 40,00</div>
+            <!-- Código do botão do Mercado Pago -->
+            <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
+              data-preference-id="ID_UNICO_PRODUTO_9" data-source="button">
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-nav carousel-prev" onclick="moveCarousel('moldes-carousel', -1)">
+      <img src="imagens/layout/arrow-left.png" alt="Anterior" class="carousel-nav-icon">
+    </div>
+    <div class="carousel-nav carousel-next" onclick="moveCarousel('moldes-carousel', 1)">
+      <img src="imagens/layout/arrow-right.png" alt="Próximo" class="carousel-nav-icon">
+    </div>
+  </div>
+</section>
+      <section class="section">
+        <h2 class="section-title">Conheça nossos personalizados prontos</h2>
+        <div class="carousel-container">
+          <div class="carousel" id="personalizados-carousel">
+            <!-- Produtos Personalizados -->
+            <div class="carousel-item">
+              <div class="product-card">
+                <div class="product-img-container">
+                  <img src="imagens/produtos/produto1.jpg" alt="Agenda Personalizada" class="product-img">
+                </div>
+                <div class="product-info">
+                  <h3 class="product-title">Agenda Personalizada</h3>
+                  <div class="product-price">R$ 45,00</div>
+                  <button class="buy-button" data-link="botoes/Loja/produto1.html">Comprar</button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="product-card">
+                <div class="product-img-container">
+                  <img src="imagens/produtos/produto2.jpg" alt="Planner Financeiro" class="product-img">
+                </div>
+                <div class="product-info">
+                  <h3 class="product-title">Planner Financeiro</h3>
+                  <div class="product-price">R$ 39,90</div>
+                  <button class="buy-button" data-link="botoes/Loja/produto2.html">Comprar</button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="product-card">
+                <div class="product-img-container">
+                  <img src="imagens/produtos/produto3.jpg" alt="Calendário 2024" class="product-img">
+                </div>
+                <div class="product-info">
+                  <h3 class="product-title">Calendário 2024</h3>
+                  <div class="product-price">R$ 19,90</div>
+                  <button class="buy-button" data-link="botoes/Loja/produto3.html">Comprar</button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="product-card">
+                <div class="product-img-container">
+                  <img src="imagens/produtos/produto4.jpg" alt="Kit Papelaria" class="product-img">
+                </div>
+                <div class="product-info">
+                  <h3 class="product-title">Kit Papelaria</h3>
+                  <div class="product-price">R$ 65,00</div>
+                  <button class="buy-button" data-link="botoes/Loja/produto4.html">Comprar</button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="product-card">
+                <div class="product-img-container">
+                  <img src="imagens/produtos/produto5.jpg" alt="Convites Digitais" class="product-img">
+                </div>
+                <div class="product-info">
+                  <h3 class="product-title">Convites Digitais</h3>
+                  <div class="product-price">R$ 25,00</div>
+                  <button class="buy-button" data-link="botoes/Loja/produto5.html">Comprar</button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="product-card">
+                <div class="product-img-container">
+                  <img src="imagens/produtos/produto6.jpg" alt="Etiquetas Personalizadas" class="product-img">
+                </div>
+                <div class="product-info">
+                  <h3 class="product-title">Etiquetas Personalizadas</h3>
+                  <div class="product-price">R$ 18,50</div>
+                  <button class="buy-button" data-link="botoes/Loja/produto6.html">Comprar</button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="product-card">
+                <div class="product-img-container">
+                  <img src="imagens/produtos/produto7.jpg" alt="Produto Extra" class="product-img">
+                </div>
+                <div class="product-info">
+                  <h3 class="product-title">Produto Extra</h3>
+                  <div class="product-price">R$ 22,00</div>
+                  <button class="buy-button" data-link="botoes/Loja/produto7.html">Comprar</button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="product-card">
+                <div class="product-img-container">
+                  <img src="imagens/produtos/produto8.jpg" alt="Produto Personalizado" class="product-img">
+                </div>
+                <div class="product-info">
+                  <h3 class="product-title">Produto Personalizado</h3>
+                  <div class="product-price">R$ 30,00</div>
+                  <button class="buy-button" data-link="botoes/Loja/produto8.html">Comprar</button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="product-card">
+                <div class="product-img-container">
+                  <img src="imagens/produtos/produto9.jpg" alt="Produto Especial" class="product-img">
+                </div>
+                <div class="product-info">
+                  <h3 class="product-title">Produto Especial</h3>
+                  <div class="product-price">R$ 40,00</div>
+                  <button class="buy-button" data-link="botoes/Loja/produto9.html">Comprar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-nav carousel-prev" onclick="moveCarousel('personalizados-carousel', -1)">
+            <img src="imagens/layout/arrow-left.png" alt="Anterior" class="carousel-nav-icon">
+          </div>
+          <div class="carousel-nav carousel-next" onclick="moveCarousel('personalizados-carousel', 1)">
+            <img src="imagens/layout/arrow-right.png" alt="Próximo" class="carousel-nav-icon">
+          </div>
+        </div>
+        <a href="https://shopee.com.br/CarollShop" class="see-more-button">Ver mais na Shopee</a>
+      </section>
+      <section class="section">
+        <h2 class="section-title">Produtos de vendedores parceiros</h2>
+        <div class="carousel-container">
+          <div class="carousel" id="parceiros-carousel">
+            <!-- Produtos de Parceiros -->
+            <div class="carousel-item">
+              <div class="product-card">
+                <div class="product-img-container">
+                  <img src="imagens/produtos/parceiro1.jpg" alt="Canetas Coloridas" class="product-img">
+                </div>
+                <div class="product-info">
+                  <h3 class="product-title">Canetas Coloridas</h3>
+                  <div class="product-price">R$ 29,90</div>
+                  <button class="buy-button" data-link="botoes/afiliados/parceiro1.html">Comprar</button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="product-card">
+                <div class="product-img-container">
+                  <img src="imagens/produtos/parceiro2.jpg" alt="Kit Adesivos" class="product-img">
+                </div>
+                <div class="product-info">
+                  <h3 class="product-title">Kit Adesivos</h3>
+                  <div class="product-price">R$ 15,00</div>
+                  <button class="buy-button" data-link="botoes/afiliados/parceiro2.html">Comprar</button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="product-card">
+                <div class="product-img-container">
+                  <img src="imagens/produtos/parceiro3.jpg" alt="Caderno Artesanal" class="product-img">
+                </div>
+                <div class="product-info">
+                  <h3 class="product-title">Caderno Artesanal</h3>
+                  <div class="product-price">R$ 42,00</div>
+                  <button class="buy-button" data-link="botoes/afiliados/parceiro3.html">Comprar</button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="product-card">
+                <div class="product-img-container">
+                  <img src="imagens/produtos/parceiro4.jpg" alt="Washi Tapes" class="product-img">
+                </div>
+                <div class="product-info">
+                  <h3 class="product-title">Washi Tapes</h3>
+                  <div class="product-price">R$ 18,90</div>
+                  <button class="buy-button" data-link="botoes/afiliados/parceiro4.html">Comprar</button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="product-card">
+                <div class="product-img-container">
+                  <img src="imagens/produtos/parceiro5.jpg" alt="Marcadores de Página" class="product-img">
+                </div>
+                <div class="product-info">
+                  <h3 class="product-title">Marcadores de Página</h3>
+                  <div class="product-price">R$ 12,50</div>
+                  <button class="buy-button" data-link="botoes/afiliados/parceiro5.html">Comprar</button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="product-card">
+                <div class="product-img-container">
+                  <img src="imagens/produtos/parceiro6.jpg" alt="Organizador de Mesa" class="product-img">
+                </div>
+                <div class="product-info">
+                  <h3 class="product-title">Organizador de Mesa</h3>
+                  <div class="product-price">R$ 35,00</div>
+                  <button class="buy-button" data-link="botoes/afiliados/parceiro6.html">Comprar</button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="product-card">
+                <div class="product-img-container">
+                  <img src="imagens/produtos/parceiro7.jpg" alt="Produto Extra" class="product-img">
+                </div>
+                <div class="product-info">
+                  <h3 class="product-title">Produto Extra</h3>
+                  <div class="product-price">R$ 22,00</div>
+                  <button class="buy-button" data-link="botoes/afiliados/parceiro7.html">Comprar</button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="product-card">
+                <div class="product-img-container">
+                  <img src="imagens/produtos/parceiro8.jpg" alt="Produto Personalizado" class="product-img">
+                </div>
+                <div class="product-info">
+                  <h3 class="product-title">Produto Personalizado</h3>
+                  <div class="product-price">R$ 30,00</div>
+                  <button class="buy-button" data-link="botoes/afiliados/parceiro8.html">Comprar</button>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="product-card">
+                <div class="product-img-container">
+                  <img src="imagens/produtos/parceiro9.jpg" alt="Produto Especial" class="product-img">
+                </div>
+                <div class="product-info">
+                  <h3 class="product-title">Produto Especial</h3>
+                  <div class="product-price">R$ 40,00</div>
+                  <button class="buy-button" data-link="botoes/afiliados/parceiro9.html">Comprar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-nav carousel-prev" onclick="moveCarousel('parceiros-carousel', -1)">
+            <img src="imagens/layout/arrow-left.png" alt="Anterior" class="carousel-nav-icon">
+          </div>
+          <div class="carousel-nav carousel-next" onclick="moveCarousel('parceiros-carousel', 1)">
+            <img src="imagens/layout/arrow-right.png" alt="Próximo" class="carousel-nav-icon">
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- Cupons Section -->
+    <div id="cupons" class="content-section">
+      <header class="header">
+        <h1 class="site-title">Cupons de Desconto</h1>
+        <p class="site-subtitle">Economize em suas compras</p>
+      </header>
+      <section class="section" style="border-bottom: none;">
+        <div id="cupons-container">
+          <!-- Cupons -->
+          <div class="coupon-card">
+            <div class="coupon-discount">20% OFF</div>
+            <h3 class="coupon-title">Desconto para Iniciantes</h3>
+            <p class="coupon-description">Use este cupom em sua primeira compra de qualquer template digital.</p>
+            <div class="coupon-code">
+              <div class="code-display">CAROL20</div>
+              <button class="copy-button" data-code="CAROL20">Copiar</button>
+            </div>
+            <button class="shopee-button" onclick="window.open('https://shopee.com.br/CarollShop', '_blank')">Usar na Shopee</button>
+            <p class="coupon-validity">Válido até 31/12/2024</p>
+          </div>
+          <div class="coupon-card">
+            <div class="coupon-discount">15% OFF</div>
+            <h3 class="coupon-title">Desconto em Planners</h3>
+            <p class="coupon-description">Economize em todos os planners e agendas digitais.</p>
+            <div class="coupon-code">
+              <div class="code-display">PLANNER15</div>
+              <button class="copy-button" data-code="PLANNER15">Copiar</button>
+            </div>
+            <button class="shopee-button" onclick="window.open('https://shopee.com.br/CarollShop', '_blank')">Usar na Shopee</button>
+            <p class="coupon-validity">Válido até 30/09/2024</p>
+          </div>
+          <div class="coupon-card">
+            <div class="coupon-discount">25% OFF</div>
+            <h3 class="coupon-title">Pacote Completo</h3>
+            <p class="coupon-description">Desconto especial para compra do pacote completo de templates.</p>
+            <div class="coupon-code">
+              <div class="code-display">PACOTE25</div>
+              <button class="copy-button" data-code="PACOTE25">Copiar</button>
+            </div>
+            <button class="shopee-button" onclick="window.open('https://shopee.com.br/CarollShop', '_blank')">Usar na Shopee</button>
+            <p class="coupon-validity">Válido até 15/10/2024</p>
+          </div>
+          <div class="coupon-card">
+            <div class="coupon-discount">10% OFF</div>
+            <h3 class="coupon-title">Desconto para Seguidores</h3>
+            <p class="coupon-description">Exclusivo para seguidores das nossas redes sociais.</p>
+            <div class="coupon-code">
+              <div class="code-display">SOCIAL10</div>
+              <button class="copy-button" data-code="SOCIAL10">Copiar</button>
+            </div>
+            <button class="shopee-button" onclick="window.open('https://shopee.com.br/CarollShop', '_blank')">Usar na Shopee</button>
+            <p class="coupon-validity">Sem data de expiração</p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-decoration">✨</div>
+        <img src="imagens/layout/pencil.png" alt="Lápis" class="stationery-icon icon-1">
+        <img src="imagens/layout/ruler.png" alt="Régua" class="stationery-icon icon-2">
+        <img src="imagens/layout/paperclip.png" alt="Clipe" class="stationery-icon icon-3">
+        <img src="imagens/layout/eraser.png" alt="Borracha" class="stationery-icon icon-4">
+      </div>
+    </footer>
+  </main>
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <a href="#" class="nav-item active" data-section="inicio">
+      <img src="imagens/layout/home.png" alt="Início" class="nav-icon">
+      <span class="nav-text">Início</span>
+    </a>
+    <a href="#" class="nav-item" data-section="cupons">
+      <img src="imagens/layout/coupon.png" alt="Cupons" class="nav-icon">
+      <span class="nav-text">Cupons</span>
+    </a>
+  </nav>
+  <!-- Botão flutuante do WhatsApp -->
+  <a href="https://shopee.com/CarollShop" class="whatsapp-float" target="_blank">
+  </a>
+  <script>
+    // Função para mover o carrossel
+    function moveCarousel(carouselId, direction) {
+      const carousel = document.getElementById(carouselId);
+      const items = carousel.querySelectorAll('.carousel-item');
+      const itemWidth = items[0].offsetWidth + 12; // largura + margem
+      // Obter a posição atual
+      const currentTransform = carousel.style.transform || 'translateX(0px)';
+      let currentPosition = 0;
+      const match = currentTransform.match(/translateX$$([-\d.]+)px$$/);
+      if (match) {
+        currentPosition = parseFloat(match[1]);
+      }
+      // Calcular nova posição
+      let newPosition = currentPosition - (direction * itemWidth * 3);
+      // Verificar limites e ajustar para loop infinito
+      const visibleWidth = itemWidth * 3; // 3 itens visíveis por vez
+      const totalWidth = items.length * itemWidth;
+      if (newPosition < -(totalWidth - visibleWidth)) {
+        newPosition = 0;
+      } else if (newPosition > 0) {
+        newPosition = -(totalWidth - visibleWidth);
+      }
+      // Aplicar nova posição com animação
+      carousel.style.transition = 'transform 0.5s ease';
+      carousel.style.transform = `translateX(${newPosition}px)`;
+      // Resetar transição após a animação
+      setTimeout(() => {
+        carousel.style.transition = '';
+      }, 500);
+      console.log(`Movendo ${carouselId}: posição=${newPosition}px, direção=${direction}, itemWidth=${itemWidth}px`);
+    }
+
+    // Navegação
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Update active nav item
+        document.querySelectorAll('.nav-item').forEach(navItem => {
+          navItem.classList.remove('active');
+        });
+        this.classList.add('active');
+        // Show corresponding section
+        const sectionId = this.getAttribute('data-section');
+        document.querySelectorAll('.content-section').forEach(section => {
+          section.classList.remove('active');
+        });
+        document.getElementById(sectionId).classList.add('active');
+      });
+    });
+
+    // Copiar código do cupom
+    document.addEventListener('click', function(e) {
+      if (e.target && e.target.classList.contains('copy-button')) {
+        const code = e.target.getAttribute('data-code');
+        navigator.clipboard.writeText(code).then(() => {
+          const originalText = e.target.textContent;
+          e.target.textContent = 'Copiado!';
+          setTimeout(() => {
+            e.target.textContent = originalText;
+          }, 2000);
+
+          // Mostrar botão "Usar na Shopee"
+          const couponCard = e.target.closest('.coupon-card');
+          const shopeeButton = couponCard.querySelector('.shopee-button');
+          if (shopeeButton) {
+            shopeeButton.style.display = 'block';
+          }
+        });
+      }
+    });
+
+    // Botão de compra
+    document.addEventListener('click', function(e) {
+      if (e.target && e.target.classList.contains('buy-button')) {
+        const link = e.target.getAttribute('data-link');
+        if (link) {
+          window.open(link, '_blank');
+        } else {
+          // Para produtos sem link (Mercado Pago)
+          alert('Redirecionando para o Mercado Pago...');
+        }
+      }
+    });
+
+    // Ajustar carrosséis para dispositivos móveis
+    function adjustCarouselsForMobile() {
+      if (window.innerWidth <= 360) {
+        document.querySelectorAll('.carousel-item').forEach(item => {
+          item.style.flex = '0 0 calc(50% - 0.5rem)';
+        });
+      }
+    }
+
+    // Ajustar carrosséis quando a janela for redimensionada
+    window.addEventListener('resize', adjustCarouselsForMobile);
+
+    // Inicializar ajustes para dispositivos móveis
+    window.addEventListener('DOMContentLoaded', adjustCarouselsForMobile);
+  </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+# Instruções para Configuração do Site
+
+Este site foi desenvolvido para ser facilmente personalizável através de uma estrutura de arquivos organizada. Siga as instruções abaixo para configurar corretamente todas as imagens e informações.
+
+## Estrutura de Pastas
+
+### 1. Imagens
+Todas as imagens do site estão organizadas em subpastas dentro da pasta principal `imagens`:
+
+#### 1.1 Layout (`imagens/layout/`)
+Contém todos os ícones e elementos visuais do layout:
+- `background.jpg` - Imagem de fundo do site
+- `shopee.png` - Ícone da Shopee (branco)
+- `tiktok.png` - Ícone do TikTok (branco)
+- `instagram.png` - Ícone do Instagram (branco)
+- `whatsapp.png` - Ícone do WhatsApp (branco)
+- `home.png` - Ícone de casa para a aba Início
+- `coupon.png` - Ícone de cupom para a aba Cupons
+- `arrow-left.png` - Seta para navegação do carrossel (esquerda)
+- `arrow-right.png` - Seta para navegação do carrossel (direita)
+- `pencil.png` - Ícone de lápis para o rodapé
+- `ruler.png` - Ícone de régua para o rodapé
+- `paperclip.png` - Ícone de clipe para o rodapé
+- `eraser.png` - Ícone de borracha para o rodapé
+
+#### 1.2 Produtos (`imagens/produtos/`)
+Contém todas as imagens dos produtos:
+- `molde1.jpg` a `molde6.jpg` - Imagens dos moldes digitais
+- `produto1.jpg` a `produto6.jpg` - Imagens dos produtos personalizados
+- `parceiro1.jpg` a `parceiro6.jpg` - Imagens dos produtos de parceiros
+
+### 2. Produtos
+Informações sobre os produtos estão organizadas em subpastas:
+
+#### 2.1 Links (`produtos/links/`)
+Arquivos de texto contendo os links para compra de cada produto:
+- `molde1.txt` a `molde6.txt` - Links para os moldes digitais
+- `produto1.txt` a `produto6.txt` - Links para os produtos personalizados
+- `parceiro1.txt` a `parceiro6.txt` - Links para os produtos de parceiros
+
+#### 2.2 Preços (`produtos/precos/`)
+Arquivos de texto contendo os preços de cada produto:
+- `moldes1.txt` a `moldes6.txt` - Preços dos moldes digitais
+- `personalizados1.txt` a `personalizados6.txt` - Preços dos produtos personalizados
+- `parceiros1.txt` a `parceiros6.txt` - Preços dos produtos de parceiros
+
+### 3. Cupons
+Informações sobre os cupons estão organizadas em subpastas:
+
+#### 3.1 Códigos (`cupons/codigos/`)
+Arquivos de texto contendo os códigos dos cupons:
+- `cupom1.txt` a `cupom4.txt` - Códigos dos cupons de desconto
+
+#### 3.2 Links (`cupons/link/`)
+Arquivos de texto contendo os links para uso dos cupons:
+- `cupom1.txt` a `cupom4.txt` - Links para uso dos cupons
+
+#### 3.3 Textos (`cupons/texto/`)
+Arquivos de texto contendo as descrições dos cupons:
+- `cupom1.txt` a `cupom4.txt` - Descrições dos cupons
+
+## Especificações das Imagens
+
+### Imagens de Produtos
+- Formato: JPG ou PNG
+- Proporção: Quadrada (1:1)
+- Tamanho recomendado: 400x400 pixels
+- Qualidade: Alta, sem compressão excessiva
+
+### Ícones
+- Formato: PNG com fundo transparente
+- Tamanho recomendado: 48x48 pixels para ícones de navegação
+- Cor: Branco para ícones de redes sociais
+
+### Imagem de Fundo
+- Formato: JPG
+- Tamanho recomendado: 1080x1920 pixels
+- Padrão: Leve, que não interfira na legibilidade do conteúdo
+
+## Como Personalizar
+
+### Produtos
+1. Adicione as imagens dos produtos na pasta `imagens/produtos/`
+2. Crie arquivos de texto com os links na pasta `produtos/links/`
+3. Crie arquivos de texto com os preços na pasta `produtos/precos/`
+
+### Cupons
+1. Crie arquivos de texto com os códigos na pasta `cupons/codigos/`
+2. Crie arquivos de texto com os links na pasta `cupons/link/`
+3. Crie arquivos de texto com as descrições na pasta `cupons/texto/`
+
+### Layout
+1. Substitua os ícones na pasta `imagens/layout/`
+2. Substitua a imagem de fundo (`background.jpg`) conforme necessário
+
+## Observações Importantes
+- Mantenha os nomes dos arquivos exatamente como especificado
+- Certifique-se de que todos os arquivos de texto estão em formato UTF-8
+- Para melhor desempenho, otimize as imagens antes de adicioná-las ao site
+- O site foi projetado para funcionar bem em dispositivos móveis, com foco em telas de até 500px de largura
