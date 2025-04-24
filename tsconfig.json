@@ -18,8 +18,9 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".", // Define a raiz do projeto como base para os aliases
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"] // Aponta para a raiz do projeto
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
