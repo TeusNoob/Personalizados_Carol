@@ -1,7 +1,9 @@
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, Heart, ShoppingCart } from "lucide-react"
-
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Tabs } from '@/components/ui/tabs';
 import { Button } from "@/components/ui/button"
 import { BottomNavigation } from "@/components/bottom-navigation"
 
