@@ -1,0 +1,7 @@
+[build]
+command = "pnpm run build" # Comando para executar o build
+publish = "out"            # Diretório onde o build será gerado
+
+[build.environment]
+NODE_VERSION = "22"        # Versão do Node.js
+NPM_FLAGS = "--cache .npm --prefer-offline" # Configuração de cache
