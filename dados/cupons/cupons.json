@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "titulo": "Desconto para Iniciantes",
+    "titulo": "30% de desconto em qualquer produto.",
     "descricao": "Ganhe 30% off em compras na nossa loja",
     "codigo": "CAROL2025",
     "desconto": "30% OFF",
@@ -9,7 +9,7 @@
   },
   {
     "id": 2,
-    "titulo": "50% de desconto em tags adesivas",
+    "titulo": "50% de desconto em tags adesivas.",
     "descricao": "Economize em tags adesivas personalizadas para tornar o Dia das Mães ainda mais especial!",
     "codigo": "CARO50MAE",
     "desconto": "50% OFF",
@@ -17,7 +17,7 @@
   },
   {
     "id": 3,
-    "titulo": "ganhe 10% de cashback.",
+    "titulo": "Ganhe 10% de cashback.",
     "descricao": "10% de cashback em qualquer produto da loja!",
     "codigo": "CAROMOEDA",
     "desconto": "10% OFF",
@@ -25,7 +25,7 @@
   },
   {
     "id": 4,
-    "titulo": "Seguidor Especial",
+    "titulo": "Seguidor Especial.",
     "descricao": "Seguiu, ganhou: 10% OFF ao seguir nossa loja na Shopee!.",
     "codigo": "Clique em copiar, acesse a loja e siga o perfil para liberar o cupom.",
     "desconto": "10% OFF",
