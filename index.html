@@ -42,7 +42,7 @@
       color: var(--gray-800);
       line-height: 1.5;
       overscroll-behavior: none;
-      touch-action: manipulation;
+      /* touch-action: manipulation; */ /* Removido para permitir scroll horizontal */
       -webkit-user-select: none;
       user-select: none;
       position: relative;
@@ -56,10 +56,15 @@
       background-size: cover;
       background-position: center;
     }
-    /* Hide scrollbar */
-    ::-webkit-scrollbar {
-      display: none;
+    /* Hide scrollbar visually but keep functionality */
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none; /* Safari and Chrome */
     }
+    .hide-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+
     /* Header */
     .header {
       padding: 1.5rem 1rem 1.5rem;
@@ -147,16 +152,16 @@
     main {
       flex: 1;
       padding-bottom: 5rem; /* Adjusted for bottom nav */
-      overflow-y: auto; /* Ensure main content can scroll if needed */
+      overflow-y: auto; /* Scroll vertical principal */
     }
     .section {
-      padding: 1.5rem 1rem; /* Padding around the section content */
+      padding: 1.5rem 1rem;
       margin: 1rem 0.5rem;
       background-color: rgba(255, 255, 255, 0.95);
       border-radius: 1rem;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
       position: relative;
-      overflow: hidden; /* Prevents potential overflow issues */
+      overflow: hidden; /* Contain floats/margins */
     }
     .section-title {
       font-size: 1.25rem;
@@ -191,24 +196,37 @@
     .carousel-container {
       position: relative;
       width: 100%;
-      overflow: hidden; /* Hide overflow */
-      /* REMOVED negative margin */
-      padding: 0 2rem; /* Adjusted padding for arrows */
+      /* No padding needed here now, arrows are absolute to this container */
     }
 
     .carousel {
       display: flex;
-      gap: 15px; /* Use gap for spacing */
-      transition: transform 0.5s ease;
-      width: max-content; /* Allow carousel to expand */
-      padding-bottom: 1rem; /* Add some space at the bottom */
-      align-items: stretch; /* Make items stretch vertically */
+      gap: 15px;
+      /* REMOVED width: max-content; */
+      /* ADDED Scroll properties */
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling iOS */
+      padding: 0.5rem 0 1rem 0; /* Padding top/bottom for items */
+      margin: 0 -1rem; /* Use negative margin to allow items to touch edges of section padding */
+      padding-left: 1rem; /* Add back padding to align first item with section content */
+      padding-right: 1rem; /* Add back padding to give space after last item */
+      align-items: stretch;
+      /* Hide scrollbar visually */
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE/Edge */
+    }
+    .carousel::-webkit-scrollbar {
+        display: none; /* Chrome/Safari */
     }
 
+
     .carousel-item {
-      flex: 0 0 auto; /* Don't grow or shrink, use auto basis */
-      width: calc((100% - 30px) / 3); /* Calculate width for 3 items with 15px gap (default, JS adjusts) */
-      display: flex; /* Allow product card to fill height */
+      flex: 0 0 auto;
+      width: calc((100% - 30px) / 3); /* Default width, JS adjusts */
+      display: flex;
+      scroll-snap-align: start; /* Snap point */
     }
 
     .carousel-nav {
@@ -225,17 +243,22 @@
       cursor: pointer;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       z-index: 5;
-      transition: all 0.3s ease;
+      transition: opacity 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Added opacity transition */
     }
     .carousel-nav:hover {
       background-color: var(--white);
       box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
     }
     .carousel-prev {
-      left: 0.25rem; /* Adjusted position */
+      left: -0.75rem; /* Position slightly outside the main content area */
     }
     .carousel-next {
-      right: 0.25rem; /* Adjusted position */
+      right: -0.75rem; /* Position slightly outside the main content area */
+    }
+    /* Style for hidden state */
+    .carousel-nav.hidden {
+        opacity: 0;
+        pointer-events: none; /* Disable clicks when hidden */
     }
     .carousel-nav-icon {
       width: 1.2rem;
@@ -248,46 +271,40 @@
       border-radius: 0.75rem;
       overflow: hidden;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      width: 100%; /* Make card fill the carousel item */
+      width: 100%;
       display: flex;
-      flex-direction: column; /* Stack image and info vertically */
+      flex-direction: column;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
     .product-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
-
     .product-img-container {
       position: relative;
-      width: 100%; /* Ensure image container takes full width */
-      aspect-ratio: 1/1; /* Maintain square aspect ratio */
+      width: 100%;
+      aspect-ratio: 1/1;
       background-color: var(--gray-100);
       overflow: hidden;
-      flex-shrink: 0; /* Prevent image container from shrinking */
+      flex-shrink: 0;
     }
-
     .product-img {
-      display: block; /* Remove extra space below image */
+      display: block;
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Cover the container */
+      object-fit: cover;
       transition: transform 0.5s ease;
     }
-
     .product-card:hover .product-img {
       transform: scale(1.05);
     }
-
     .product-info {
       padding: 0.75rem;
       display: flex;
       flex-direction: column;
-      flex-grow: 1; /* Allow info section to grow */
-      justify-content: space-between; /* Push button to bottom */
+      flex-grow: 1;
+      justify-content: space-between;
     }
-
     .product-title {
       font-size: 0.75rem;
       font-weight: 500;
@@ -298,26 +315,23 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
-      min-height: calc(2 * 1.5 * 0.75rem); /* Approx height for 2 lines */
+      min-height: calc(2 * 1.5 * 0.75rem);
     }
-
     .product-price {
       font-size: 0.875rem;
       font-weight: 600;
       color: var(--pink-600);
       margin-bottom: 0.5rem;
-      margin-top: auto; /* Push price down if title is short */
+      margin-top: auto;
     }
-
     .buy-button, .mercado-pago-button {
       width: 100%;
-      margin-top: 0.5rem; /* Space above button */
-      min-height: calc(0.5rem * 2 + 1.5 * 0.75rem); /* Approx height of buy-button (padding + line-height * font-size) */
-      display: flex; /* Helps align content if MP script adds elements */
+      margin-top: 0.5rem;
+      min-height: calc(0.5rem * 2 + 1.5 * 0.75rem);
+      display: flex;
       align-items: center;
       justify-content: center;
     }
-
     .buy-button {
       padding: 0.5rem;
       background-color: var(--pink-500);
@@ -329,7 +343,7 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
       text-align: center;
-      line-height: 1.5; /* Added for height calculation */
+      line-height: 1.5;
     }
     .buy-button:hover {
       background-color: var(--pink-600);
@@ -338,7 +352,6 @@
         background-color: var(--gray-300);
         cursor: not-allowed;
     }
-
 
     .see-more-button {
       display: block;
@@ -364,251 +377,64 @@
     }
 
     /* Coupons */
-    .coupon-card {
-      background-color: var(--white);
-      border-radius: 0.75rem;
-      padding: 1rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      border: 1px dashed var(--pink-400);
-      position: relative;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .coupon-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-    .coupon-discount {
-      position: absolute;
-      top: -0.75rem;
-      right: 1rem;
-      background-color: var(--pink-500);
-      color: white;
-      padding: 0.25rem 0.5rem;
-      border-radius: 0.25rem;
-      font-size: 0.875rem;
-      font-weight: 600;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .coupon-title {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--gray-900);
-      margin-bottom: 0.5rem;
-    }
-    .coupon-description {
-      font-size: 0.75rem;
-      color: var(--gray-600);
-      margin-bottom: 0.75rem;
-    }
-    .coupon-code {
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.75rem;
-    }
-    .code-display {
-      flex: 1;
-      padding: 0.5rem;
-      background-color: var(--gray-100);
-      border-radius: 0.25rem;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: var(--gray-900);
-      text-align: center;
-      letter-spacing: 1px;
-      margin-right: 0.5rem;
-      border: 1px dashed var(--gray-300);
-    }
-    .copy-button {
-      padding: 0.5rem;
-      background-color: var(--pink-500);
-      color: white;
-      border: none;
-      border-radius: 0.25rem;
-      font-size: 0.75rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      line-height: 1.5; /* Added for consistency */
-    }
-    .copy-button:hover {
-      background-color: var(--pink-600);
-    }
-     .copy-button[disabled] {
-        background-color: var(--gray-300);
-        cursor: not-allowed;
-     }
-    .coupon-validity {
-      font-size: 0.75rem;
-      color: var(--gray-500);
-      text-align: center;
-    }
-    /* Botão para a Shopee após copiar o cupom */
-    .shopee-button {
-      display: none;
-      width: 100%;
-      margin-top: 0.5rem;
-      padding: 0.5rem;
-      background-color: #ee4d2d;
-      color: white;
-      border: none;
-      border-radius: 0.25rem;
-      font-size: 0.75rem;
-      font-weight: 500;
-      cursor: pointer;
-      text-align: center;
-      transition: background-color 0.3s ease;
-       line-height: 1.5; /* Added for consistency */
-    }
-    .shopee-button:hover {
-      background-color: #d03a18;
-    }
+    /* ... (coupon styles remain the same) ... */
+    .coupon-card { background-color: var(--white); border-radius: 0.75rem; padding: 1rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); border: 1px dashed var(--pink-400); position: relative; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .coupon-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); }
+    .coupon-discount { position: absolute; top: -0.75rem; right: 1rem; background-color: var(--pink-500); color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.875rem; font-weight: 600; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+    .coupon-title { font-size: 1rem; font-weight: 600; color: var(--gray-900); margin-bottom: 0.5rem; }
+    .coupon-description { font-size: 0.75rem; color: var(--gray-600); margin-bottom: 0.75rem; }
+    .coupon-code { display: flex; align-items: center; margin-bottom: 0.75rem; }
+    .code-display { flex: 1; padding: 0.5rem; background-color: var(--gray-100); border-radius: 0.25rem; font-size: 0.875rem; font-weight: 600; color: var(--gray-900); text-align: center; letter-spacing: 1px; margin-right: 0.5rem; border: 1px dashed var(--gray-300); }
+    .copy-button { padding: 0.5rem; background-color: var(--pink-500); color: white; border: none; border-radius: 0.25rem; font-size: 0.75rem; font-weight: 500; cursor: pointer; transition: background-color 0.3s ease; line-height: 1.5; }
+    .copy-button:hover { background-color: var(--pink-600); }
+    .copy-button[disabled] { background-color: var(--gray-300); cursor: not-allowed; }
+    .coupon-validity { font-size: 0.75rem; color: var(--gray-500); text-align: center; }
+    .shopee-button { display: none; width: 100%; margin-top: 0.5rem; padding: 0.5rem; background-color: #ee4d2d; color: white; border: none; border-radius: 0.25rem; font-size: 0.75rem; font-weight: 500; cursor: pointer; text-align: center; transition: background-color 0.3s ease; line-height: 1.5; }
+    .shopee-button:hover { background-color: #d03a18; }
+
 
     /* Bottom navigation */
-    .bottom-nav {
-      position: fixed;
-      bottom: 1rem;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: rgba(255, 255, 255, 0.95);
-      border-radius: 2rem;
-      display: flex;
-      height: 3.5rem;
-      z-index: 50;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      padding: 0 1rem;
-    }
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.25rem;
-      color: var(--gray-500);
-      text-decoration: none;
-      position: relative;
-      padding: 0 1.5rem;
-      transition: color 0.3s ease;
-    }
-    .nav-item.active {
-      color: var(--pink-500);
-    }
-    .nav-item::after {
-      content: '';
-      position: absolute;
-      bottom: 0.5rem;
-      width: 0;
-      height: 2px;
-      background-color: var(--pink-500);
-      border-radius: 9999px;
-      transition: width 0.3s ease;
-    }
-    .nav-item.active::after {
-      width: 1.5rem;
-    }
-    .nav-icon {
-      width: 1.25rem;
-      height: 1.25rem;
-    }
-    .nav-text {
-      font-size: 0.625rem;
-      font-weight: 500;
-    }
+    /* ... (bottom nav styles remain the same) ... */
+     .bottom-nav { position: fixed; bottom: 1rem; left: 50%; transform: translateX(-50%); background-color: rgba(255, 255, 255, 0.95); border-radius: 2rem; display: flex; height: 3.5rem; z-index: 50; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); padding: 0 1rem; }
+     .nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.25rem; color: var(--gray-500); text-decoration: none; position: relative; padding: 0 1.5rem; transition: color 0.3s ease; }
+     .nav-item.active { color: var(--pink-500); }
+     .nav-item::after { content: ''; position: absolute; bottom: 0.5rem; width: 0; height: 2px; background-color: var(--pink-500); border-radius: 9999px; transition: width 0.3s ease; }
+     .nav-item.active::after { width: 1.5rem; }
+     .nav-icon { width: 1.25rem; height: 1.25rem; }
+     .nav-text { font-size: 0.625rem; font-weight: 500; }
+
 
     /* Content sections */
-    .content-section {
-      display: none;
-      animation: fadeIn 0.5s ease;
-    }
-    .content-section.active {
-      display: block;
-    }
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+    /* ... (content section styles remain the same) ... */
+    .content-section { display: none; animation: fadeIn 0.5s ease; }
+    .content-section.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
 
     /* Footer */
-    .footer {
-      padding: 1.5rem 1rem;
-      text-align: center;
-      position: relative;
-      margin-bottom: 4rem; /* Space for bottom nav */
-    }
-    .footer-content {
-      background-color: rgba(255, 255, 255, 0.95);
-      border-radius: 1rem;
-      padding: 1rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-      position: relative;
-    }
-    .footer-decoration {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      color: var(--pink-400);
-    }
-    .stationery-icon {
-      position: absolute;
-      width: 1.5rem;
-      height: 1.5rem;
-      opacity: 0.2;
-    }
+    /* ... (footer styles remain the same) ... */
+    .footer { padding: 1.5rem 1rem; text-align: center; position: relative; margin-bottom: 4rem; }
+    .footer-content { background-color: rgba(255, 255, 255, 0.95); border-radius: 1rem; padding: 1rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); position: relative; }
+    .footer-decoration { font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--pink-400); }
+    .stationery-icon { position: absolute; width: 1.5rem; height: 1.5rem; opacity: 0.2; }
     .icon-1 { top: 0.5rem; left: 1rem; transform: rotate(-15deg); }
     .icon-2 { top: 1rem; right: 1rem; transform: rotate(25deg); }
     .icon-3 { bottom: 0.5rem; left: 2rem; transform: rotate(10deg); }
     .icon-4 { bottom: 1rem; right: 2rem; transform: rotate(-20deg); }
 
+
     /* Botão flutuante */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 5.5rem; /* Adjusted bottom margin */
-      right: 1.5rem;
-      width: 50px;
-      height: 50px;
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-image: url('templates/layout/Botao_flutuante.png');
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      z-index: 100;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    .whatsapp-float:hover {
-      transform: scale(1.1);
-    }
+    /* ... (float button styles remain the same) ... */
+     .whatsapp-float { position: fixed; bottom: 5.5rem; right: 1.5rem; width: 50px; height: 50px; background-size: contain; background-repeat: no-repeat; background-position: center; background-image: url('templates/layout/Botao_flutuante.png'); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 100; cursor: pointer; transition: transform 0.3s ease; }
+     .whatsapp-float:hover { transform: scale(1.1); }
 
 
     /* Loading spinner */
-    .loading-spinner {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 2rem;
-      width: 100%; /* Ensure spinner takes space */
-    }
-    .spinner {
-      width: 40px;
-      height: 40px;
-      border: 4px solid var(--gray-200);
-      border-top: 4px solid var(--pink-500);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+    /* ... (spinner styles remain the same) ... */
+    .loading-spinner { display: flex; justify-content: center; align-items: center; padding: 2rem; width: 100%; }
+    .spinner { width: 40px; height: 40px; border: 4px solid var(--gray-200); border-top: 4px solid var(--pink-500); border-radius: 50%; animation: spin 1s linear infinite; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
 
     /* Responsive adjustments */
     @media (max-width: 480px) { /* Breakpoint for 2 items */
@@ -619,41 +445,23 @@
         .nav-item {
             padding: 0 1rem;
         }
+        .carousel-prev { left: -0.5rem; } /* Adjust arrow position for smaller screens */
+        .carousel-next { right: -0.5rem; }
         /* item width handled by JS */
     }
 
     @media (max-width: 360px) {
-        .social-btn {
-            width: 3.5rem;
-        }
-        .social-icon-wrapper {
-            width: 2.5rem;
-            height: 2.5rem;
-        }
-        .nav-item {
-            padding: 0 0.8rem;
-        }
-        .product-title {
-            font-size: 0.7rem;
-            min-height: calc(2 * 1.5 * 0.7rem);
-        }
-        .product-price {
-            font-size: 0.8rem;
-        }
-        .buy-button, .copy-button, .shopee-button {
-            font-size: 0.7rem;
-            padding: 0.4rem;
-        }
-        .whatsapp-float {
-             bottom: 5rem;
-             right: 1rem;
-             width: 45px;
-             height: 45px;
-        }
-         /* Recalculate button min-height */
-        .buy-button, .mercado-pago-button {
-            min-height: calc(0.4rem * 2 + 1.5 * 0.7rem);
-        }
+        .social-btn { width: 3.5rem; }
+        .social-icon-wrapper { width: 2.5rem; height: 2.5rem; }
+        .nav-item { padding: 0 0.8rem; }
+        .product-title { font-size: 0.7rem; min-height: calc(2 * 1.5 * 0.7rem); }
+        .product-price { font-size: 0.8rem; }
+        .buy-button, .copy-button, .shopee-button { font-size: 0.7rem; padding: 0.4rem; }
+        .whatsapp-float { bottom: 5rem; right: 1rem; width: 45px; height: 45px; }
+        .buy-button, .mercado-pago-button { min-height: calc(0.4rem * 2 + 1.5 * 0.7rem); }
+        .carousel-prev { left: -0.25rem; } /* Further adjust arrow position */
+        .carousel-next { right: -0.25rem; }
+
     }
     /* Style for empty carousel message */
     .carousel-empty {
@@ -702,12 +510,14 @@
       <section class="section">
         <h2 class="section-title">Moldes Digitais</h2>
         <div class="carousel-container">
-          <div class="carousel" id="moldes-carousel">
+          <div class="carousel hide-scrollbar" id="moldes-carousel">
             <div class="loading-spinner"><div class="spinner"></div></div>
             </div>
-          <div class="carousel-nav carousel-prev" onclick="moveCarousel('moldes-carousel', -1)" style="display: none;"> <img src="templates/layout/arrow-left.png" alt="Anterior" class="carousel-nav-icon">
+          <div class="carousel-nav carousel-prev hidden" onclick="moveCarousel('moldes-carousel', -1)">
+            <img src="templates/layout/arrow-left.png" alt="Anterior" class="carousel-nav-icon">
           </div>
-          <div class="carousel-nav carousel-next" onclick="moveCarousel('moldes-carousel', 1)" style="display: none;"> <img src="templates/layout/arrow-right.png" alt="Próximo" class="carousel-nav-icon">
+          <div class="carousel-nav carousel-next hidden" onclick="moveCarousel('moldes-carousel', 1)">
+            <img src="templates/layout/arrow-right.png" alt="Próximo" class="carousel-nav-icon">
           </div>
         </div>
       </section>
@@ -715,12 +525,14 @@
       <section class="section">
         <h2 class="section-title">Conheça nossos personalizados prontos</h2>
         <div class="carousel-container">
-          <div class="carousel" id="personalizados-carousel">
+           <div class="carousel hide-scrollbar" id="personalizados-carousel">
              <div class="loading-spinner"><div class="spinner"></div></div>
              </div>
-           <div class="carousel-nav carousel-prev" onclick="moveCarousel('personalizados-carousel', -1)" style="display: none;"> <img src="templates/layout/arrow-left.png" alt="Anterior" class="carousel-nav-icon">
+           <div class="carousel-nav carousel-prev hidden" onclick="moveCarousel('personalizados-carousel', -1)">
+             <img src="templates/layout/arrow-left.png" alt="Anterior" class="carousel-nav-icon">
            </div>
-           <div class="carousel-nav carousel-next" onclick="moveCarousel('personalizados-carousel', 1)" style="display: none;"> <img src="templates/layout/arrow-right.png" alt="Próximo" class="carousel-nav-icon">
+           <div class="carousel-nav carousel-next hidden" onclick="moveCarousel('personalizados-carousel', 1)">
+             <img src="templates/layout/arrow-right.png" alt="Próximo" class="carousel-nav-icon">
            </div>
          </div>
          <a href="https://shopee.com.br/CarollShop" class="see-more-button" target="_blank" rel="noopener noreferrer">Ver mais na Shopee</a>
@@ -729,12 +541,14 @@
       <section class="section">
         <h2 class="section-title">Produtos de vendedores parceiros</h2>
         <div class="carousel-container">
-          <div class="carousel" id="parceiros-carousel">
+          <div class="carousel hide-scrollbar" id="parceiros-carousel">
             <div class="loading-spinner"><div class="spinner"></div></div>
-            </div>
-          <div class="carousel-nav carousel-prev" onclick="moveCarousel('parceiros-carousel', -1)" style="display: none;"> <img src="templates/layout/arrow-left.png" alt="Anterior" class="carousel-nav-icon">
+             </div>
+          <div class="carousel-nav carousel-prev hidden" onclick="moveCarousel('parceiros-carousel', -1)">
+            <img src="templates/layout/arrow-left.png" alt="Anterior" class="carousel-nav-icon">
           </div>
-          <div class="carousel-nav carousel-next" onclick="moveCarousel('parceiros-carousel', 1)" style="display: none;"> <img src="templates/layout/arrow-right.png" alt="Próximo" class="carousel-nav-icon">
+          <div class="carousel-nav carousel-next hidden" onclick="moveCarousel('parceiros-carousel', 1)">
+            <img src="templates/layout/arrow-right.png" alt="Próximo" class="carousel-nav-icon">
           </div>
         </div>
       </section>
@@ -774,111 +588,102 @@
     </a>
   </nav>
 
-  <a href="https://shopee.com/CarollShop" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Visite nossa loja na Shopee">
-    </a>
+  <a href="https://shopee.com/CarollShop" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Visite nossa loja na Shopee"></a>
 
   <script>
-    // Armazenar posições dos carrosséis (índice do primeiro item visível)
-    const carouselPositions = {
-      'moldes-carousel': 0,
-      'personalizados-carousel': 0,
-      'parceiros-carousel': 0
-    };
+    // Debounce function
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
 
-    // Função auxiliar para obter quantos itens estão visíveis baseado na largura da tela
-    function getItemsPerView(carouselId) {
-        if (window.innerWidth <= 480) {
-            return 2;
-        }
+    // Função auxiliar para obter quantos itens estão visíveis
+    function getItemsPerView() {
+        if (window.innerWidth <= 480) return 2;
         return 3;
     }
 
-    // Função para mover o carrossel e atualizar visibilidade das setas
-    function moveCarousel(carouselId, direction) {
-      const carouselContainer = document.getElementById(carouselId)?.closest('.carousel-container');
-       if (!carouselContainer) {
-           console.error(`Carousel container not found for ID: ${carouselId}`);
-           return;
-       }
-       const carousel = carouselContainer.querySelector('.carousel');
-       const prevButton = carouselContainer.querySelector('.carousel-prev');
-       const nextButton = carouselContainer.querySelector('.carousel-next');
+    // Função para atualizar visibilidade das setas baseado no scroll
+    function updateArrowVisibility(carouselElement) {
+        const container = carouselElement.closest('.carousel-container');
+        if (!container) return;
+        const prevButton = container.querySelector('.carousel-prev');
+        const nextButton = container.querySelector('.carousel-next');
+        if (!prevButton || !nextButton) return;
 
-       if (!carousel || !prevButton || !nextButton) {
-           console.error(`Carousel elements missing for container related to ID: ${carouselId}`);
-           return;
-       }
+        const scrollLeft = carouselElement.scrollLeft;
+        const scrollWidth = carouselElement.scrollWidth;
+        const clientWidth = carouselElement.clientWidth;
+        const tolerance = 5; // Pixels de tolerância para comparações de scroll
 
-       const items = carousel.querySelectorAll('.carousel-item');
-       if (!items.length) {
-           prevButton.style.display = 'none';
-           nextButton.style.display = 'none';
-           return;
-       }
+        // Verifica se há conteúdo suficiente para rolar
+        if (scrollWidth <= clientWidth + tolerance) {
+             prevButton.classList.add('hidden');
+             nextButton.classList.add('hidden');
+             return;
+        }
 
-      const itemsPerView = getItemsPerView(carouselId);
-       if (itemsPerView <= 0) {
-           console.error(`Calculated itemsPerView is invalid: ${itemsPerView}`);
-            prevButton.style.display = 'none';
-            nextButton.style.display = 'none';
-           return;
-       }
-      const itemWidth = items[0].offsetWidth;
-      const gap = parseFloat(getComputedStyle(carousel).gap) || 15;
-      const totalItemWidth = itemWidth + gap;
+        // Mostra/esconde seta ESQUERDA
+        prevButton.classList.toggle('hidden', scrollLeft <= tolerance);
 
-      const maxPosition = Math.max(0, items.length - itemsPerView);
+        // Mostra/esconde seta DIREITA
+        nextButton.classList.toggle('hidden', scrollLeft >= (scrollWidth - clientWidth - tolerance));
 
-      let newPosition = carouselPositions[carouselId];
-      if (direction !== 0) {
-        newPosition += direction;
-      }
-      newPosition = Math.max(0, Math.min(newPosition, maxPosition));
-
-      if (newPosition === carouselPositions[carouselId] && direction !== 0) {
-           console.log(`Carousel ${carouselId} reached boundary.`);
-      }
-
-      carouselPositions[carouselId] = newPosition;
-      const offset = -1 * newPosition * totalItemWidth;
-
-      carousel.style.transition = (direction === 0) ? 'none' : 'transform 0.5s ease';
-      carousel.style.transform = `translateX(${offset}px)`;
-
-      // Show/hide arrows logic
-      if (items.length <= itemsPerView) {
-          prevButton.style.display = 'none';
-          nextButton.style.display = 'none';
-      } else {
-          prevButton.style.display = (newPosition === 0) ? 'none' : 'flex';
-          nextButton.style.display = (newPosition >= maxPosition) ? 'none' : 'flex';
-      }
-
-      if (direction === 0) {
-           void carousel.offsetWidth; // Force reflow
-           carousel.style.transition = 'transform 0.5s ease';
-      }
-
-      // console.log(`Carousel ${carouselId}: newPos=${newPosition}, maxPos=${maxPosition}, offset=${offset}px, items=${items.length}, perView=${itemsPerView}`);
+        // console.log(`Arrows updated for ${carouselElement.id}: L=${scrollLeft.toFixed(0)}, W=${scrollWidth.toFixed(0)}, C=${clientWidth.toFixed(0)}, Start=${scrollLeft <= tolerance}, End=${scrollLeft >= (scrollWidth - clientWidth - tolerance)}`);
     }
+
+    // Função para mover o carrossel usando scroll (agora move por página)
+    function moveCarousel(carouselId, direction) {
+        const carousel = document.getElementById(carouselId);
+        if (!carousel) {
+            console.error(`Carousel element not found: ${carouselId}`);
+            return;
+        }
+        const items = carousel.querySelectorAll('.carousel-item');
+        if (!items.length) return;
+
+        const itemsPerView = getItemsPerView();
+        const itemWidth = items[0].offsetWidth;
+        const gap = parseFloat(getComputedStyle(carousel).gap) || 15;
+        const totalItemWidth = itemWidth + gap;
+
+        // Calcula quanto rolar (uma página = itemsPerView * largura total do item)
+        const scrollAmount = itemsPerView * totalItemWidth;
+        const targetScrollLeft = carousel.scrollLeft + (direction * scrollAmount);
+
+        carousel.scrollTo({
+            left: targetScrollLeft,
+            behavior: 'smooth'
+        });
+
+        // A visibilidade da seta será atualizada pelo listener de 'scroll'
+    }
+
 
     // Função para carregar dados JSON
     async function carregarDados(url) {
       try {
         const resposta = await fetch(url);
         if (!resposta.ok) {
-          console.error(`Erro HTTP ao carregar dados de ${url}: ${resposta.status}`);
+          console.error(`Erro HTTP ${resposta.status} ao carregar ${url}`);
           return [];
         }
         const contentType = resposta.headers.get("content-type");
         if (contentType && contentType.indexOf("application/json") !== -1) {
-            return await resposta.json();
+          return await resposta.json();
         } else {
-            console.error(`Resposta de ${url} não é JSON válido. Tipo: ${contentType}`);
-            return [];
+          console.error(`Resposta de ${url} não é JSON. Tipo: ${contentType}`);
+          return [];
         }
       } catch (erro) {
-        console.error(`Falha ao carregar ou processar dados de ${url}:`, erro);
+        console.error(`Falha na rede ou ao processar ${url}:`, erro);
         return [];
       }
     }
@@ -893,7 +698,7 @@
             </div>
             <div class="product-info">
               <div>
-                <h3 class="product-title">${produto.titulo || 'Produto sem título'}</h3>
+                <h3 class="product-title">${produto.titulo || 'Produto s/ título'}</h3>
                 <div class="product-price">R$ ${(produto.preco || 0).toFixed(2).replace('.', ',')}</div>
               </div>
               <div class="mercado-pago-button" id="mp-button-${produto.id || Math.random().toString(36).substring(7)}">
@@ -906,23 +711,21 @@
       container.insertAdjacentHTML('beforeend', produtoHTML);
 
       if (produto.mercadoPagoId) {
-          const mpButtonContainer = document.getElementById(`mp-button-${produto.id}`);
-          if (mpButtonContainer) {
-            const script = document.createElement('script');
-            script.src = "https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js";
-            script.setAttribute('data-preference-id', produto.mercadoPagoId);
-            script.setAttribute('data-source', 'button');
-            // Adiciona um pequeno atraso para garantir que o container exista no DOM
-             setTimeout(() => {
-                 mpButtonContainer.appendChild(script);
-             }, 0);
-          } else {
-              console.warn(`Container do botão MP não encontrado para produto ID: ${produto.id}`);
-          }
+        const mpButtonContainer = document.getElementById(`mp-button-${produto.id}`);
+        if (mpButtonContainer) {
+          const script = document.createElement('script');
+          script.src = "https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js";
+          script.setAttribute('data-preference-id', produto.mercadoPagoId);
+          script.setAttribute('data-source', 'button');
+          // Atraso mínimo para garantir que o container está no DOM
+          setTimeout(() => { mpButtonContainer.appendChild(script); }, 0);
+        } else {
+          console.warn(`MP Button container not found: mp-button-${produto.id}`);
+        }
       }
     }
 
-    // Função para renderizar produtos com botão de compra normal (link externo)
+    // Função para renderizar produtos com botão de compra normal
     function renderizarProduto(produto, container) {
       const produtoHTML = `
         <div class="carousel-item">
@@ -932,11 +735,11 @@
             </div>
             <div class="product-info">
               <div>
-                  <h3 class="product-title">${produto.titulo || 'Produto sem título'}</h3>
-                  <div class="product-price">R$ ${(produto.preco || 0).toFixed(2).replace('.', ',')}</div>
+                <h3 class="product-title">${produto.titulo || 'Produto s/ título'}</h3>
+                <div class="product-price">R$ ${(produto.preco || 0).toFixed(2).replace('.', ',')}</div>
               </div>
               <button class="buy-button" data-link="${produto.link || '#'}" ${!(produto.link && produto.link !== '#') ? 'disabled' : ''}>
-                  ${(produto.link && produto.link !== '#') ? 'Comprar' : 'Indisponível'}
+                ${(produto.link && produto.link !== '#') ? 'Comprar' : 'Indisponível'}
               </button>
             </div>
           </div>
@@ -947,7 +750,7 @@
 
     // Função para renderizar cupons
     function renderizarCupom(cupom, container) {
-        const cupomHTML = `
+      const cupomHTML = `
         <div class="coupon-card">
           <div class="coupon-discount">${cupom.desconto || ''}</div>
           <h3 class="coupon-title">${cupom.titulo || 'Cupom'}</h3>
@@ -963,70 +766,60 @@
       container.insertAdjacentHTML('beforeend', cupomHTML);
     }
 
-    // Função para inicializar os carrosséis e cupons
+    // Função para inicializar conteúdo
     async function inicializarConteudo() {
-        console.log("Iniciando carregamento de conteúdo...");
-        const loadingPlaceholders = document.querySelectorAll('.loading-spinner');
+      console.log("Iniciando carregamento...");
+      const spinnerContainers = document.querySelectorAll('.loading-spinner');
 
-        try {
-            const [moldes, personalizados, parceiros, cupons] = await Promise.all([
-                carregarDados('dados/moldes/moldes.json'),
-                carregarDados('dados/personalizados/personalizados.json'),
-                carregarDados('dados/parceiros/parceiros.json'),
-                carregarDados('dados/cupons/cupons.json')
-            ]);
+      try {
+        const [moldes, personalizados, parceiros, cupons] = await Promise.all([
+          carregarDados('dados/moldes/moldes.json'),
+          carregarDados('dados/personalizados/personalizados.json'),
+          carregarDados('dados/parceiros/parceiros.json'),
+          carregarDados('dados/cupons/cupons.json')
+        ]);
 
-            console.log("Dados carregados:", { moldes, personalizados, parceiros, cupons });
+        // Renderiza conteúdo
+        const renderMap = {
+          'moldes-carousel': { data: moldes, renderer: renderizarProdutoMercadoPago, emptyMsg: 'Nenhum molde digital encontrado.' },
+          'personalizados-carousel': { data: personalizados, renderer: renderizarProduto, emptyMsg: 'Nenhum personalizado encontrado.' },
+          'parceiros-carousel': { data: parceiros, renderer: renderizarProduto, emptyMsg: 'Nenhum produto de parceiro encontrado.' },
+          'cupons-container': { data: cupons, renderer: renderizarCupom, emptyMsg: 'Nenhum cupom disponível.' }
+        };
 
-            // --- Renderização ---
-            // Moldes
-            const moldesContainer = document.getElementById('moldes-carousel');
-            if (moldesContainer) {
-                moldesContainer.innerHTML = '';
-                if (moldes.length > 0) moldes.forEach(p => renderizarProdutoMercadoPago(p, moldesContainer));
-                else moldesContainer.innerHTML = '<p class="carousel-empty">Nenhum molde digital encontrado.</p>';
+        for (const id in renderMap) {
+          const container = document.getElementById(id);
+          const { data, renderer, emptyMsg } = renderMap[id];
+          if (container) {
+            container.innerHTML = ''; // Limpa spinner
+            if (data.length > 0) {
+              data.forEach(item => renderer(item, container));
+            } else {
+              // Verifica se é um carrossel ou container de cupons para aplicar a classe correta
+              const emptyClass = id.includes('carousel') ? 'carousel-empty' : 'coupon-empty'; // Adicione .coupon-empty CSS se necessário
+               container.innerHTML = `<p class="${emptyClass}">${emptyMsg}</p>`;
             }
-
-            // Personalizados
-            const personalizadosContainer = document.getElementById('personalizados-carousel');
-            if (personalizadosContainer) {
-                personalizadosContainer.innerHTML = '';
-                if (personalizados.length > 0) personalizados.forEach(p => renderizarProduto(p, personalizadosContainer));
-                else personalizadosContainer.innerHTML = '<p class="carousel-empty">Nenhum personalizado encontrado.</p>';
-            }
-
-             // Parceiros
-             const parceirosContainer = document.getElementById('parceiros-carousel');
-             if (parceirosContainer) {
-                 parceirosContainer.innerHTML = '';
-                 if (parceiros.length > 0) parceiros.forEach(p => renderizarProduto(p, parceirosContainer));
-                 else parceirosContainer.innerHTML = '<p class="carousel-empty">Nenhum produto de parceiro encontrado.</p>';
-             }
-
-             // Cupons
-             const cuponsContainer = document.getElementById('cupons-container');
-             if (cuponsContainer) {
-                 cuponsContainer.innerHTML = '';
-                 if (cupons.length > 0) cupons.forEach(c => renderizarCupom(c, cuponsContainer));
-                 else cuponsContainer.innerHTML = '<p style="text-align: center; padding: 1rem; color: var(--gray-500);">Nenhum cupom disponível no momento.</p>';
-             }
-
-            // Ajusta layout e visibilidade dos botões após renderizar
-            // Adiciona um pequeno delay para garantir que o DOM foi atualizado pelas renderizações
-            setTimeout(() => {
-                adjustCarouselLayout();
-                Object.keys(carouselPositions).forEach(id => moveCarousel(id, 0));
-                console.log("Layout e botões inicializados.");
-            }, 50); // 50ms delay
-
-        } catch (erro) {
-            console.error('Erro fatal ao inicializar conteúdo:', erro);
-             loadingPlaceholders.forEach(ph => ph.innerHTML = '<p style="color: red; text-align: center;">Erro ao carregar conteúdo.</p>');
-        } finally {
-             const stillLoading = document.querySelectorAll('.loading-spinner');
-             stillLoading.forEach(spinner => spinner.style.display = 'none');
-             console.log("Inicialização de conteúdo concluída.");
+          }
         }
+
+         // Adiciona listeners de scroll e ajusta layout após renderização
+         document.querySelectorAll('.carousel').forEach(carousel => {
+             // Debounced version of the arrow update function
+             const debouncedUpdateArrows = debounce(() => updateArrowVisibility(carousel), 150);
+             carousel.addEventListener('scroll', debouncedUpdateArrows);
+         });
+
+         // Ajuste inicial do layout e setas
+         adjustCarouselLayout();
+         document.querySelectorAll('.carousel').forEach(updateArrowVisibility); // Estado inicial das setas
+
+      } catch (erro) {
+        console.error('Erro fatal ao inicializar:', erro);
+        spinnerContainers.forEach(c => c.innerHTML = '<p style="color: red;">Erro ao carregar.</p>');
+      } finally {
+        spinnerContainers.forEach(c => { if(c.parentElement) c.parentElement.removeChild(c); }); // Remove spinners
+        console.log("Inicialização concluída.");
+      }
     }
 
     // Navegação entre seções
@@ -1037,7 +830,6 @@
         const currentSection = document.querySelector('.content-section.active');
         const targetSectionId = this.getAttribute('data-section');
         const targetSection = document.getElementById(targetSectionId);
-
         if (currentActive !== this && targetSection) {
           if (currentActive) currentActive.classList.remove('active');
           this.classList.add('active');
@@ -1047,85 +839,69 @@
       });
     });
 
-    // Event listener para botões de compra (delegação)
-    document.getElementById('inicio').addEventListener('click', function(e) {
-        if (e.target && e.target.classList.contains('buy-button') && !e.target.disabled) {
-            const link = e.target.getAttribute('data-link');
-            if (link && link !== '#') {
-              window.open(link, '_blank', 'noopener,noreferrer');
-            }
+    // Listener de clique para botões (delegação)
+    document.addEventListener('click', function(e) {
+      // Botão de compra (personalizados/parceiros)
+      if (e.target && e.target.classList.contains('buy-button') && !e.target.disabled) {
+        const link = e.target.getAttribute('data-link');
+        if (link && link !== '#') {
+          window.open(link, '_blank', 'noopener,noreferrer');
         }
-    });
-
-    // Copiar código do cupom (delegação)
-    document.getElementById('cupons').addEventListener('click', function(e) {
-      if (e.target && e.target.classList.contains('copy-button')) {
+      }
+      // Botão copiar cupom
+      else if (e.target && e.target.classList.contains('copy-button') && !e.target.disabled) {
         const code = e.target.getAttribute('data-code');
-        if (code && !e.target.disabled) {
-            navigator.clipboard.writeText(code).then(() => {
+        if (code) {
+          navigator.clipboard.writeText(code).then(() => {
             const originalText = e.target.textContent;
             e.target.textContent = 'Copiado!';
             e.target.disabled = true;
-            setTimeout(() => {
-                e.target.textContent = originalText;
-                e.target.disabled = false;
-            }, 2000);
-
+            setTimeout(() => { e.target.textContent = originalText; e.target.disabled = false; }, 2000);
             const couponCard = e.target.closest('.coupon-card');
             if (couponCard) {
-                const shopeeButton = couponCard.querySelector('.shopee-button');
-                if (shopeeButton) {
-                   shopeeButton.style.display = 'block';
-                }
+              const shopeeButton = couponCard.querySelector('.shopee-button');
+              if (shopeeButton) shopeeButton.style.display = 'block';
             }
-            }).catch(err => {
-                console.error('Erro ao copiar código:', err);
-                alert('Não foi possível copiar o código. Verifique as permissões do navegador.');
-            });
+          }).catch(err => {
+            console.error('Erro ao copiar:', err);
+            alert('Não foi possível copiar o código.');
+          });
         }
       }
     });
 
+
     // Ajustar layout dos carrosséis (largura dos itens)
     function adjustCarouselLayout() {
         const gap = 15;
-
         document.querySelectorAll('.carousel').forEach(carousel => {
             const items = carousel.querySelectorAll('.carousel-item');
             if (!items.length) return;
 
-            const itemsToShow = getItemsPerView(carousel.id);
-            const carouselContainer = carousel.closest('.carousel-container');
-            if (!carouselContainer) return;
-
-            const containerStyle = getComputedStyle(carouselContainer);
-            const paddingLeft = parseFloat(containerStyle.paddingLeft) || 0;
-            const paddingRight = parseFloat(containerStyle.paddingRight) || 0;
-            const availableWidth = carouselContainer.offsetWidth - paddingLeft - paddingRight;
+            const itemsToShow = getItemsPerView(); // Não depende mais do ID
+            const scrollbarHeight = carousel.offsetHeight - carousel.clientHeight; // Considera barra de scroll se visível
+            const availableWidth = carousel.clientWidth; // Usa clientWidth que exclui a scrollbar vertical se houver
 
             const totalGapWidth = Math.max(0, (itemsToShow - 1)) * gap;
             let itemWidth = (availableWidth > totalGapWidth) ? (availableWidth - totalGapWidth) / itemsToShow : availableWidth;
-            itemWidth = Math.max(100, itemWidth); // Largura mínima de 100px
+            itemWidth = Math.max(100, itemWidth); // Min width 100px
 
             items.forEach(item => {
                 item.style.width = `${itemWidth}px`;
             });
+             // console.log(`Layout adjusted for ${carousel.id}: ${itemsToShow} items, itemWidth=${itemWidth.toFixed(1)}px`);
         });
-        console.log("Carousel layout adjusted");
     }
 
-    // Ajustar carrosséis quando a janela for redimensionada (com debounce)
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-            console.log("Window resized, adjusting layout and carousel positions...");
-            adjustCarouselLayout();
-            Object.keys(carouselPositions).forEach(id => moveCarousel(id, 0));
-        }, 250);
-    });
+    // Ajustar ao redimensionar (com debounce)
+    const debouncedResize = debounce(() => {
+        console.log("Window resized, adjusting...");
+        adjustCarouselLayout();
+         document.querySelectorAll('.carousel').forEach(updateArrowVisibility); // Reavalia visibilidade das setas
+    }, 250);
+    window.addEventListener('resize', debouncedResize);
 
-    // Inicializar conteúdo quando o DOM estiver carregado
+    // Inicializar
     document.addEventListener('DOMContentLoaded', inicializarConteudo);
 
   </script>
