@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "titulo": "Desconto para Iniciantes",
+    "descricao": "Use este cupom em sua primeira compra de qualquer template digital.",
+    "codigo": "CAROL20",
+    "desconto": "20% OFF",
+    "validade": "Válido até 31/12/2024"
+  },
+  {
+    "id": 2,
+    "titulo": "Desconto em Planners",
+    "descricao": "Economize em todos os planners e agendas digitais.",
+    "codigo": "PLANNER15",
+    "desconto": "15% OFF",
+    "validade": "Válido até 30/09/2024"
+  },
+  {
+    "id": 3,
+    "titulo": "Pacote Completo",
+    "descricao": "Desconto especial para compra do pacote completo de templates.",
+    "codigo": "PACOTE25",
+    "desconto": "25% OFF",
+    "validade": "Válido até 15/10/2024"
+  },
+  {
+    "id": 4,
+    "titulo": "Desconto para Seguidores",
+    "descricao": "Exclusivo para seguidores das nossas redes sociais.",
+    "codigo": "SOCIAL10",
+    "desconto": "10% OFF",
+    "validade": "Sem data de expiração"
+  }
+]

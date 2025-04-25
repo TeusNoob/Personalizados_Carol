@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "titulo": "Agenda Personalizada",
+    "preco": 45.00,
+    "imagem": "templates/produto/produto_1.jpg",
+    "alt": "Agenda Personalizada",
+    "link": "botoes/loja/produto1.html"
+  },
+  {
+    "id": 2,
+    "titulo": "Planner Financeiro",
+    "preco": 39.90,
+    "imagem": "templates/produto/product_2.jpg",
+    "alt": "Planner Financeiro",
+    "link": "botoes/loja/produto2.html"
+  },
+  {
+    "id": 3,
+    "titulo": "Calendário 2024",
+    "preco": 19.90,
+    "imagem": "templates/produto/produto_3.jpg",
+    "alt": "Calendário 2024",
+    "link": "botoes/loja/produto3.html"
+  },
+  {
+    "id": 4,
+    "titulo": "Kit Papelaria",
+    "preco": 65.00,
+    "imagem": "templates/produto/produto_4.jpg",
+    "alt": "Kit Papelaria",
+    "link": "botoes/loja/produto4.html"
+  },
+  {
+    "id": 5,
+    "titulo": "Convites Digitais",
+    "preco": 25.00,
+    "imagem": "templates/produto/produto_5.jpg",
+    "alt": "Convites Digitais",
+    "link": "botoes/loja/produto5.html"
+  },
+  {
+    "id": 6,
+    "titulo": "Etiquetas Personalizadas",
+    "preco": 18.50,
+    "imagem": "templates/produto/produto_6.jpg",
+    "alt": "Etiquetas Personalizadas",
+    "link": "botoes/loja/produto6.html"
+  },
+  {
+    "id": 7,
+    "titulo": "Produto Extra",
+    "preco": 22.00,
+    "imagem": "templates/produto/produto_7.jpg",
+    "alt": "Produto Extra",
+    "link": "botoes/loja/produto7.html"
+  },
+  {
+    "id": 8,
+    "titulo": "Produto Personalizado",
+    "preco": 30.00,
+    "imagem": "templates/produto/produto_8.jpg",
+    "alt": "Produto Personalizado",
+    "link": "botoes/loja/produto8.html"
+  },
+  {
+    "id": 9,
+    "titulo": "Produto Especial",
+    "preco": 40.00,
+    "imagem": "templates/produto/produto_9.jpg",
+    "alt": "Produto Especial",
+    "link": "botoes/loja/produto9.html"
+  }
+]

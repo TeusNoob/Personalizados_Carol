@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "titulo": "Canetas Coloridas",
+    "preco": 29.90,
+    "imagem": "templates/produto/parceiro1.jpg",
+    "alt": "Canetas Coloridas",
+    "link": "botoes/afiliados/parceiro1.html"
+  },
+  {
+    "id": 2,
+    "titulo": "Kit Adesivos",
+    "preco": 15.00,
+    "imagem": "templates/produto/parceiro2.jpg",
+    "alt": "Kit Adesivos",
+    "link": "botoes/afiliados/parceiro2.html"
+  },
+  {
+    "id": 3,
+    "titulo": "Caderno Artesanal",
+    "preco": 42.00,
+    "imagem": "templates/produto/parceiro3.jpg",
+    "alt": "Caderno Artesanal",
+    "link": "botoes/afiliados/parceiro3.html"
+  },
+  {
+    "id": 4,
+    "titulo": "Washi Tapes",
+    "preco": 18.90,
+    "imagem": "templates/produto/parceiro4.jpg",
+    "alt": "Washi Tapes",
+    "link": "botoes/afiliados/parceiro4.html"
+  },
+  {
+    "id": 5,
+    "titulo": "Marcadores de Página",
+    "preco": 12.50,
+    "imagem": "templates/produto/parceiro5.jpg",
+    "alt": "Marcadores de Página",
+    "link": "botoes/afiliados/parceiro5.html"
+  },
+  {
+    "id": 6,
+    "titulo": "Organizador de Mesa",
+    "preco": 35.00,
+    "imagem": "templates/produto/parceiro6.jpg",
+    "alt": "Organizador de Mesa",
+    "link": "botoes/afiliados/parceiro6.html"
+  },
+  {
+    "id": 7,
+    "titulo": "Produto Extra",
+    "preco": 22.00,
+    "imagem": "templates/produto/parceiro7.jpg",
+    "alt": "Produto Extra",
+    "link": "botoes/afiliados/parceiro7.html"
+  },
+  {
+    "id": 8,
+    "titulo": "Produto Personalizado",
+    "preco": 30.00,
+    "imagem": "templates/produto/parceiro8.jpg",
+    "alt": "Produto Personalizado",
+    "link": "botoes/afiliados/parceiro8.html"
+  },
+  {
+    "id": 9,
+    "titulo": "Produto Especial",
+    "preco": 40.00,
+    "imagem": "templates/produto/parceiro9.jpg",
+    "alt": "Produto Especial",
+    "link": "botoes/afiliados/parceiro9.html"
+  }
+]

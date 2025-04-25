@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "titulo": "Pack com 55 Moldes",
+    "preco": 9.99,
+    "imagem": "templates/produto/molde1.jpg",
+    "alt": "Pack de Moldes Essencial",
+    "mercadoPagoId": "1039323113-b37cc4a4-dd32-47d2-ab05-fcbb821d99f3"
+  },
+  {
+    "id": 2,
+    "titulo": "Molde Buquê",
+    "preco": 4.99,
+    "imagem": "templates/produto/molde2.jpg",
+    "alt": "Molde para Agenda",
+    "mercadoPagoId": "1039323113-b37cc4a4-dd32-47d2-ab05-fcbb821d99f3"
+  },
+  {
+    "id": 3,
+    "titulo": "Caixa Envelope",
+    "preco": 4.99,
+    "imagem": "templates/produto/molde3.jpg",
+    "alt": "Planner Semanal",
+    "mercadoPagoId": "ID_UNICO_PRODUTO_3"
+  },
+  {
+    "id": 4,
+    "titulo": "Molde Calendário",
+    "preco": 3.99,
+    "imagem": "templates/produto/molde4.jpg",
+    "alt": "Calendário 2024",
+    "mercadoPagoId": "ID_UNICO_PRODUTO_4"
+  },
+  {
+    "id": 5,
+    "titulo": "Kit Etiquetas",
+    "preco": 2.99,
+    "imagem": "templates/produto/molde5.jpg",
+    "alt": "Kit Etiquetas",
+    "mercadoPagoId": "ID_UNICO_PRODUTO_5"
+  },
+  {
+    "id": 6,
+    "titulo": "Molde para Convites",
+    "preco": 5.99,
+    "imagem": "templates/produto/molde6.jpg",
+    "alt": "Molde para Convites",
+    "mercadoPagoId": "ID_UNICO_PRODUTO_6"
+  },
+  {
+    "id": 7,
+    "titulo": "Molde Especial",
+    "preco": 6.99,
+    "imagem": "templates/produto/molde7.jpg",
+    "alt": "Molde Extra",
+    "mercadoPagoId": "ID_UNICO_PRODUTO_7"
+  },
+  {
+    "id": 8,
+    "titulo": "Molde Personalizado",
+    "preco": 7.99,
+    "imagem": "templates/produto/molde8.jpg",
+    "alt": "Molde Personalizado",
+    "mercadoPagoId": "ID_UNICO_PRODUTO_8"
+  },
+  {
+    "id": 9,
+    "titulo": "Molde Premium",
+    "preco": 8.99,
+    "imagem": "templates/produto/molde9.jpg",
+    "alt": "Molde Especial",
+    "mercadoPagoId": "ID_UNICO_PRODUTO_9"
+  }
+]

@@ -547,6 +547,25 @@
       width: 20px;
       height: 20px;
     }
+    /* Loading spinner */
+    .loading-spinner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid var(--gray-200);
+      border-top: 4px solid var(--pink-500);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
     /* Responsive */
     @media (max-width: 360px) {
       .carousel-item {
@@ -603,275 +622,30 @@
         </a>
       </div>
       <section class="section">
-  <h2 class="section-title">Moldes Digitais</h2>
-  <div class="carousel-container">
-    <div class="carousel" id="moldes-carousel">
-      <!-- Moldes Digitais -->
-      <div class="carousel-item">
-        <div class="product-card">
-          <div class="product-img-container">
-            <img src="templates/produto/molde1.jpg" alt="Pack de Moldes Essencial" class="product-img">
+        <h2 class="section-title">Moldes Digitais</h2>
+        <div class="carousel-container">
+          <div class="carousel" id="moldes-carousel">
+            <div class="loading-spinner">
+              <div class="spinner"></div>
+            </div>
+            <!-- Moldes Digitais serão carregados via JSON -->
           </div>
-          <div class="product-info">
-            <h3 class="product-title">Pack com 55 Moldes</h3>
-            <div class="product-price">R$ 9,99</div>
-            <!-- Código do botão do Mercado Pago -->
-            <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
-			data-preference-id="1039323113-b37cc4a4-dd32-47d2-ab05-fcbb821d99f3" data-source="button">
-			</script>
+          <div class="carousel-nav carousel-prev" onclick="moveCarousel('moldes-carousel', -1)">
+            <img src="templates/layout/arrow-left.png" alt="Anterior" class="carousel-nav-icon">
+          </div>
+          <div class="carousel-nav carousel-next" onclick="moveCarousel('moldes-carousel', 1)">
+            <img src="templates/layout/arrow-right.png" alt="Próximo" class="carousel-nav-icon">
           </div>
         </div>
-      </div>
-
-      <div class="carousel-item">
-        <div class="product-card">
-          <div class="product-img-container">
-            <img src="templates/produto/molde2.jpg" alt="Molde para Agenda" class="product-img">
-          </div>
-          <div class="product-info">
-            <h3 class="product-title">Molde Buquê</h3>
-            <div class="product-price">R$ 4,99</div>
-            <!-- Código do botão do Mercado Pago -->
-            <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
-              data-preference-id="1039323113-b37cc4a4-dd32-47d2-ab05-fcbb821d99f3" data-source="button">
-            </script>
-          </div>
-        </div>
-      </div>
-
-      <div class="carousel-item">
-        <div class="product-card">
-          <div class="product-img-container">
-            <img src="templates/produto/molde3.jpg" alt="Planner Semanal" class="product-img">
-          </div>
-          <div class="product-info">
-            <h3 class="product-title">Caixa Envelope</h3>
-            <div class="product-price">R$ 4,99</div>
-            <!-- Código do botão do Mercado Pago -->
-            <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
-              data-preference-id="ID_UNICO_PRODUTO_3" data-source="button">
-            </script>
-          </div>
-        </div>
-      </div>
-
-      <div class="carousel-item">
-        <div class="product-card">
-          <div class="product-img-container">
-            <img src="templates/produto/molde4.jpg" alt="Calendário 2024" class="product-img">
-          </div>
-          <div class="product-info">
-            <h3 class="product-title">---</h3>
-            <div class="product-price">R$ 00,00</div>
-            <!-- Código do botão do Mercado Pago -->
-            <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
-              data-preference-id="ID_UNICO_PRODUTO_4" data-source="button">
-            </script>
-          </div>
-        </div>
-      </div>
-
-      <div class="carousel-item">
-        <div class="product-card">
-          <div class="product-img-container">
-            <img src="templates/produto/molde5.jpg" alt="Kit Etiquetas" class="product-img">
-          </div>
-          <div class="product-info">
-            <h3 class="product-title">---</h3>
-            <div class="product-price">R$ 00,00</div>
-            <!-- Código do botão do Mercado Pago -->
-            <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
-              data-preference-id="ID_UNICO_PRODUTO_5" data-source="button">
-            </script>
-          </div>
-        </div>
-      </div>
-
-      <div class="carousel-item">
-        <div class="product-card">
-          <div class="product-img-container">
-            <img src="templates/produto/molde6.jpg" alt="Molde para Convites" class="product-img">
-          </div>
-          <div class="product-info">
-            <h3 class="product-title">---</h3>
-            <div class="product-price">R$ 00,00</div>
-            <!-- Código do botão do Mercado Pago -->
-            <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
-              data-preference-id="ID_UNICO_PRODUTO_6" data-source="button">
-            </script>
-          </div>
-        </div>
-      </div>
-
-      <div class="carousel-item">
-        <div class="product-card">
-          <div class="product-img-container">
-            <img src="templates/produto/molde7.jpg" alt="Molde Extra" class="product-img">
-          </div>
-          <div class="product-info">
-            <h3 class="product-title">---</h3>
-            <div class="product-price">R$ 00,00</div>
-            <!-- Código do botão do Mercado Pago -->
-            <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
-              data-preference-id="ID_UNICO_PRODUTO_7" data-source="button">
-            </script>
-          </div>
-        </div>
-      </div>
-
-      <div class="carousel-item">
-        <div class="product-card">
-          <div class="product-img-container">
-            <img src="templates/produto/molde8.jpg" alt="Molde Personalizado" class="product-img">
-          </div>
-          <div class="product-info">
-            <h3 class="product-title">---</h3>
-            <div class="product-price">R$ 00,00</div>
-            <!-- Código do botão do Mercado Pago -->
-            <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
-              data-preference-id="ID_UNICO_PRODUTO_8" data-source="button">
-            </script>
-          </div>
-        </div>
-      </div>
-
-      <div class="carousel-item">
-        <div class="product-card">
-          <div class="product-img-container">
-            <img src="templates/produto/molde9.jpg" alt="Molde Especial" class="product-img">
-          </div>
-          <div class="product-info">
-            <h3 class="product-title">---</h3>
-            <div class="product-price">R$ 00,00</div>
-            <!-- Código do botão do Mercado Pago -->
-            <script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
-              data-preference-id="ID_UNICO_PRODUTO_9" data-source="button">
-            </script>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="carousel-nav carousel-prev" onclick="moveCarousel('moldes-carousel', -1)">
-      <img src="templates/layout/arrow-left.png" alt="Anterior" class="carousel-nav-icon">
-    </div>
-    <div class="carousel-nav carousel-next" onclick="moveCarousel('moldes-carousel', 1)">
-      <img src="templates/layout/arrow-right.png" alt="Próximo" class="carousel-nav-icon">
-    </div>
-  </div>
-</section>
+      </section>
       <section class="section">
         <h2 class="section-title">Conheça nossos personalizados prontos</h2>
         <div class="carousel-container">
           <div class="carousel" id="personalizados-carousel">
-            <!-- Produtos Personalizados -->
-            <div class="carousel-item">
-              <div class="product-card">
-                <div class="product-img-container">
-                  <img src="templates/produto/produto_1.jpg" alt="Agenda Personalizada" class="product-img">
-                </div>
-                <div class="product-info">
-                  <h3 class="product-title">Agenda Personalizada</h3>
-                  <div class="product-price">R$ 45,00</div>
-                  <button class="buy-button" data-link="botoes/loja/produto1.html">Comprar</button>
-                </div>
-              </div>
+            <div class="loading-spinner">
+              <div class="spinner"></div>
             </div>
-            <div class="carousel-item">
-              <div class="product-card">
-                <div class="product-img-container">
-                  <img src="templates/produto/product_2.jpg" alt="Planner Financeiro" class="product-img">
-                </div>
-                <div class="product-info">
-                  <h3 class="product-title">Planner Financeiro</h3>
-                  <div class="product-price">R$ 39,90</div>
-                  <button class="buy-button" data-link="botoes/loja/produto2.html">Comprar</button>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="product-card">
-                <div class="product-img-container">
-                  <img src="templates/produto/produto_3.jpg" alt="Calendário 2024" class="product-img">
-                </div>
-                <div class="product-info">
-                  <h3 class="product-title">Calendário 2024</h3>
-                  <div class="product-price">R$ 19,90</div>
-                  <button class="buy-button" data-link="botoes/loja/produto3.html">Comprar</button>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="product-card">
-                <div class="product-img-container">
-                  <img src="templates/produto/produto_4.jpg" alt="Kit Papelaria" class="product-img">
-                </div>
-                <div class="product-info">
-                  <h3 class="product-title">Kit Papelaria</h3>
-                  <div class="product-price">R$ 65,00</div>
-                  <button class="buy-button" data-link="botoes/loja/produto4.html">Comprar</button>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="product-card">
-                <div class="product-img-container">
-                  <img src="templates/produto/produto_5.jpg" alt="Convites Digitais" class="product-img">
-                </div>
-                <div class="product-info">
-                  <h3 class="product-title">Convites Digitais</h3>
-                  <div class="product-price">R$ 25,00</div>
-                  <button class="buy-button" data-link="botoes/loja/produto5.html">Comprar</button>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="product-card">
-                <div class="product-img-container">
-                  <img src="templates/produto/produto_6.jpg" alt="Etiquetas Personalizadas" class="product-img">
-                </div>
-                <div class="product-info">
-                  <h3 class="product-title">Etiquetas Personalizadas</h3>
-                  <div class="product-price">R$ 18,50</div>
-                  <button class="buy-button" data-link="botoes/loja/produto6.html">Comprar</button>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="product-card">
-                <div class="product-img-container">
-                  <img src="templates/produto/produto_7.jpg" alt="Produto Extra" class="product-img">
-                </div>
-                <div class="product-info">
-                  <h3 class="product-title">Produto Extra</h3>
-                  <div class="product-price">R$ 22,00</div>
-                  <button class="buy-button" data-link="botoes/loja/produto7.html">Comprar</button>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="product-card">
-                <div class="product-img-container">
-                  <img src="templates/produto/produto_8.jpg" alt="Produto Personalizado" class="product-img">
-                </div>
-                <div class="product-info">
-                  <h3 class="product-title">Produto Personalizado</h3>
-                  <div class="product-price">R$ 30,00</div>
-                  <button class="buy-button" data-link="botoes/loja/produto8.html">Comprar</button>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="product-card">
-                <div class="product-img-container">
-                  <img src="templates/produto/produto_9.jpg" alt="Produto Especial" class="product-img">
-                </div>
-                <div class="product-info">
-                  <h3 class="product-title">Produto Especial</h3>
-                  <div class="product-price">R$ 40,00</div>
-                  <button class="buy-button" data-link="botoes/loja/produto9.html">Comprar</button>
-                </div>
-              </div>
-            </div>
+            <!-- Produtos Personalizados serão carregados via JSON -->
           </div>
           <div class="carousel-nav carousel-prev" onclick="moveCarousel('personalizados-carousel', -1)">
             <img src="templates/layout/arrow-left.png" alt="Anterior" class="carousel-nav-icon">
@@ -886,115 +660,10 @@
         <h2 class="section-title">Produtos de vendedores parceiros</h2>
         <div class="carousel-container">
           <div class="carousel" id="parceiros-carousel">
-            <!-- Produtos de Parceiros -->
-            <div class="carousel-item">
-              <div class="product-card">
-                <div class="product-img-container">
-                  <img src="templates/produto/parceiro1.jpg" alt="Canetas Coloridas" class="product-img">
-                </div>
-                <div class="product-info">
-                  <h3 class="product-title">Canetas Coloridas</h3>
-                  <div class="product-price">R$ 29,90</div>
-                  <button class="buy-button" data-link="botoes/afiliados/parceiro1.html">Comprar</button>
-                </div>
-              </div>
+            <div class="loading-spinner">
+              <div class="spinner"></div>
             </div>
-            <div class="carousel-item">
-              <div class="product-card">
-                <div class="product-img-container">
-                  <img src="templates/produto/parceiro2.jpg" alt="Kit Adesivos" class="product-img">
-                </div>
-                <div class="product-info">
-                  <h3 class="product-title">Kit Adesivos</h3>
-                  <div class="product-price">R$ 15,00</div>
-                  <button class="buy-button" data-link="botoes/afiliados/parceiro2.html">Comprar</button>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="product-card">
-                <div class="product-img-container">
-                  <img src="templates/produto/parceiro3.jpg" alt="Caderno Artesanal" class="product-img">
-                </div>
-                <div class="product-info">
-                  <h3 class="product-title">Caderno Artesanal</h3>
-                  <div class="product-price">R$ 42,00</div>
-                  <button class="buy-button" data-link="botoes/afiliados/parceiro3.html">Comprar</button>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="product-card">
-                <div class="product-img-container">
-                  <img src="templates/produto/parceiro4.jpg" alt="Washi Tapes" class="product-img">
-                </div>
-                <div class="product-info">
-                  <h3 class="product-title">Washi Tapes</h3>
-                  <div class="product-price">R$ 18,90</div>
-                  <button class="buy-button" data-link="botoes/afiliados/parceiro4.html">Comprar</button>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="product-card">
-                <div class="product-img-container">
-                  <img src="templates/produto/parceiro5.jpg" alt="Marcadores de Página" class="product-img">
-                </div>
-                <div class="product-info">
-                  <h3 class="product-title">Marcadores de Página</h3>
-                  <div class="product-price">R$ 12,50</div>
-                  <button class="buy-button" data-link="botoes/afiliados/parceiro5.html">Comprar</button>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="product-card">
-                <div class="product-img-container">
-                  <img src="templates/produto/parceiro6.jpg" alt="Organizador de Mesa" class="product-img">
-                </div>
-                <div class="product-info">
-                  <h3 class="product-title">Organizador de Mesa</h3>
-                  <div class="product-price">R$ 35,00</div>
-                  <button class="buy-button" data-link="botoes/afiliados/parceiro6.html">Comprar</button>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="product-card">
-                <div class="product-img-container">
-                  <img src="templates/produto/parceiro7.jpg" alt="Produto Extra" class="product-img">
-                </div>
-                <div class="product-info">
-                  <h3 class="product-title">Produto Extra</h3>
-                  <div class="product-price">R$ 22,00</div>
-                  <button class="buy-button" data-link="botoes/afiliados/parceiro7.html">Comprar</button>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="product-card">
-                <div class="product-img-container">
-                  <img src="templates/produto/parceiro8.jpg" alt="Produto Personalizado" class="product-img">
-                </div>
-                <div class="product-info">
-                  <h3 class="product-title">Produto Personalizado</h3>
-                  <div class="product-price">R$ 30,00</div>
-                  <button class="buy-button" data-link="botoes/afiliados/parceiro8.html">Comprar</button>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="product-card">
-                <div class="product-img-container">
-                  <img src="templates/produto/parceiro9.jpg" alt="Produto Especial" class="product-img">
-                </div>
-                <div class="product-info">
-                  <h3 class="product-title">Produto Especial</h3>
-                  <div class="product-price">R$ 40,00</div>
-                  <button class="buy-button" data-link="botoes/afiliados/parceiro9.html">Comprar</button>
-                </div>
-              </div>
-            </div>
+            <!-- Produtos de Parceiros serão carregados via JSON -->
           </div>
           <div class="carousel-nav carousel-prev" onclick="moveCarousel('parceiros-carousel', -1)">
             <img src="templates/layout/arrow-left.png" alt="Anterior" class="carousel-nav-icon">
@@ -1013,51 +682,10 @@
       </header>
       <section class="section" style="border-bottom: none;">
         <div id="cupons-container">
-          <!-- Cupons -->
-          <div class="coupon-card">
-            <div class="coupon-discount">20% OFF</div>
-            <h3 class="coupon-title">Desconto para Iniciantes</h3>
-            <p class="coupon-description">Use este cupom em sua primeira compra de qualquer template digital.</p>
-            <div class="coupon-code">
-              <div class="code-display">CAROL20</div>
-              <button class="copy-button" data-code="CAROL20">Copiar</button>
-            </div>
-            <button class="shopee-button" onclick="window.open('https://shopee.com.br/CarollShop', '_blank')">Usar na Shopee</button>
-            <p class="coupon-validity">Válido até 31/12/2024</p>
+          <div class="loading-spinner">
+            <div class="spinner"></div>
           </div>
-          <div class="coupon-card">
-            <div class="coupon-discount">15% OFF</div>
-            <h3 class="coupon-title">Desconto em Planners</h3>
-            <p class="coupon-description">Economize em todos os planners e agendas digitais.</p>
-            <div class="coupon-code">
-              <div class="code-display">PLANNER15</div>
-              <button class="copy-button" data-code="PLANNER15">Copiar</button>
-            </div>
-            <button class="shopee-button" onclick="window.open('https://shopee.com.br/CarollShop', '_blank')">Usar na Shopee</button>
-            <p class="coupon-validity">Válido até 30/09/2024</p>
-          </div>
-          <div class="coupon-card">
-            <div class="coupon-discount">25% OFF</div>
-            <h3 class="coupon-title">Pacote Completo</h3>
-            <p class="coupon-description">Desconto especial para compra do pacote completo de templates.</p>
-            <div class="coupon-code">
-              <div class="code-display">PACOTE25</div>
-              <button class="copy-button" data-code="PACOTE25">Copiar</button>
-            </div>
-            <button class="shopee-button" onclick="window.open('https://shopee.com.br/CarollShop', '_blank')">Usar na Shopee</button>
-            <p class="coupon-validity">Válido até 15/10/2024</p>
-          </div>
-          <div class="coupon-card">
-            <div class="coupon-discount">10% OFF</div>
-            <h3 class="coupon-title">Desconto para Seguidores</h3>
-            <p class="coupon-description">Exclusivo para seguidores das nossas redes sociais.</p>
-            <div class="coupon-code">
-              <div class="code-display">SOCIAL10</div>
-              <button class="copy-button" data-code="SOCIAL10">Copiar</button>
-            </div>
-            <button class="shopee-button" onclick="window.open('https://shopee.com.br/CarollShop', '_blank')">Usar na Shopee</button>
-            <p class="coupon-validity">Sem data de expiração</p>
-          </div>
+          <!-- Cupons serão carregados via JSON -->
         </div>
       </section>
     </div>
@@ -1093,7 +721,7 @@
       'parceiros-carousel': 0
     };
     
-    // Função para mover o carrossel - completamente reescrita
+    // Função para mover o carrossel
     function moveCarousel(carouselId, direction) {
       const carousel = document.getElementById(carouselId);
       const items = carousel.querySelectorAll('.carousel-item');
@@ -1126,6 +754,119 @@
       carousel.style.transform = `translateX(${offset}px)`;
       
       console.log(`Carrossel ${carouselId}: posição=${carouselPositions[carouselId]}, offset=${offset}px, direção=${direction}`);
+    }
+
+    // Função para carregar dados JSON
+    async function carregarDados(url) {
+      try {
+        const resposta = await fetch(url);
+        if (!resposta.ok) {
+          throw new Error(`Erro ao carregar dados: ${resposta.status}`);
+        }
+        return await resposta.json();
+      } catch (erro) {
+        console.error(`Falha ao carregar dados de ${url}:`, erro);
+        return [];
+      }
+    }
+
+    // Função para renderizar produtos com botão do Mercado Pago
+    function renderizarProdutoMercadoPago(produto, container) {
+      const produtoHTML = `
+        <div class="carousel-item">
+          <div class="product-card">
+            <div class="product-img-container">
+              <img src="${produto.imagem}" alt="${produto.alt}" class="product-img">
+            </div>
+            <div class="product-info">
+              <h3 class="product-title">${produto.titulo}</h3>
+              <div class="product-price">R$ ${produto.preco.toFixed(2).replace('.', ',')}</div>
+              <div class="mercado-pago-button" id="mp-button-${produto.id}"></div>
+            </div>
+          </div>
+        </div>
+      `;
+      container.insertAdjacentHTML('beforeend', produtoHTML);
+      
+      // Adicionar script do Mercado Pago
+      if (produto.mercadoPagoId) {
+        const script = document.createElement('script');
+        script.src = "https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js";
+        script.dataset.preferenceId = produto.mercadoPagoId;
+        script.dataset.source = "button";
+        document.getElementById(`mp-button-${produto.id}`).appendChild(script);
+      }
+    }
+
+    // Função para renderizar produtos com botão de compra normal
+    function renderizarProduto(produto, container) {
+      const produtoHTML = `
+        <div class="carousel-item">
+          <div class="product-card">
+            <div class="product-img-container">
+              <img src="${produto.imagem}" alt="${produto.alt}" class="product-img">
+            </div>
+            <div class="product-info">
+              <h3 class="product-title">${produto.titulo}</h3>
+              <div class="product-price">R$ ${produto.preco.toFixed(2).replace('.', ',')}</div>
+              <button class="buy-button" data-link="${produto.link || '#'}">Comprar</button>
+            </div>
+          </div>
+        </div>
+      `;
+      container.insertAdjacentHTML('beforeend', produtoHTML);
+    }
+
+    // Função para renderizar cupons
+    function renderizarCupom(cupom, container) {
+      const cupomHTML = `
+        <div class="coupon-card">
+          <div class="coupon-discount">${cupom.desconto}</div>
+          <h3 class="coupon-title">${cupom.titulo}</h3>
+          <p class="coupon-description">${cupom.descricao}</p>
+          <div class="coupon-code">
+            <div class="code-display">${cupom.codigo}</div>
+            <button class="copy-button" data-code="${cupom.codigo}">Copiar</button>
+          </div>
+          <button class="shopee-button" onclick="window.open('https://shopee.com.br/CarollShop', '_blank')">Usar na Shopee</button>
+          <p class="coupon-validity">${cupom.validade}</p>
+        </div>
+      `;
+      container.insertAdjacentHTML('beforeend', cupomHTML);
+    }
+
+    // Função para inicializar os carrosséis
+    async function inicializarCarrosseis() {
+      try {
+        // Carregar dados dos moldes
+        const moldesContainer = document.getElementById('moldes-carousel');
+        const moldes = await carregarDados('dados/moldes/moldes.json');
+        moldesContainer.innerHTML = ''; // Limpar spinner
+        moldes.forEach(produto => renderizarProdutoMercadoPago(produto, moldesContainer));
+        
+        // Carregar dados dos personalizados
+        const personalizadosContainer = document.getElementById('personalizados-carousel');
+        const personalizados = await carregarDados('dados/personalizados/personalizados.json');
+        personalizadosContainer.innerHTML = ''; // Limpar spinner
+        personalizados.forEach(produto => renderizarProduto(produto, personalizadosContainer));
+        
+        // Carregar dados dos parceiros
+        const parceirosContainer = document.getElementById('parceiros-carousel');
+        const parceiros = await carregarDados('dados/parceiros/parceiros.json');
+        parceirosContainer.innerHTML = ''; // Limpar spinner
+        parceiros.forEach(produto => renderizarProduto(produto, parceirosContainer));
+        
+        // Carregar dados dos cupons
+        const cuponsContainer = document.getElementById('cupons-container');
+        const cupons = await carregarDados('dados/cupons/cupons.json');
+        cuponsContainer.innerHTML = ''; // Limpar spinner
+        cupons.forEach(cupom => renderizarCupom(cupom, cuponsContainer));
+        
+        // Ajustar carrosséis para dispositivos móveis
+        adjustCarouselsForMobile();
+      } catch (erro) {
+        console.error('Erro ao inicializar carrosséis:', erro);
+      }
     }
 
     // Navegação
@@ -1171,11 +912,11 @@
     document.addEventListener('click', function(e) {
       if (e.target && e.target.classList.contains('buy-button')) {
         const link = e.target.getAttribute('data-link');
-        if (link) {
+        if (link && link !== '#') {
           window.open(link, '_blank');
         } else {
-          // Para produtos sem link (Mercado Pago)
-          alert('Redirecionando para o Mercado Pago...');
+          // Para produtos sem link
+          alert('Produto indisponível no momento.');
         }
       }
     });
@@ -1200,8 +941,8 @@
     // Ajustar carrosséis quando a janela for redimensionada
     window.addEventListener('resize', adjustCarouselsForMobile);
 
-    // Inicializar ajustes para dispositivos móveis
-    window.addEventListener('DOMContentLoaded', adjustCarouselsForMobile);
+    // Inicializar carrosséis quando o DOM estiver carregado
+    document.addEventListener('DOMContentLoaded', inicializarCarrosseis);
   </script>
 </body>
 </html>
