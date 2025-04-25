@@ -146,8 +146,8 @@
     /* Main content */
     main {
       flex: 1;
-      padding-bottom: 5rem;
-      overflow-y: auto;
+      padding-bottom: 5rem; /* Adjusted for bottom nav */
+      overflow-y: auto; /* Ensure main content can scroll if needed */
     }
     .section {
       padding: 1.5rem 1rem;
@@ -185,28 +185,39 @@
       text-align: center;
       font-weight: 300;
     }
+
     /* Products carousel */
     .carousel-container {
       position: relative;
       width: 100%;
-      overflow: hidden;
+      overflow: hidden; /* Hide overflow */
+      padding: 0 2.5rem; /* Make space for nav buttons */
+      margin: 0 -2.5rem; /* Counteract padding for alignment */
     }
+
     .carousel {
       display: flex;
+      gap: 15px; /* Use gap for spacing */
       transition: transform 0.5s ease;
-      width: 100%;
+      width: max-content; /* Allow carousel to expand */
+      padding-bottom: 1rem; /* Add some space at the bottom */
+      align-items: stretch; /* Make items stretch vertically */
     }
+
     .carousel-item {
-      flex: 0 0 calc(33.333% - 0.5rem);
-      margin-right: 0.75rem;
+      flex: 0 0 auto; /* Don't grow or shrink, use auto basis */
+      width: calc((100% - 30px) / 3); /* Calculate width for 3 items with 15px gap */
+      /* No margin-right needed due to gap */
+      display: flex; /* Allow product card to fill height */
     }
+
     .carousel-nav {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 2rem;
-      height: 2rem;
-      background-color: rgba(255, 255, 255, 0.8);
+      width: 2.5rem; /* Slightly larger hit area */
+      height: 2.5rem;
+      background-color: rgba(255, 255, 255, 0.9);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -221,63 +232,90 @@
       box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
     }
     .carousel-prev {
-      left: -0.5rem;
+      left: 0rem; /* Position inside the container padding */
     }
     .carousel-next {
-      right: -0.5rem;
+      right: 0rem; /* Position inside the container padding */
     }
     .carousel-nav-icon {
-      width: 1rem;
-      height: 1rem;
+      width: 1.2rem;
+      height: 1.2rem;
     }
+
     /* Products grid */
     .product-card {
       background-color: var(--white);
       border-radius: 0.75rem;
       overflow: hidden;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      height: 100%;
+      width: 100%; /* Make card fill the carousel item */
+      display: flex;
+      flex-direction: column; /* Stack image and info vertically */
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
     .product-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
+
     .product-img-container {
       position: relative;
-      aspect-ratio: 1/1;
+      width: 100%; /* Ensure image container takes full width */
+      aspect-ratio: 1/1; /* Maintain square aspect ratio */
       background-color: var(--gray-100);
       overflow: hidden;
+      flex-shrink: 0; /* Prevent image container from shrinking */
     }
+
     .product-img {
+      display: block; /* Remove extra space below image */
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: cover; /* Cover the container */
       transition: transform 0.5s ease;
     }
+
     .product-card:hover .product-img {
       transform: scale(1.05);
     }
+
     .product-info {
       padding: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1; /* Allow info section to grow */
+      justify-content: space-between; /* Push button to bottom */
     }
+
     .product-title {
       font-size: 0.75rem;
       font-weight: 500;
       margin-bottom: 0.25rem;
       color: var(--gray-800);
-      white-space: nowrap;
+      /* Allow wrapping but limit lines */
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
+      min-height: calc(2 * 1.5 * 0.75rem); /* Approx height for 2 lines */
     }
+
     .product-price {
       font-size: 0.875rem;
       font-weight: 600;
       color: var(--pink-600);
       margin-bottom: 0.5rem;
+      margin-top: auto; /* Push price down if title is short */
     }
-    .buy-button {
+
+    .buy-button, .mercado-pago-button { /* Style MP button container */
       width: 100%;
+      margin-top: 0.5rem; /* Space above button */
+    }
+
+    .buy-button {
       padding: 0.5rem;
       background-color: var(--pink-500);
       color: white;
@@ -287,10 +325,12 @@
       font-weight: 500;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      text-align: center;
     }
     .buy-button:hover {
       background-color: var(--pink-600);
     }
+
     .see-more-button {
       display: block;
       width: 80%;
@@ -313,6 +353,7 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
       transform: translateY(-2px);
     }
+
     /* Coupons */
     .coupon-card {
       background-color: var(--white);
@@ -407,6 +448,7 @@
     .shopee-button:hover {
       background-color: #d03a18;
     }
+
     /* Bottom navigation */
     .bottom-nav {
       position: fixed;
@@ -457,6 +499,7 @@
       font-size: 0.625rem;
       font-weight: 500;
     }
+
     /* Content sections */
     .content-section {
       display: none;
@@ -475,12 +518,13 @@
         transform: translateY(0);
       }
     }
+
     /* Footer */
     .footer {
       padding: 1.5rem 1rem;
       text-align: center;
       position: relative;
-      margin-bottom: 4rem;
+      margin-bottom: 4rem; /* Space for bottom nav */
     }
     .footer-content {
       background-color: rgba(255, 255, 255, 0.95);
@@ -500,37 +544,22 @@
       height: 1.5rem;
       opacity: 0.2;
     }
-    .icon-1 {
-      top: 0.5rem;
-      left: 1rem;
-      transform: rotate(-15deg);
-    }
-    .icon-2 {
-      top: 1rem;
-      right: 1rem;
-      transform: rotate(25deg);
-    }
-    .icon-3 {
-      bottom: 0.5rem;
-      left: 2rem;
-      transform: rotate(10deg);
-    }
-    .icon-4 {
-      bottom: 1rem;
-      right: 2rem;
-      transform: rotate(-20deg);
-    }
+    .icon-1 { top: 0.5rem; left: 1rem; transform: rotate(-15deg); }
+    .icon-2 { top: 1rem; right: 1rem; transform: rotate(25deg); }
+    .icon-3 { bottom: 0.5rem; left: 2rem; transform: rotate(10deg); }
+    .icon-4 { bottom: 1rem; right: 2rem; transform: rotate(-20deg); }
+
     /* Botão flutuante do WhatsApp */
     .whatsapp-float {
       position: fixed;
-      bottom: 40px;
+      bottom: 40px; /* Adjust if needed with bottom nav */
       right: 40px;
       width: 80px;
       height: 80px;
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
-	    background-image: url('templates/layout/Botao_flutuante.png');
+      background-image: url('templates/layout/Botao_flutuante.png');
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -543,16 +572,14 @@
     .whatsapp-float:hover {
       transform: scale(1.1);
     }
-    .whatsapp-icon {
-      width: 20px;
-      height: 20px;
-    }
+
     /* Loading spinner */
     .loading-spinner {
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 2rem;
+      width: 100%; /* Ensure spinner takes space */
     }
     .spinner {
       width: 40px;
@@ -566,70 +593,91 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-    /* Responsive */
-    @media (max-width: 360px) {
-      .carousel-item {
-        flex: 0 0 calc(50% - 0.5rem);
-      }
-      .social-buttons {
-        gap: 0.5rem;
-      }
-      .social-btn {
-        width: 3.5rem;
-      }
-      .social-icon-wrapper {
-        width: 2.5rem;
-        height: 2.5rem;
-      }
-      .nav-item {
-        padding: 0 1rem;
-      }
+
+    /* Responsive adjustments */
+    @media (max-width: 480px) { /* Adjust breakpoint if needed */
+        .carousel-item {
+            width: calc((100% - 15px) / 2); /* 2 items with 15px gap */
+        }
+        .social-buttons {
+            gap: 0.75rem;
+            flex-wrap: wrap; /* Allow wrapping if needed */
+        }
+        .nav-item {
+            padding: 0 1rem; /* Adjust nav padding */
+        }
     }
+
+    @media (max-width: 360px) {
+        .social-btn {
+            width: 3.5rem;
+        }
+        .social-icon-wrapper {
+            width: 2.5rem;
+            height: 2.5rem;
+        }
+        .nav-item {
+            padding: 0 0.8rem; /* Further reduce nav padding */
+        }
+         /* Ensure 2 items still fit well */
+        .carousel-item {
+             width: calc((100% - 15px) / 2);
+        }
+        .product-title {
+            font-size: 0.7rem; /* Slightly smaller title on very small screens */
+            min-height: calc(2 * 1.5 * 0.7rem);
+        }
+        .product-price {
+            font-size: 0.8rem;
+        }
+        .buy-button {
+            font-size: 0.7rem;
+            padding: 0.4rem;
+        }
+    }
+
   </style>
 </head>
 <body>
   <main>
-    <!-- Home Section -->
     <div id="inicio" class="content-section active">
       <header class="header">
         <h1 class="site-title">Personalizados da Carol</h1>
         <p class="site-subtitle">Produtos digitais e personalizados</p>
       </header>
       <div class="social-buttons">
-        <a href="https://shopee.com.br/CarollShop" class="social-btn">
-          <div class="social-icon-wrapper" style="background-color: #ee4d2d;">
-            <img src="templates/layout/shopee.png" alt="Shopee" class="social-icon">
-          </div>
-          <span class="social-label">Shopee</span>
-        </a>
-        <a href="https://tiktok.com/@personalizadosdacarol" class="social-btn">
-          <div class="social-icon-wrapper" style="background-color: black;">
-            <img src="templates/layout/tiktok.png" alt="TikTok" class="social-icon">
-          </div>
-          <span class="social-label">TikTok</span>
-        </a>
-        <a href="https://instagram.com/carolartes.print" class="social-btn">
-          <div class="social-icon-wrapper" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);">
-            <img src="templates/layout/instagram.png" alt="Instagram" class="social-icon">
-          </div>
-          <span class="social-label">Instagram</span>
-        </a>
-        <a href="https://api.whatsapp.com/send/?phone=5531987426591" class="social-btn">
-          <div class="social-icon-wrapper" style="background-color: #25d366;">
-            <img src="templates/layout/whatsapp.png" alt="WhatsApp" class="social-icon">
-          </div>
-          <span class="social-label">WhatsApp</span>
-        </a>
-      </div>
+         <a href="https://shopee.com.br/CarollShop" class="social-btn">
+           <div class="social-icon-wrapper" style="background-color: #ee4d2d;">
+             <img src="templates/layout/shopee.png" alt="Shopee" class="social-icon">
+           </div>
+           <span class="social-label">Shopee</span>
+         </a>
+         <a href="https://tiktok.com/@personalizadosdacarol" class="social-btn">
+           <div class="social-icon-wrapper" style="background-color: black;">
+             <img src="templates/layout/tiktok.png" alt="TikTok" class="social-icon">
+           </div>
+           <span class="social-label">TikTok</span>
+         </a>
+         <a href="https://instagram.com/carolartes.print" class="social-btn">
+           <div class="social-icon-wrapper" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);">
+             <img src="templates/layout/instagram.png" alt="Instagram" class="social-icon">
+           </div>
+           <span class="social-label">Instagram</span>
+         </a>
+         <a href="https://api.whatsapp.com/send/?phone=5531987426591" class="social-btn">
+           <div class="social-icon-wrapper" style="background-color: #25d366;">
+             <img src="templates/layout/whatsapp.png" alt="WhatsApp" class="social-icon">
+           </div>
+           <span class="social-label">WhatsApp</span>
+         </a>
+       </div>
+
       <section class="section">
         <h2 class="section-title">Moldes Digitais</h2>
         <div class="carousel-container">
           <div class="carousel" id="moldes-carousel">
-            <div class="loading-spinner">
-              <div class="spinner"></div>
+            <div class="loading-spinner"><div class="spinner"></div></div>
             </div>
-            <!-- Moldes Digitais serão carregados via JSON -->
-          </div>
           <div class="carousel-nav carousel-prev" onclick="moveCarousel('moldes-carousel', -1)">
             <img src="templates/layout/arrow-left.png" alt="Anterior" class="carousel-nav-icon">
           </div>
@@ -638,33 +686,29 @@
           </div>
         </div>
       </section>
+
       <section class="section">
         <h2 class="section-title">Conheça nossos personalizados prontos</h2>
         <div class="carousel-container">
           <div class="carousel" id="personalizados-carousel">
-            <div class="loading-spinner">
-              <div class="spinner"></div>
-            </div>
-            <!-- Produtos Personalizados serão carregados via JSON -->
-          </div>
-          <div class="carousel-nav carousel-prev" onclick="moveCarousel('personalizados-carousel', -1)">
-            <img src="templates/layout/arrow-left.png" alt="Anterior" class="carousel-nav-icon">
-          </div>
-          <div class="carousel-nav carousel-next" onclick="moveCarousel('personalizados-carousel', 1)">
-            <img src="templates/layout/arrow-right.png" alt="Próximo" class="carousel-nav-icon">
-          </div>
-        </div>
-        <a href="https://shopee.com.br/CarollShop" class="see-more-button">Ver mais na Shopee</a>
-      </section>
+             <div class="loading-spinner"><div class="spinner"></div></div>
+             </div>
+           <div class="carousel-nav carousel-prev" onclick="moveCarousel('personalizados-carousel', -1)">
+             <img src="templates/layout/arrow-left.png" alt="Anterior" class="carousel-nav-icon">
+           </div>
+           <div class="carousel-nav carousel-next" onclick="moveCarousel('personalizados-carousel', 1)">
+             <img src="templates/layout/arrow-right.png" alt="Próximo" class="carousel-nav-icon">
+           </div>
+         </div>
+         <a href="https://shopee.com.br/CarollShop" class="see-more-button">Ver mais na Shopee</a>
+       </section>
+
       <section class="section">
         <h2 class="section-title">Produtos de vendedores parceiros</h2>
         <div class="carousel-container">
           <div class="carousel" id="parceiros-carousel">
-            <div class="loading-spinner">
-              <div class="spinner"></div>
+            <div class="loading-spinner"><div class="spinner"></div></div>
             </div>
-            <!-- Produtos de Parceiros serão carregados via JSON -->
-          </div>
           <div class="carousel-nav carousel-prev" onclick="moveCarousel('parceiros-carousel', -1)">
             <img src="templates/layout/arrow-left.png" alt="Anterior" class="carousel-nav-icon">
           </div>
@@ -674,21 +718,19 @@
         </div>
       </section>
     </div>
-    <!-- Cupons Section -->
+
     <div id="cupons" class="content-section">
-      <header class="header">
-        <h1 class="site-title">Cupons de Desconto</h1>
-        <p class="site-subtitle">Economize em suas compras</p>
-      </header>
-      <section class="section" style="border-bottom: none;">
-        <div id="cupons-container">
-          <div class="loading-spinner">
-            <div class="spinner"></div>
-          </div>
-          <!-- Cupons serão carregados via JSON -->
-        </div>
-      </section>
-    </div>
+       <header class="header">
+         <h1 class="site-title">Cupons de Desconto</h1>
+         <p class="site-subtitle">Economize em suas compras</p>
+       </header>
+       <section class="section" style="border-bottom: none;">
+         <div id="cupons-container">
+           <div class="loading-spinner"><div class="spinner"></div></div>
+           </div>
+       </section>
+     </div>
+
     <footer class="footer">
       <div class="footer-content">
         <div class="footer-decoration">✨</div>
@@ -699,7 +741,7 @@
       </div>
     </footer>
   </main>
-  <!-- Bottom Navigation -->
+
   <nav class="bottom-nav">
     <a href="#" class="nav-item active" data-section="inicio">
       <img src="templates/layout/home.png" alt="Início" class="nav-icon">
@@ -710,65 +752,105 @@
       <span class="nav-text">Cupons</span>
     </a>
   </nav>
-  <!-- Botão flutuante do WhatsApp -->
+
   <a href="https://shopee.com/CarollShop" class="whatsapp-float" target="_blank">
-  </a>
+    </a>
+
   <script>
-    // Armazenar posições dos carrosséis
+    // Armazenar posições dos carrosséis (índice do primeiro item visível)
     const carouselPositions = {
       'moldes-carousel': 0,
       'personalizados-carousel': 0,
       'parceiros-carousel': 0
     };
     
+    const carouselItemsPerView = {
+        'moldes-carousel': 3,
+        'personalizados-carousel': 3,
+        'parceiros-carousel': 3
+    };
+
+    function getItemsPerView(carouselId) {
+        const carouselElement = document.getElementById(carouselId);
+        if (!carouselElement) return 3; // Default
+        
+        // Check based on media query breakpoint used in CSS
+        if (window.innerWidth <= 480) { 
+            return 2;
+        }
+        return 3; // Default for larger screens
+    }
+
+
     // Função para mover o carrossel
     function moveCarousel(carouselId, direction) {
       const carousel = document.getElementById(carouselId);
-      const items = carousel.querySelectorAll('.carousel-item');
-      
-      if (!items.length) return;
-      
-      // Determinar quantos itens mostrar por vez (responsivo)
-      const itemsPerView = window.innerWidth <= 360 ? 2 : 3;
-      
-      // Calcular a largura de cada item incluindo margem
-      const itemWidth = items[0].offsetWidth + parseFloat(getComputedStyle(items[0]).marginRight);
-      
-      // Atualizar a posição atual
-      carouselPositions[carouselId] += direction;
-      
-      // Verificar limites e implementar loop circular
-      const maxPosition = Math.ceil(items.length / itemsPerView) - 1;
-      
-      if (carouselPositions[carouselId] > maxPosition) {
-        carouselPositions[carouselId] = 0; // Voltar ao início
-      } else if (carouselPositions[carouselId] < 0) {
-        carouselPositions[carouselId] = maxPosition; // Ir para o final
+      if (!carousel) {
+          console.error(`Carousel element not found: ${carouselId}`);
+          return;
       }
-      
-      // Calcular o deslocamento em pixels
-      const offset = -1 * carouselPositions[carouselId] * itemWidth * itemsPerView;
-      
+      const items = carousel.querySelectorAll('.carousel-item');
+      if (!items.length) return; // Sai se não houver itens
+
+      const itemsPerView = getItemsPerView(carouselId);
+      const itemWidth = items[0].offsetWidth; // Largura do item
+      const gap = parseFloat(getComputedStyle(carousel).gap) || 15; // Pega o gap do CSS ou usa 15px
+      const totalItemWidth = itemWidth + gap; // Largura total incluindo o espaço
+
+      // Calcular a posição máxima (índice do primeiro item da última "página")
+      const maxPosition = Math.max(0, items.length - itemsPerView);
+
+      // Atualizar a posição atual, garantindo que fique nos limites
+      let newPosition = carouselPositions[carouselId] + direction;
+      newPosition = Math.max(0, Math.min(newPosition, maxPosition)); // Clamping
+
+      // Se a posição não mudou, não faz nada (já está no início ou fim)
+      if (newPosition === carouselPositions[carouselId] && direction !== 0) {
+          // Opcional: dar algum feedback visual que chegou ao fim
+          // console.log(`Carousel ${carouselId} reached boundary.`);
+          // return; 
+          // Permitir que a animação rode mesmo se a posição final for a mesma, 
+          // caso o usuário clique rapidamente antes da animação anterior terminar.
+      }
+
+      carouselPositions[carouselId] = newPosition;
+
+      // Calcular o deslocamento em pixels (move um item de cada vez)
+      const offset = -1 * newPosition * totalItemWidth;
+
       // Aplicar a transformação com animação
       carousel.style.transition = 'transform 0.5s ease';
       carousel.style.transform = `translateX(${offset}px)`;
-      
-      console.log(`Carrossel ${carouselId}: posição=${carouselPositions[carouselId]}, offset=${offset}px, direção=${direction}`);
+
+      console.log(`Carousel ${carouselId}: newPos=${newPosition}, maxPos=${maxPosition}, offset=${offset}px`);
     }
+
 
     // Função para carregar dados JSON
     async function carregarDados(url) {
       try {
         const resposta = await fetch(url);
         if (!resposta.ok) {
-          throw new Error(`Erro ao carregar dados: ${resposta.status}`);
+          console.error(`Erro HTTP ao carregar dados de ${url}: ${resposta.status}`);
+          return []; // Retorna array vazio em caso de erro HTTP
         }
-        return await resposta.json();
+        // Verifica o tipo de conteúdo antes de tentar parsear como JSON
+        const contentType = resposta.headers.get("content-type");
+        if (contentType && contentType.indexOf("application/json") !== -1) {
+            return await resposta.json();
+        } else {
+            console.error(`Resposta de ${url} não é JSON válido. Tipo: ${contentType}`);
+            // Tenta ler como texto para depuração
+            // const text = await resposta.text();
+            // console.log("Resposta recebida (texto):", text);
+            return []; // Retorna array vazio se não for JSON
+        }
       } catch (erro) {
-        console.error(`Falha ao carregar dados de ${url}:`, erro);
-        return [];
+        console.error(`Falha ao carregar ou processar dados de ${url}:`, erro);
+        return []; // Retorna array vazio em caso de erro de rede ou parse
       }
     }
+
 
     // Função para renderizar produtos com botão do Mercado Pago
     function renderizarProdutoMercadoPago(produto, container) {
@@ -776,40 +858,55 @@
         <div class="carousel-item">
           <div class="product-card">
             <div class="product-img-container">
-              <img src="${produto.imagem}" alt="${produto.alt}" class="product-img">
+              <img src="${produto.imagem || 'templates/layout/placeholder.png'}" alt="${produto.alt || 'Produto'}" class="product-img" loading="lazy" onerror="this.onerror=null;this.src='templates/layout/placeholder.png';">
             </div>
             <div class="product-info">
-              <h3 class="product-title">${produto.titulo}</h3>
-              <div class="product-price">R$ ${produto.preco.toFixed(2).replace('.', ',')}</div>
-              <div class="mercado-pago-button" id="mp-button-${produto.id}"></div>
+              <div> <h3 class="product-title">${produto.titulo || 'Produto sem título'}</h3>
+                <div class="product-price">R$ ${(produto.preco || 0).toFixed(2).replace('.', ',')}</div>
+              </div>
+              <div class="mercado-pago-button" id="mp-button-${produto.id || Math.random().toString(36).substring(7)}">
+                ${produto.mercadoPagoId ? '' : '<button class="buy-button" disabled>Indisponível</button>'}
+              </div>
             </div>
           </div>
         </div>
       `;
       container.insertAdjacentHTML('beforeend', produtoHTML);
-      
-      // Adicionar script do Mercado Pago
+
+      // Adicionar script do Mercado Pago SOMENTE SE houver ID
       if (produto.mercadoPagoId) {
-        const script = document.createElement('script');
-        script.src = "https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js";
-        script.dataset.preferenceId = produto.mercadoPagoId;
-        script.dataset.source = "button";
-        document.getElementById(`mp-button-${produto.id}`).appendChild(script);
+          const mpButtonContainer = document.getElementById(`mp-button-${produto.id}`);
+          if (mpButtonContainer) {
+            const script = document.createElement('script');
+            script.src = "https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js";
+            script.setAttribute('data-preference-id', produto.mercadoPagoId);
+            script.setAttribute('data-source', 'button'); // Adiciona o atributo data-source
+            // Opcional: Adicionar atributos para customização do botão, se necessário
+            // script.setAttribute('data-button-label', 'Comprar Agora');
+            // script.setAttribute('data-elements-color', '#f04c7e'); 
+            mpButtonContainer.appendChild(script);
+          } else {
+              console.warn(`Container do botão MP não encontrado para produto ID: ${produto.id}`);
+          }
       }
     }
 
-    // Função para renderizar produtos com botão de compra normal
+
+    // Função para renderizar produtos com botão de compra normal (link externo)
     function renderizarProduto(produto, container) {
       const produtoHTML = `
         <div class="carousel-item">
           <div class="product-card">
             <div class="product-img-container">
-              <img src="${produto.imagem}" alt="${produto.alt}" class="product-img">
+              <img src="${produto.imagem || 'templates/layout/placeholder.png'}" alt="${produto.alt || 'Produto'}" class="product-img" loading="lazy" onerror="this.onerror=null;this.src='templates/layout/placeholder.png';">
             </div>
             <div class="product-info">
-              <h3 class="product-title">${produto.titulo}</h3>
-              <div class="product-price">R$ ${produto.preco.toFixed(2).replace('.', ',')}</div>
-              <button class="buy-button" data-link="${produto.link || '#'}">Comprar</button>
+              <div> <h3 class="product-title">${produto.titulo || 'Produto sem título'}</h3>
+                  <div class="product-price">R$ ${(produto.preco || 0).toFixed(2).replace('.', ',')}</div>
+              </div>
+              <button class="buy-button" data-link="${produto.link || '#'}" ${!(produto.link && produto.link !== '#') ? 'disabled' : ''}>
+                  ${(produto.link && produto.link !== '#') ? 'Comprar' : 'Indisponível'}
+              </button>
             </div>
           </div>
         </div>
@@ -819,130 +916,223 @@
 
     // Função para renderizar cupons
     function renderizarCupom(cupom, container) {
-      const cupomHTML = `
+        const cupomHTML = `
         <div class="coupon-card">
-          <div class="coupon-discount">${cupom.desconto}</div>
-          <h3 class="coupon-title">${cupom.titulo}</h3>
-          <p class="coupon-description">${cupom.descricao}</p>
+          <div class="coupon-discount">${cupom.desconto || ''}</div>
+          <h3 class="coupon-title">${cupom.titulo || 'Cupom'}</h3>
+          <p class="coupon-description">${cupom.descricao || ''}</p>
           <div class="coupon-code">
-            <div class="code-display">${cupom.codigo}</div>
-            <button class="copy-button" data-code="${cupom.codigo}">Copiar</button>
+            <div class="code-display">${cupom.codigo || '------'}</div>
+            <button class="copy-button" data-code="${cupom.codigo || ''}" ${!cupom.codigo ? 'disabled' : ''}>Copiar</button>
           </div>
           <button class="shopee-button" onclick="window.open('https://shopee.com.br/CarollShop', '_blank')">Usar na Shopee</button>
-          <p class="coupon-validity">${cupom.validade}</p>
+          <p class="coupon-validity">${cupom.validade || ''}</p>
         </div>
       `;
       container.insertAdjacentHTML('beforeend', cupomHTML);
     }
 
-    // Função para inicializar os carrosséis
-    async function inicializarCarrosseis() {
-      try {
-        // Carregar dados dos moldes
-        const moldesContainer = document.getElementById('moldes-carousel');
-        const moldes = await carregarDados('dados/moldes/moldes.json');
-        moldesContainer.innerHTML = ''; // Limpar spinner
-        moldes.forEach(produto => renderizarProdutoMercadoPago(produto, moldesContainer));
-        
-        // Carregar dados dos personalizados
-        const personalizadosContainer = document.getElementById('personalizados-carousel');
-        const personalizados = await carregarDados('dados/personalizados/personalizados.json');
-        personalizadosContainer.innerHTML = ''; // Limpar spinner
-        personalizados.forEach(produto => renderizarProduto(produto, personalizadosContainer));
-        
-        // Carregar dados dos parceiros
-        const parceirosContainer = document.getElementById('parceiros-carousel');
-        const parceiros = await carregarDados('dados/parceiros/parceiros.json');
-        parceirosContainer.innerHTML = ''; // Limpar spinner
-        parceiros.forEach(produto => renderizarProduto(produto, parceirosContainer));
-        
-        // Carregar dados dos cupons
-        const cuponsContainer = document.getElementById('cupons-container');
-        const cupons = await carregarDados('dados/cupons/cupons.json');
-        cuponsContainer.innerHTML = ''; // Limpar spinner
-        cupons.forEach(cupom => renderizarCupom(cupom, cuponsContainer));
-        
-        // Ajustar carrosséis para dispositivos móveis
-        adjustCarouselsForMobile();
-      } catch (erro) {
-        console.error('Erro ao inicializar carrosséis:', erro);
-      }
+
+    // Função para inicializar os carrosséis e cupons
+    async function inicializarConteudo() {
+        console.log("Iniciando carregamento de conteúdo...");
+        const loadingPlaceholders = document.querySelectorAll('.loading-spinner');
+
+        try {
+            // Carregar dados em paralelo
+            const [moldes, personalizados, parceiros, cupons] = await Promise.all([
+                carregarDados('dados/moldes/moldes.json'),
+                carregarDados('dados/personalizados/personalizados.json'),
+                carregarDados('dados/parceiros/parceiros.json'),
+                carregarDados('dados/cupons/cupons.json')
+            ]);
+
+            console.log("Dados carregados:", { moldes, personalizados, parceiros, cupons });
+
+            // Renderizar moldes
+            const moldesContainer = document.getElementById('moldes-carousel');
+            if (moldesContainer) {
+                moldesContainer.innerHTML = ''; // Limpar spinner
+                if (moldes.length > 0) {
+                    moldes.forEach(produto => renderizarProdutoMercadoPago(produto, moldesContainer));
+                } else {
+                    moldesContainer.innerHTML = '<p style="text-align: center; width: 100%; color: var(--gray-500);">Nenhum molde digital encontrado.</p>';
+                }
+                moveCarousel('moldes-carousel', 0); // Initialize position
+            }
+
+            // Renderizar personalizados
+            const personalizadosContainer = document.getElementById('personalizados-carousel');
+            if (personalizadosContainer) {
+                personalizadosContainer.innerHTML = ''; // Limpar spinner
+                if (personalizados.length > 0) {
+                    personalizados.forEach(produto => renderizarProduto(produto, personalizadosContainer));
+                } else {
+                    personalizadosContainer.innerHTML = '<p style="text-align: center; width: 100%; color: var(--gray-500);">Nenhum personalizado encontrado.</p>';
+                }
+                 moveCarousel('personalizados-carousel', 0); // Initialize position
+            }
+
+            // Renderizar parceiros
+            const parceirosContainer = document.getElementById('parceiros-carousel');
+            if (parceirosContainer) {
+                parceirosContainer.innerHTML = ''; // Limpar spinner
+                if (parceiros.length > 0) {
+                    parceiros.forEach(produto => renderizarProduto(produto, parceirosContainer));
+                } else {
+                    parceirosContainer.innerHTML = '<p style="text-align: center; width: 100%; color: var(--gray-500);">Nenhum produto de parceiro encontrado.</p>';
+                }
+                 moveCarousel('parceiros-carousel', 0); // Initialize position
+            }
+
+            // Renderizar cupons
+            const cuponsContainer = document.getElementById('cupons-container');
+            if (cuponsContainer) {
+                cuponsContainer.innerHTML = ''; // Limpar spinner
+                if (cupons.length > 0) {
+                    cupons.forEach(cupom => renderizarCupom(cupom, cuponsContainer));
+                } else {
+                    cuponsContainer.innerHTML = '<p style="text-align: center; width: 100%; color: var(--gray-500);">Nenhum cupom disponível no momento.</p>';
+                }
+            }
+
+            // Ajustar layout inicial dos carrosséis
+            adjustCarouselLayout();
+
+        } catch (erro) {
+            console.error('Erro fatal ao inicializar conteúdo:', erro);
+            // Opcional: Mostrar mensagem de erro para o usuário em todos os containers
+             loadingPlaceholders.forEach(ph => ph.innerHTML = '<p style="color: red; text-align: center;">Erro ao carregar conteúdo.</p>');
+        } finally {
+            // Garante que spinners sejam removidos mesmo se houver erro parcial
+             const stillLoading = document.querySelectorAll('.loading-spinner');
+             stillLoading.forEach(spinner => spinner.style.display = 'none');
+             console.log("Inicialização de conteúdo concluída.");
+        }
     }
 
-    // Navegação
+
+    // Navegação entre seções
     document.querySelectorAll('.nav-item').forEach(item => {
       item.addEventListener('click', function(e) {
         e.preventDefault();
-        // Update active nav item
-        document.querySelectorAll('.nav-item').forEach(navItem => {
-          navItem.classList.remove('active');
-        });
-        this.classList.add('active');
-        // Show corresponding section
-        const sectionId = this.getAttribute('data-section');
-        document.querySelectorAll('.content-section').forEach(section => {
-          section.classList.remove('active');
-        });
-        document.getElementById(sectionId).classList.add('active');
+        const currentActive = document.querySelector('.nav-item.active');
+        const currentSection = document.querySelector('.content-section.active');
+        const targetSectionId = this.getAttribute('data-section');
+        const targetSection = document.getElementById(targetSectionId);
+
+        if (currentActive !== this && targetSection) {
+          // Update active nav item
+          if (currentActive) currentActive.classList.remove('active');
+          this.classList.add('active');
+
+          // Switch content section with animation
+          if (currentSection) currentSection.classList.remove('active');
+          targetSection.classList.add('active');
+        }
       });
     });
 
-    // Copiar código do cupom
-    document.addEventListener('click', function(e) {
+    // Event listener para botões (delegação de evento no container principal)
+    document.getElementById('inicio').addEventListener('click', function(e) {
+        // Botão de compra (links externos)
+        if (e.target && e.target.classList.contains('buy-button')) {
+            const link = e.target.getAttribute('data-link');
+            if (link && link !== '#') {
+            window.open(link, '_blank');
+            }
+            // Se estiver desabilitado, não faz nada
+        }
+        // Adicionar aqui outros listeners se necessário (ex: clique no card)
+    });
+
+    // Copiar código do cupom (delegação no container de cupons)
+    document.getElementById('cupons').addEventListener('click', function(e) {
       if (e.target && e.target.classList.contains('copy-button')) {
         const code = e.target.getAttribute('data-code');
-        navigator.clipboard.writeText(code).then(() => {
-          const originalText = e.target.textContent;
-          e.target.textContent = 'Copiado!';
-          setTimeout(() => {
-            e.target.textContent = originalText;
-          }, 2000);
+        if (code) {
+            navigator.clipboard.writeText(code).then(() => {
+            const originalText = e.target.textContent;
+            e.target.textContent = 'Copiado!';
+            e.target.disabled = true; // Desabilita temporariamente
+            setTimeout(() => {
+                e.target.textContent = originalText;
+                e.target.disabled = false; // Reabilita
+            }, 2000);
 
-          // Mostrar botão "Usar na Shopee"
-          const couponCard = e.target.closest('.coupon-card');
-          const shopeeButton = couponCard.querySelector('.shopee-button');
-          if (shopeeButton) {
-            shopeeButton.style.display = 'block';
-          }
+            // Mostrar botão "Usar na Shopee" associado
+            const couponCard = e.target.closest('.coupon-card');
+            if (couponCard) {
+                const shopeeButton = couponCard.querySelector('.shopee-button');
+                if (shopeeButton) {
+                shopeeButton.style.display = 'block';
+                }
+            }
+            }).catch(err => {
+                console.error('Erro ao copiar código:', err);
+                alert('Não foi possível copiar o código.');
+            });
+        }
+      }
+    });
+
+
+    // Ajustar layout dos carrosséis (largura dos itens)
+    function adjustCarouselLayout() {
+        const itemsPerViewDesktop = 3;
+        const itemsPerViewMobile = 2;
+        const gap = 15; // Deve ser o mesmo valor do CSS '.carousel { gap: 15px; }'
+        const isMobile = window.innerWidth <= 480; // Usa o breakpoint do CSS
+
+        document.querySelectorAll('.carousel').forEach(carousel => {
+            const items = carousel.querySelectorAll('.carousel-item');
+            if (!items.length) return;
+
+            const itemsToShow = isMobile ? itemsPerViewMobile : itemsPerViewDesktop;
+            const containerPadding = 2.5 * 16 * 2; // Padding left/right do .carousel-container em pixels (2.5rem * 16px * 2) - ajuste se o rem base mudar
+            // Calcula a largura total disponível dentro do container, descontando os gaps entre os itens visíveis
+            const availableWidth = carousel.parentElement.offsetWidth - containerPadding;
+            const totalGapWidth = (itemsToShow - 1) * gap;
+            const itemWidth = (availableWidth - totalGapWidth) / itemsToShow;
+
+            items.forEach(item => {
+                item.style.width = `${itemWidth}px`;
+            });
+
+            // Recalcula a posição do carrossel para evitar desalinhamento após redimensionar/recalcular largura
+             const currentPosition = carouselPositions[carousel.id];
+             const totalItemWidth = itemWidth + gap;
+             const newOffset = -1 * currentPosition * totalItemWidth;
+             carousel.style.transition = 'none'; // Remove transição para ajuste instantâneo
+             carousel.style.transform = `translateX(${newOffset}px)`;
+             // Força reflow para aplicar a transformação sem transição
+             void carousel.offsetWidth; 
+             carousel.style.transition = 'transform 0.5s ease'; // Readiciona a transição
+
         });
-      }
-    });
-
-    // Botão de compra
-    document.addEventListener('click', function(e) {
-      if (e.target && e.target.classList.contains('buy-button')) {
-        const link = e.target.getAttribute('data-link');
-        if (link && link !== '#') {
-          window.open(link, '_blank');
-        } else {
-          // Para produtos sem link
-          alert('Produto indisponível no momento.');
-        }
-      }
-    });
-
-    // Ajustar carrosséis para dispositivos móveis
-    function adjustCarouselsForMobile() {
-      const isMobile = window.innerWidth <= 360;
-      document.querySelectorAll('.carousel-item').forEach(item => {
-        item.style.flex = isMobile ? '0 0 calc(50% - 0.5rem)' : '0 0 calc(33.333% - 0.5rem)';
-      });
-      
-      // Resetar posições dos carrosséis ao redimensionar
-      document.querySelectorAll('.carousel').forEach(carousel => {
-        const id = carousel.id;
-        if (id && carouselPositions[id] !== undefined) {
-          carouselPositions[id] = 0;
-          carousel.style.transform = 'translateX(0px)';
-        }
-      });
+        console.log("Carousel layout adjusted for", isMobile ? "mobile" : "desktop");
     }
 
-    // Ajustar carrosséis quando a janela for redimensionada
-    window.addEventListener('resize', adjustCarouselsForMobile);
 
-    // Inicializar carrosséis quando o DOM estiver carregado
-    document.addEventListener('DOMContentLoaded', inicializarCarrosseis);
+    // Ajustar carrosséis quando a janela for redimensionada
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            console.log("Window resized, adjusting layout...");
+            adjustCarouselLayout();
+             // Resetar posição visual pode ser necessário se o número de itens visíveis mudar
+             Object.keys(carouselPositions).forEach(id => {
+                 // Opcional: resetar para 0 ou recalcular baseado no estado atual
+                 // carouselPositions[id] = 0; // Reset simples
+                 moveCarousel(id, 0); // Recalcula offset para a posição atual com novas dimensões
+             });
+        }, 250); // Debounce para evitar execuções excessivas
+    });
+
+    // Inicializar conteúdo quando o DOM estiver carregado
+    document.addEventListener('DOMContentLoaded', inicializarConteudo);
+
   </script>
 </body>
 </html>
