@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "titulo": "teste Pack com 55 Moldes teste",
+    "titulo": "Pack com 55 Moldes",
     "preco": 9.99,
     "imagem": "templates/produto/molde1.jpg",
     "alt": "Pack de Moldes Essencial",
