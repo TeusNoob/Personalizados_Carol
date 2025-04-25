@@ -10,7 +10,7 @@
   {
     "id": 2,
     "titulo": "Encadernadora 2 em 1 Mimo Binding 2",
-    "preco": 673.99,
+    "preco": 73.99,
     "imagem": "templates/produto/parceiro2.jpg",
     "alt": "Kit Adesivos",
     "link": "botoes/afiliados/parceiro2.html"
@@ -42,7 +42,7 @@
   {
     "id": 6,
     "titulo": "Impressora Canon G6010 Megatank Multifuncional",
-    "preco": 1.397,
+    "preco": 13.97,
     "imagem": "templates/produto/parceiro6.jpg",
     "alt": "Organizador de Mesa",
     "link": "botoes/afiliados/parceiro6.html"
