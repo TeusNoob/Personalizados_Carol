@@ -185,7 +185,7 @@
       text-align: center;
       font-weight: 300;
     }
-    /* Products carousel */
+    /* Products carousel - CORREÇÕES APLICADAS AQUI */
     .carousel-container {
       position: relative;
       width: 100%;
@@ -193,12 +193,14 @@
     }
     .carousel {
       display: flex;
+      gap: 0.75rem;
+      padding: 0 0.5rem;
       transition: transform 0.5s ease;
-      width: 100%;
+      width: max-content;
     }
     .carousel-item {
       flex: 0 0 calc(33.333% - 0.5rem);
-      margin-right: 0.75rem;
+      min-width: 0;
     }
     .carousel-nav {
       position: absolute;
@@ -237,6 +239,8 @@
       overflow: hidden;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       height: 100%;
+      display: flex;
+      flex-direction: column;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .product-card:hover {
@@ -569,7 +573,7 @@
     /* Responsive */
     @media (max-width: 360px) {
       .carousel-item {
-        flex: 0 0 calc(50% - 0.5rem);
+        flex: 0 0 calc(50% - 0.5rem) !important;
       }
       .social-buttons {
         gap: 0.5rem;
@@ -721,7 +725,7 @@
       'parceiros-carousel': 0
     };
     
-    // Função para mover o carrossel
+    // Função para mover o carrossel - VERSÃO CORRIGIDA
     function moveCarousel(carouselId, direction) {
       const carousel = document.getElementById(carouselId);
       const items = carousel.querySelectorAll('.carousel-item');
@@ -731,14 +735,15 @@
       // Determinar quantos itens mostrar por vez (responsivo)
       const itemsPerView = window.innerWidth <= 360 ? 2 : 3;
       
-      // Calcular a largura de cada item incluindo margem
-      const itemWidth = items[0].offsetWidth + parseFloat(getComputedStyle(items[0]).marginRight);
+      // Calcular a largura de cada item incluindo gap
+      const itemWidth = items[0].offsetWidth;
+      const gap = parseFloat(getComputedStyle(carousel).gap) || 12; // 0.75rem = 12px
       
       // Atualizar a posição atual
       carouselPositions[carouselId] += direction;
       
-      // Verificar limites e implementar loop circular
-      const maxPosition = Math.ceil(items.length / itemsPerView) - 1;
+      // Verificar limites
+      const maxPosition = Math.max(0, items.length - itemsPerView);
       
       if (carouselPositions[carouselId] > maxPosition) {
         carouselPositions[carouselId] = 0; // Voltar ao início
@@ -747,13 +752,11 @@
       }
       
       // Calcular o deslocamento em pixels
-      const offset = -1 * carouselPositions[carouselId] * itemWidth * itemsPerView;
+      const offset = -1 * carouselPositions[carouselId] * (itemWidth + gap);
       
       // Aplicar a transformação com animação
       carousel.style.transition = 'transform 0.5s ease';
       carousel.style.transform = `translateX(${offset}px)`;
-      
-      console.log(`Carrossel ${carouselId}: posição=${carouselPositions[carouselId]}, offset=${offset}px, direção=${direction}`);
     }
 
     // Função para carregar dados JSON
@@ -863,7 +866,9 @@
         cupons.forEach(cupom => renderizarCupom(cupom, cuponsContainer));
         
         // Ajustar carrosséis para dispositivos móveis
-        adjustCarouselsForMobile();
+        setTimeout(() => {
+          adjustCarouselsForMobile();
+        }, 100);
       } catch (erro) {
         console.error('Erro ao inicializar carrosséis:', erro);
       }
