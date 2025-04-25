@@ -1,33 +1,35 @@
 import os
+import subprocess
 
-# Diretório onde os arquivos serão salvos
-output_dir = ".\\botoes\\moldes"
+def git_automate(commit_message, branch_name="main"):
+    try:
+        # 1. Verificar o status do repositório
+        print("Verificando o status do repositório...")
+        subprocess.run(["git", "status"], check=True)
 
-# Garante que o diretório existe
-os.makedirs(output_dir, exist_ok=True)
+        # 2. Adicionar todos os arquivos modificados ao índice (staging area)
+        print("Adicionando arquivos modificados ao índice...")
+        subprocess.run(["git", "add", "."], check=True)
 
-# Número de produtos (botões) a serem gerados
-num_produtos = 9
+        # 3. Fazer o commit com a mensagem fornecida
+        print(f"Realizando commit com a mensagem: '{commit_message}'")
+        subprocess.run(["git", "commit", "-m", commit_message], check=True)
 
-# Loop para criar os arquivos
-for i in range(1, num_produtos + 1):
-    # Nome do arquivo
-    file_name = f"molde{i}.html"
-    file_path = os.path.join(output_dir, file_name)
-    
-    # Código do arquivo HTML
-    html_code = f"""
-<!-- {file_name} -->
-<!-- Este arquivo contém o código do botão de pagamento para o produto {i}. -->
-<!-- Altere o 'data-preference-id' abaixo para o ID único do seu produto no Mercado Pago. -->
+        # 4. Enviar as alterações para o repositório remoto
+        print(f"Enviando alterações para a branch '{branch_name}' no GitHub...")
+        subprocess.run(["git", "push", "origin", branch_name], check=True)
 
-<script src="https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js"
-  data-preference-id="ID_UNICO_PRODUTO_{i}" data-source="button">
-</script>
-"""
+        print("Processo concluído com sucesso!")
 
-    # Salva o arquivo
-    with open(file_path, "w", encoding="utf-8") as file:
-        file.write(html_code)
+    except subprocess.CalledProcessError as e:
+        print(f"Erro ao executar o comando Git: {e}")
+    except Exception as e:
+        print(f"Ocorreu um erro inesperado: {e}")
 
-print(f"{num_produtos} arquivos HTML foram criados com sucesso no diretório '{output_dir}'.")
+if __name__ == "__main__":
+    # Solicitar informações ao usuário
+    commit_msg = input("Digite a mensagem do commit: ")
+    branch = input("Digite o nome da branch (padrão: main): ").strip() or "main"
+
+    # Executar o processo automatizado
+    git_automate(commit_msg, branch)
