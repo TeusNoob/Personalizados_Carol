@@ -42,7 +42,6 @@
       color: var(--gray-800);
       line-height: 1.5;
       overscroll-behavior: none;
-      /* touch-action: manipulation; */ /* Removido para permitir scroll horizontal */
       -webkit-user-select: none;
       user-select: none;
       position: relative;
@@ -103,60 +102,37 @@
       font-weight: 300;
     }
 
-    /* Scroll Indicator */
-    .scroll-indicator {
-        position: relative; /* Relative ao container #inicio */
-        width: 30px;
-        height: 30px;
-        margin: 1rem auto 0; /* Espaço abaixo do header */
-        transform: rotate(45deg);
-        cursor: default; /* Não é clicável */
-        opacity: 0.8;
-    }
-    .scroll-indicator span {
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: block;
-        width: 100%;
-        height: 100%;
-        border-bottom: 2px solid var(--pink-400);
-        border-right: 2px solid var(--pink-400);
-        animation: animateScroll 1.5s linear infinite;
-        opacity: 0; /* Começa invisível */
-    }
-    .scroll-indicator span:nth-child(1) {
-        animation-delay: -0.2s;
-    }
-    .scroll-indicator span:nth-child(2) {
-        animation-delay: -0.4s;
-    }
-    .scroll-indicator span:nth-child(3) {
-        animation-delay: -0.6s;
+    /* --- New Scroll Indicator --- */
+    .new-scroll-indicator {
+      text-align: center;
+      margin: 0.8rem auto 0; /* Spacing below header */
+      font-size: 1.8rem; /* Arrow size */
+      color: var(--pink-400);
+      animation: bounceArrow 2s infinite ease-in-out;
+      cursor: default;
+      line-height: 1;
+      opacity: 0.8;
     }
 
-    @keyframes animateScroll {
-        0% {
-            top: -5px;
-            left: -5px;
-            opacity: 0;
-        }
-        25% {
-            opacity: 1;
-        }
-        50%, 100% {
-            top: 5px;
-            left: 5px;
-            opacity: 0;
-        }
+    @keyframes bounceArrow {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px); /* Bounce height */
+      }
+      60% {
+        transform: translateY(-5px);
+      }
     }
+    /* --- End New Scroll Indicator --- */
 
     /* Social buttons */
     .social-buttons {
       display: flex;
       justify-content: center;
       gap: 1rem;
-      margin: 1.5rem 0;
+      margin: 1.5rem 0; /* Adjusted margin-top */
     }
     .social-btn {
       display: flex;
@@ -197,6 +173,7 @@
       text-align: center;
       font-weight: 500;
     }
+
     /* Main content */
     main {
       flex: 1;
@@ -245,37 +222,32 @@
     .carousel-container {
       position: relative;
       width: 100%;
-      /* No padding needed here now, arrows are absolute to this container */
     }
 
     .carousel {
       display: flex;
       gap: 15px;
-      /* REMOVED width: max-content; */
-      /* ADDED Scroll properties */
       overflow-x: auto;
       scroll-behavior: smooth;
       scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch; /* Smooth scrolling iOS */
-      padding: 0.5rem 0 1rem 0; /* Padding top/bottom for items */
-      margin: 0 -1rem; /* Use negative margin to allow items to touch edges of section padding */
-      padding-left: 1rem; /* Add back padding to align first item with section content */
-      padding-right: 1rem; /* Add back padding to give space after last item */
+      -webkit-overflow-scrolling: touch;
+      padding: 0.5rem 0 1rem 0;
+      margin: 0 -1rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
       align-items: stretch;
-      /* Hide scrollbar visually */
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE/Edge */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
     .carousel::-webkit-scrollbar {
-        display: none; /* Chrome/Safari */
+        display: none;
     }
-
 
     .carousel-item {
       flex: 0 0 auto;
       width: calc((100% - 30px) / 3); /* Default width, JS adjusts */
       display: flex;
-      scroll-snap-align: start; /* Snap point */
+      scroll-snap-align: start;
     }
 
     .carousel-nav {
@@ -292,22 +264,21 @@
       cursor: pointer;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       z-index: 5;
-      transition: opacity 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Added opacity transition */
+      transition: opacity 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
     }
     .carousel-nav:hover {
       background-color: var(--white);
       box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
     }
     .carousel-prev {
-      left: -0.75rem; /* Position slightly outside the main content area */
+      left: -0.75rem;
     }
     .carousel-next {
-      right: -0.75rem; /* Position slightly outside the main content area */
+      right: -0.75rem;
     }
-    /* Style for hidden state */
     .carousel-nav.hidden {
         opacity: 0;
-        pointer-events: none; /* Disable clicks when hidden */
+        pointer-events: none;
     }
     .carousel-nav-icon {
       width: 1.2rem;
@@ -426,7 +397,6 @@
     }
 
     /* Coupons */
-    /* ... (coupon styles remain the same) ... */
     .coupon-card { background-color: var(--white); border-radius: 0.75rem; padding: 1rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); border: 1px dashed var(--pink-400); position: relative; transition: transform 0.3s ease, box-shadow 0.3s ease; }
     .coupon-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); }
     .coupon-discount { position: absolute; top: -0.75rem; right: 1rem; background-color: var(--pink-500); color: white; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-size: 0.875rem; font-weight: 600; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
@@ -443,7 +413,6 @@
 
 
     /* Bottom navigation */
-    /* ... (bottom nav styles remain the same) ... */
      .bottom-nav { position: fixed; bottom: 1rem; left: 50%; transform: translateX(-50%); background-color: rgba(255, 255, 255, 0.95); border-radius: 2rem; display: flex; height: 3.5rem; z-index: 50; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); padding: 0 1rem; }
      .nav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.25rem; color: var(--gray-500); text-decoration: none; position: relative; padding: 0 1.5rem; transition: color 0.3s ease; }
      .nav-item.active { color: var(--pink-500); }
@@ -454,14 +423,12 @@
 
 
     /* Content sections */
-    /* ... (content section styles remain the same) ... */
     .content-section { display: none; animation: fadeIn 0.5s ease; }
     .content-section.active { display: block; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
 
     /* Footer */
-    /* ... (footer styles remain the same) ... */
     .footer { padding: 1.5rem 1rem; text-align: center; position: relative; margin-bottom: 4rem; }
     .footer-content { background-color: rgba(255, 255, 255, 0.95); border-radius: 1rem; padding: 1rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); position: relative; }
     .footer-decoration { font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--pink-400); }
@@ -473,26 +440,24 @@
 
 
     /* Botão flutuante */
-    /* ... (float button styles remain the same) ... */
      .whatsapp-float { position: fixed; bottom: 5.5rem; right: 1.5rem; width: 50px; height: 50px; background-size: contain; background-repeat: no-repeat; background-position: center; background-image: url('templates/layout/Botao_flutuante.png'); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); z-index: 100; cursor: pointer; transition: transform 0.3s ease; }
      .whatsapp-float:hover { transform: scale(1.1); }
 
 
     /* Loading spinner */
-    /* ... (spinner styles remain the same) ... */
     .loading-spinner { display: flex; justify-content: center; align-items: center; padding: 2rem; width: 100%; }
     .spinner { width: 40px; height: 40px; border: 4px solid var(--gray-200); border-top: 4px solid var(--pink-500); border-radius: 50%; animation: spin 1s linear infinite; }
     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
 
     /* Responsive adjustments */
-    @media (min-width: 769px) { /* Breakpoint for 4 items */
+    @media (min-width: 769px) {
        /* item width handled by JS */
     }
-    @media (max-width: 768px) { /* Breakpoint for 3 items */
+    @media (max-width: 768px) {
         /* item width handled by JS */
     }
-    @media (max-width: 480px) { /* Breakpoint for 2 items */
+    @media (max-width: 480px) {
         .social-buttons {
             gap: 0.75rem;
             flex-wrap: wrap;
@@ -500,7 +465,7 @@
         .nav-item {
             padding: 0 1rem;
         }
-        .carousel-prev { left: -0.5rem; } /* Adjust arrow position for smaller screens */
+        .carousel-prev { left: -0.5rem; }
         .carousel-next { right: -0.5rem; }
         /* item width handled by JS */
     }
@@ -514,9 +479,8 @@
         .buy-button, .copy-button, .shopee-button { font-size: 0.7rem; padding: 0.4rem; }
         .whatsapp-float { bottom: 5rem; right: 1rem; width: 45px; height: 45px; }
         .buy-button, .mercado-pago-button { min-height: calc(0.4rem * 2 + 1.5 * 0.7rem); }
-        .carousel-prev { left: -0.25rem; } /* Further adjust arrow position */
+        .carousel-prev { left: -0.25rem; }
         .carousel-next { right: -0.25rem; }
-
     }
     /* Style for empty carousel message */
     .carousel-empty {
@@ -535,11 +499,8 @@
         <h1 class="site-title">Personalizados da Carol</h1>
         <p class="site-subtitle">Produtos digitais e personalizados</p>
       </header>
-      <div class="scroll-indicator">
-          <span></span>
-          <span></span>
-          <span></span>
-      </div>
+      <div class="new-scroll-indicator">↓</div>
+
       <div class="social-buttons">
          <a href="https://shopee.com.br/CarollShop" class="social-btn" target="_blank" rel="noopener noreferrer">
            <div class="social-icon-wrapper" style="background-color: #ee4d2d;">
@@ -664,11 +625,11 @@
         };
     }
 
-    // Função auxiliar para obter quantos itens estão visíveis (MODIFICADA)
+    // Função auxiliar para obter quantos itens estão visíveis
     function getItemsPerView() {
-        if (window.innerWidth <= 480) return 2; // Mantém 2 para telas pequenas
-        if (window.innerWidth <= 768) return 3; // 3 para telas médias
-        return 4; // 4 para telas maiores que 768px (Ajustado de 3 para 4)
+        if (window.innerWidth <= 480) return 2;
+        if (window.innerWidth <= 768) return 3;
+        return 4; // Mantido 4 para telas maiores
     }
 
     // Função para atualizar visibilidade das setas baseado no scroll
@@ -682,25 +643,19 @@
         const scrollLeft = carouselElement.scrollLeft;
         const scrollWidth = carouselElement.scrollWidth;
         const clientWidth = carouselElement.clientWidth;
-        const tolerance = 5; // Pixels de tolerância para comparações de scroll
+        const tolerance = 5;
 
-        // Verifica se há conteúdo suficiente para rolar
         if (scrollWidth <= clientWidth + tolerance) {
              prevButton.classList.add('hidden');
              nextButton.classList.add('hidden');
              return;
         }
 
-        // Mostra/esconde seta ESQUERDA
         prevButton.classList.toggle('hidden', scrollLeft <= tolerance);
-
-        // Mostra/esconde seta DIREITA
         nextButton.classList.toggle('hidden', scrollLeft >= (scrollWidth - clientWidth - tolerance));
-
-        // console.log(`Arrows updated for ${carouselElement.id}: L=${scrollLeft.toFixed(0)}, W=${scrollWidth.toFixed(0)}, C=${clientWidth.toFixed(0)}, Start=${scrollLeft <= tolerance}, End=${scrollLeft >= (scrollWidth - clientWidth - tolerance)}`);
     }
 
-    // Função para mover o carrossel usando scroll (agora move por página)
+    // Função para mover o carrossel usando scroll
     function moveCarousel(carouselId, direction) {
         const carousel = document.getElementById(carouselId);
         if (!carousel) {
@@ -714,8 +669,6 @@
         const itemWidth = items[0].offsetWidth;
         const gap = parseFloat(getComputedStyle(carousel).gap) || 15;
         const totalItemWidth = itemWidth + gap;
-
-        // Calcula quanto rolar (uma página = itemsPerView * largura total do item)
         const scrollAmount = itemsPerView * totalItemWidth;
         const targetScrollLeft = carousel.scrollLeft + (direction * scrollAmount);
 
@@ -723,10 +676,7 @@
             left: targetScrollLeft,
             behavior: 'smooth'
         });
-
-        // A visibilidade da seta será atualizada pelo listener de 'scroll'
     }
-
 
     // Função para carregar dados JSON
     async function carregarDados(url) {
@@ -778,7 +728,6 @@
           script.src = "https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js";
           script.setAttribute('data-preference-id', produto.mercadoPagoId);
           script.setAttribute('data-source', 'button');
-          // Atraso mínimo para garantir que o container está no DOM
           setTimeout(() => { mpButtonContainer.appendChild(script); }, 0);
         } else {
           console.warn(`MP Button container not found: mp-button-${produto.id}`);
@@ -840,7 +789,6 @@
           carregarDados('dados/cupons/cupons.json')
         ]);
 
-        // Renderiza conteúdo
         const renderMap = {
           'moldes-carousel': { data: moldes, renderer: renderizarProdutoMercadoPago, emptyMsg: 'Nenhum molde digital encontrado.' },
           'personalizados-carousel': { data: personalizados, renderer: renderizarProduto, emptyMsg: 'Nenhum personalizado encontrado.' },
@@ -852,33 +800,30 @@
           const container = document.getElementById(id);
           const { data, renderer, emptyMsg } = renderMap[id];
           if (container) {
-            container.innerHTML = ''; // Limpa spinner
+            container.innerHTML = '';
             if (data.length > 0) {
               data.forEach(item => renderer(item, container));
             } else {
-              // Verifica se é um carrossel ou container de cupons para aplicar a classe correta
-              const emptyClass = id.includes('carousel') ? 'carousel-empty' : 'coupon-empty'; // Adicione .coupon-empty CSS se necessário
+              const emptyClass = id.includes('carousel') ? 'carousel-empty' : 'coupon-empty';
                container.innerHTML = `<p class="${emptyClass}">${emptyMsg}</p>`;
             }
           }
         }
 
-         // Adiciona listeners de scroll e ajusta layout após renderização
          document.querySelectorAll('.carousel').forEach(carousel => {
-             // Debounced version of the arrow update function
              const debouncedUpdateArrows = debounce(() => updateArrowVisibility(carousel), 150);
              carousel.addEventListener('scroll', debouncedUpdateArrows);
          });
 
-         // Ajuste inicial do layout e setas
          adjustCarouselLayout();
-         document.querySelectorAll('.carousel').forEach(updateArrowVisibility); // Estado inicial das setas
+         document.querySelectorAll('.carousel').forEach(updateArrowVisibility);
 
       } catch (erro) {
         console.error('Erro fatal ao inicializar:', erro);
         spinnerContainers.forEach(c => c.innerHTML = '<p style="color: red;">Erro ao carregar.</p>');
       } finally {
-        spinnerContainers.forEach(c => { if(c.parentElement) c.parentElement.removeChild(c); }); // Remove spinners
+        // Avoid removing spinners if they were already replaced by content or error message
+        // spinnerContainers.forEach(c => { if(c.parentElement && c.classList.contains('loading-spinner')) c.parentElement.removeChild(c); });
         console.log("Inicialização concluída.");
       }
     }
@@ -902,14 +847,12 @@
 
     // Listener de clique para botões (delegação)
     document.addEventListener('click', function(e) {
-      // Botão de compra (personalizados/parceiros)
       if (e.target && e.target.classList.contains('buy-button') && !e.target.disabled) {
         const link = e.target.getAttribute('data-link');
         if (link && link !== '#') {
           window.open(link, '_blank', 'noopener,noreferrer');
         }
       }
-      // Botão copiar cupom
       else if (e.target && e.target.classList.contains('copy-button') && !e.target.disabled) {
         const code = e.target.getAttribute('data-code');
         if (code) {
@@ -932,25 +875,22 @@
     });
 
 
-    // Ajustar layout dos carrosséis (largura dos itens)
+    // Ajustar layout dos carrosséis
     function adjustCarouselLayout() {
         const gap = 15;
         document.querySelectorAll('.carousel').forEach(carousel => {
             const items = carousel.querySelectorAll('.carousel-item');
             if (!items.length) return;
 
-            const itemsToShow = getItemsPerView(); // Usa a função atualizada
-            const scrollbarHeight = carousel.offsetHeight - carousel.clientHeight; // Considera barra de scroll se visível
-            const availableWidth = carousel.clientWidth; // Usa clientWidth que exclui a scrollbar vertical se houver
-
+            const itemsToShow = getItemsPerView();
+            const availableWidth = carousel.clientWidth;
             const totalGapWidth = Math.max(0, (itemsToShow - 1)) * gap;
             let itemWidth = (availableWidth > totalGapWidth) ? (availableWidth - totalGapWidth) / itemsToShow : availableWidth;
-            itemWidth = Math.max(100, itemWidth); // Min width 100px
+            itemWidth = Math.max(100, itemWidth);
 
             items.forEach(item => {
                 item.style.width = `${itemWidth}px`;
             });
-             // console.log(`Layout adjusted for ${carousel.id}: ${itemsToShow} items, itemWidth=${itemWidth.toFixed(1)}px`);
         });
     }
 
@@ -958,7 +898,7 @@
     const debouncedResize = debounce(() => {
         console.log("Window resized, adjusting...");
         adjustCarouselLayout();
-         document.querySelectorAll('.carousel').forEach(updateArrowVisibility); // Reavalia visibilidade das setas
+         document.querySelectorAll('.carousel').forEach(updateArrowVisibility);
     }, 250);
     window.addEventListener('resize', debouncedResize);
 
