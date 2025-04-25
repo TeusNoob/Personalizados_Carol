@@ -206,8 +206,7 @@
 
     .carousel-item {
       flex: 0 0 auto; /* Don't grow or shrink, use auto basis */
-      width: calc((100% - 30px) / 3); /* Calculate width for 3 items with 15px gap */
-      /* No margin-right needed due to gap */
+      width: calc((100% - 30px) / 3); /* Calculate width for 3 items with 15px gap (default, JS adjusts) */
       display: flex; /* Allow product card to fill height */
     }
 
@@ -219,7 +218,7 @@
       height: 2.5rem;
       background-color: rgba(255, 255, 255, 0.9);
       border-radius: 50%;
-      display: flex;
+      display: flex; /* Changed from none to flex */
       align-items: center;
       justify-content: center;
       cursor: pointer;
@@ -330,6 +329,11 @@
     .buy-button:hover {
       background-color: var(--pink-600);
     }
+    .buy-button[disabled] { /* Style for disabled button */
+        background-color: var(--gray-300);
+        cursor: not-allowed;
+    }
+
 
     .see-more-button {
       display: block;
@@ -424,6 +428,10 @@
     .copy-button:hover {
       background-color: var(--pink-600);
     }
+     .copy-button[disabled] {
+        background-color: var(--gray-300);
+        cursor: not-allowed;
+     }
     .coupon-validity {
       font-size: 0.75rem;
       color: var(--gray-500);
@@ -552,19 +560,19 @@
     /* Botão flutuante do WhatsApp */
     .whatsapp-float {
       position: fixed;
-      bottom: 40px; /* Adjust if needed with bottom nav */
-      right: 40px;
-      width: 80px;
-      height: 80px;
-      background-size: cover;
+      bottom: 5.5rem; /* Increased bottom margin to avoid overlap with bottom nav */
+      right: 1.5rem;
+      width: 50px; /* Slightly smaller */
+      height: 50px;
+      background-size: contain; /* Use contain to ensure icon is fully visible */
       background-repeat: no-repeat;
       background-position: center;
-      background-image: url('templates/layout/Botao_flutuante.png');
+      background-image: url('templates/layout/Botao_flutuante.png'); /* Original file name */
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       z-index: 100;
       cursor: pointer;
       transition: transform 0.3s ease;
@@ -572,6 +580,7 @@
     .whatsapp-float:hover {
       transform: scale(1.1);
     }
+
 
     /* Loading spinner */
     .loading-spinner {
@@ -595,10 +604,8 @@
     }
 
     /* Responsive adjustments */
-    @media (max-width: 480px) { /* Adjust breakpoint if needed */
-        .carousel-item {
-            width: calc((100% - 15px) / 2); /* 2 items with 15px gap */
-        }
+    @media (max-width: 480px) { /* Breakpoint for 2 items */
+        /* .carousel-item width is handled by JS */
         .social-buttons {
             gap: 0.75rem;
             flex-wrap: wrap; /* Allow wrapping if needed */
@@ -619,12 +626,8 @@
         .nav-item {
             padding: 0 0.8rem; /* Further reduce nav padding */
         }
-         /* Ensure 2 items still fit well */
-        .carousel-item {
-             width: calc((100% - 15px) / 2);
-        }
         .product-title {
-            font-size: 0.7rem; /* Slightly smaller title on very small screens */
+            font-size: 0.7rem; /* Slightly smaller title */
             min-height: calc(2 * 1.5 * 0.7rem);
         }
         .product-price {
@@ -634,6 +637,19 @@
             font-size: 0.7rem;
             padding: 0.4rem;
         }
+        .whatsapp-float { /* Adjust floating button on small screens */
+             bottom: 5rem;
+             right: 1rem;
+             width: 45px;
+             height: 45px;
+        }
+    }
+    /* Style for empty carousel message */
+    .carousel-empty {
+         text-align: center;
+         width: 100%;
+         color: var(--gray-500);
+         padding: 1rem;
     }
 
   </style>
@@ -646,25 +662,25 @@
         <p class="site-subtitle">Produtos digitais e personalizados</p>
       </header>
       <div class="social-buttons">
-         <a href="https://shopee.com.br/CarollShop" class="social-btn">
+         <a href="https://shopee.com.br/CarollShop" class="social-btn" target="_blank" rel="noopener noreferrer">
            <div class="social-icon-wrapper" style="background-color: #ee4d2d;">
              <img src="templates/layout/shopee.png" alt="Shopee" class="social-icon">
            </div>
            <span class="social-label">Shopee</span>
          </a>
-         <a href="https://tiktok.com/@personalizadosdacarol" class="social-btn">
+         <a href="https://tiktok.com/@personalizadosdacarol" class="social-btn" target="_blank" rel="noopener noreferrer">
            <div class="social-icon-wrapper" style="background-color: black;">
              <img src="templates/layout/tiktok.png" alt="TikTok" class="social-icon">
            </div>
            <span class="social-label">TikTok</span>
          </a>
-         <a href="https://instagram.com/carolartes.print" class="social-btn">
+         <a href="https://instagram.com/carolartes.print" class="social-btn" target="_blank" rel="noopener noreferrer">
            <div class="social-icon-wrapper" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);">
              <img src="templates/layout/instagram.png" alt="Instagram" class="social-icon">
            </div>
            <span class="social-label">Instagram</span>
          </a>
-         <a href="https://api.whatsapp.com/send/?phone=5531987426591" class="social-btn">
+         <a href="https://api.whatsapp.com/send/?phone=5531987426591" class="social-btn" target="_blank" rel="noopener noreferrer">
            <div class="social-icon-wrapper" style="background-color: #25d366;">
              <img src="templates/layout/whatsapp.png" alt="WhatsApp" class="social-icon">
            </div>
@@ -678,11 +694,9 @@
           <div class="carousel" id="moldes-carousel">
             <div class="loading-spinner"><div class="spinner"></div></div>
             </div>
-          <div class="carousel-nav carousel-prev" onclick="moveCarousel('moldes-carousel', -1)">
-            <img src="templates/layout/arrow-left.png" alt="Anterior" class="carousel-nav-icon">
+          <div class="carousel-nav carousel-prev" onclick="moveCarousel('moldes-carousel', -1)" style="display: none;"> <img src="templates/layout/arrow-left.png" alt="Anterior" class="carousel-nav-icon">
           </div>
-          <div class="carousel-nav carousel-next" onclick="moveCarousel('moldes-carousel', 1)">
-            <img src="templates/layout/arrow-right.png" alt="Próximo" class="carousel-nav-icon">
+          <div class="carousel-nav carousel-next" onclick="moveCarousel('moldes-carousel', 1)" style="display: none;"> <img src="templates/layout/arrow-right.png" alt="Próximo" class="carousel-nav-icon">
           </div>
         </div>
       </section>
@@ -693,14 +707,12 @@
           <div class="carousel" id="personalizados-carousel">
              <div class="loading-spinner"><div class="spinner"></div></div>
              </div>
-           <div class="carousel-nav carousel-prev" onclick="moveCarousel('personalizados-carousel', -1)">
-             <img src="templates/layout/arrow-left.png" alt="Anterior" class="carousel-nav-icon">
+           <div class="carousel-nav carousel-prev" onclick="moveCarousel('personalizados-carousel', -1)" style="display: none;"> <img src="templates/layout/arrow-left.png" alt="Anterior" class="carousel-nav-icon">
            </div>
-           <div class="carousel-nav carousel-next" onclick="moveCarousel('personalizados-carousel', 1)">
-             <img src="templates/layout/arrow-right.png" alt="Próximo" class="carousel-nav-icon">
+           <div class="carousel-nav carousel-next" onclick="moveCarousel('personalizados-carousel', 1)" style="display: none;"> <img src="templates/layout/arrow-right.png" alt="Próximo" class="carousel-nav-icon">
            </div>
          </div>
-         <a href="https://shopee.com.br/CarollShop" class="see-more-button">Ver mais na Shopee</a>
+         <a href="https://shopee.com.br/CarollShop" class="see-more-button" target="_blank" rel="noopener noreferrer">Ver mais na Shopee</a>
        </section>
 
       <section class="section">
@@ -709,11 +721,9 @@
           <div class="carousel" id="parceiros-carousel">
             <div class="loading-spinner"><div class="spinner"></div></div>
             </div>
-          <div class="carousel-nav carousel-prev" onclick="moveCarousel('parceiros-carousel', -1)">
-            <img src="templates/layout/arrow-left.png" alt="Anterior" class="carousel-nav-icon">
+          <div class="carousel-nav carousel-prev" onclick="moveCarousel('parceiros-carousel', -1)" style="display: none;"> <img src="templates/layout/arrow-left.png" alt="Anterior" class="carousel-nav-icon">
           </div>
-          <div class="carousel-nav carousel-next" onclick="moveCarousel('parceiros-carousel', 1)">
-            <img src="templates/layout/arrow-right.png" alt="Próximo" class="carousel-nav-icon">
+          <div class="carousel-nav carousel-next" onclick="moveCarousel('parceiros-carousel', 1)" style="display: none;"> <img src="templates/layout/arrow-right.png" alt="Próximo" class="carousel-nav-icon">
           </div>
         </div>
       </section>
@@ -753,7 +763,7 @@
     </a>
   </nav>
 
-  <a href="https://shopee.com/CarollShop" class="whatsapp-float" target="_blank">
+  <a href="https://shopee.com/CarollShop" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Visite nossa loja na Shopee">
     </a>
 
   <script>
@@ -763,68 +773,87 @@
       'personalizados-carousel': 0,
       'parceiros-carousel': 0
     };
-    
-    const carouselItemsPerView = {
-        'moldes-carousel': 3,
-        'personalizados-carousel': 3,
-        'parceiros-carousel': 3
-    };
 
+    // Função auxiliar para obter quantos itens estão visíveis baseado na largura da tela
     function getItemsPerView(carouselId) {
-        const carouselElement = document.getElementById(carouselId);
-        if (!carouselElement) return 3; // Default
-        
-        // Check based on media query breakpoint used in CSS
-        if (window.innerWidth <= 480) { 
-            return 2;
+        // Usa o mesmo breakpoint da media query CSS
+        if (window.innerWidth <= 480) {
+            return 2; // 2 itens em telas menores
         }
-        return 3; // Default for larger screens
+        return 3; // 3 itens em telas maiores
     }
 
-
-    // Função para mover o carrossel
+    // Função para mover o carrossel e atualizar visibilidade das setas
     function moveCarousel(carouselId, direction) {
-      const carousel = document.getElementById(carouselId);
-      if (!carousel) {
-          console.error(`Carousel element not found: ${carouselId}`);
-          return;
-      }
-      const items = carousel.querySelectorAll('.carousel-item');
-      if (!items.length) return; // Sai se não houver itens
+      const carouselContainer = document.getElementById(carouselId)?.closest('.carousel-container');
+       if (!carouselContainer) {
+           console.error(`Carousel container not found for ID: ${carouselId}`);
+           return;
+       }
+       const carousel = carouselContainer.querySelector('.carousel');
+       const prevButton = carouselContainer.querySelector('.carousel-prev');
+       const nextButton = carouselContainer.querySelector('.carousel-next');
+
+       if (!carousel || !prevButton || !nextButton) {
+           console.error(`Carousel elements missing for container related to ID: ${carouselId}`);
+           return;
+       }
+
+       const items = carousel.querySelectorAll('.carousel-item');
+       if (!items.length) {
+           prevButton.style.display = 'none';
+           nextButton.style.display = 'none';
+           return;
+       }
 
       const itemsPerView = getItemsPerView(carouselId);
-      const itemWidth = items[0].offsetWidth; // Largura do item
-      const gap = parseFloat(getComputedStyle(carousel).gap) || 15; // Pega o gap do CSS ou usa 15px
-      const totalItemWidth = itemWidth + gap; // Largura total incluindo o espaço
+       if (itemsPerView <= 0) {
+           console.error(`Calculated itemsPerView is invalid: ${itemsPerView}`);
+            // Hide buttons if calculation is wrong
+            prevButton.style.display = 'none';
+            nextButton.style.display = 'none';
+           return;
+       }
+      const itemWidth = items[0].offsetWidth;
+      const gap = parseFloat(getComputedStyle(carousel).gap) || 15;
+      const totalItemWidth = itemWidth + gap;
 
-      // Calcular a posição máxima (índice do primeiro item da última "página")
       const maxPosition = Math.max(0, items.length - itemsPerView);
 
-      // Atualizar a posição atual, garantindo que fique nos limites
-      let newPosition = carouselPositions[carouselId] + direction;
+      let newPosition = carouselPositions[carouselId];
+      if (direction !== 0) { // Only change position if direction is non-zero
+        newPosition += direction;
+      }
       newPosition = Math.max(0, Math.min(newPosition, maxPosition)); // Clamping
 
-      // Se a posição não mudou, não faz nada (já está no início ou fim)
       if (newPosition === carouselPositions[carouselId] && direction !== 0) {
-          // Opcional: dar algum feedback visual que chegou ao fim
-          // console.log(`Carousel ${carouselId} reached boundary.`);
-          // return; 
-          // Permitir que a animação rode mesmo se a posição final for a mesma, 
-          // caso o usuário clique rapidamente antes da animação anterior terminar.
+           console.log(`Carousel ${carouselId} reached boundary.`);
       }
 
       carouselPositions[carouselId] = newPosition;
-
-      // Calcular o deslocamento em pixels (move um item de cada vez)
       const offset = -1 * newPosition * totalItemWidth;
 
-      // Aplicar a transformação com animação
-      carousel.style.transition = 'transform 0.5s ease';
+      // Apply transform (no transition if direction is 0, e.g., on resize)
+      carousel.style.transition = (direction === 0) ? 'none' : 'transform 0.5s ease';
       carousel.style.transform = `translateX(${offset}px)`;
 
-      console.log(`Carousel ${carouselId}: newPos=${newPosition}, maxPos=${maxPosition}, offset=${offset}px`);
-    }
+      // Show/hide arrows logic
+      if (items.length <= itemsPerView) {
+          prevButton.style.display = 'none';
+          nextButton.style.display = 'none';
+      } else {
+          prevButton.style.display = (newPosition === 0) ? 'none' : 'flex';
+          nextButton.style.display = (newPosition >= maxPosition) ? 'none' : 'flex';
+      }
 
+      // Re-apply transition after potential removal for resize adjustment
+      if (direction === 0) {
+           void carousel.offsetWidth; // Force reflow
+           carousel.style.transition = 'transform 0.5s ease';
+      }
+
+      console.log(`Carousel ${carouselId}: newPos=${newPosition}, maxPos=${maxPosition}, offset=${offset}px, items=${items.length}, perView=${itemsPerView}`);
+    }
 
     // Função para carregar dados JSON
     async function carregarDados(url) {
@@ -832,25 +861,20 @@
         const resposta = await fetch(url);
         if (!resposta.ok) {
           console.error(`Erro HTTP ao carregar dados de ${url}: ${resposta.status}`);
-          return []; // Retorna array vazio em caso de erro HTTP
+          return [];
         }
-        // Verifica o tipo de conteúdo antes de tentar parsear como JSON
         const contentType = resposta.headers.get("content-type");
         if (contentType && contentType.indexOf("application/json") !== -1) {
             return await resposta.json();
         } else {
             console.error(`Resposta de ${url} não é JSON válido. Tipo: ${contentType}`);
-            // Tenta ler como texto para depuração
-            // const text = await resposta.text();
-            // console.log("Resposta recebida (texto):", text);
-            return []; // Retorna array vazio se não for JSON
+            return [];
         }
       } catch (erro) {
         console.error(`Falha ao carregar ou processar dados de ${url}:`, erro);
-        return []; // Retorna array vazio em caso de erro de rede ou parse
+        return [];
       }
     }
-
 
     // Função para renderizar produtos com botão do Mercado Pago
     function renderizarProdutoMercadoPago(produto, container) {
@@ -861,7 +885,8 @@
               <img src="${produto.imagem || 'templates/layout/placeholder.png'}" alt="${produto.alt || 'Produto'}" class="product-img" loading="lazy" onerror="this.onerror=null;this.src='templates/layout/placeholder.png';">
             </div>
             <div class="product-info">
-              <div> <h3 class="product-title">${produto.titulo || 'Produto sem título'}</h3>
+              <div>
+                <h3 class="product-title">${produto.titulo || 'Produto sem título'}</h3>
                 <div class="product-price">R$ ${(produto.preco || 0).toFixed(2).replace('.', ',')}</div>
               </div>
               <div class="mercado-pago-button" id="mp-button-${produto.id || Math.random().toString(36).substring(7)}">
@@ -873,24 +898,19 @@
       `;
       container.insertAdjacentHTML('beforeend', produtoHTML);
 
-      // Adicionar script do Mercado Pago SOMENTE SE houver ID
       if (produto.mercadoPagoId) {
           const mpButtonContainer = document.getElementById(`mp-button-${produto.id}`);
           if (mpButtonContainer) {
             const script = document.createElement('script');
             script.src = "https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js";
             script.setAttribute('data-preference-id', produto.mercadoPagoId);
-            script.setAttribute('data-source', 'button'); // Adiciona o atributo data-source
-            // Opcional: Adicionar atributos para customização do botão, se necessário
-            // script.setAttribute('data-button-label', 'Comprar Agora');
-            // script.setAttribute('data-elements-color', '#f04c7e'); 
+            script.setAttribute('data-source', 'button');
             mpButtonContainer.appendChild(script);
           } else {
               console.warn(`Container do botão MP não encontrado para produto ID: ${produto.id}`);
           }
       }
     }
-
 
     // Função para renderizar produtos com botão de compra normal (link externo)
     function renderizarProduto(produto, container) {
@@ -901,7 +921,8 @@
               <img src="${produto.imagem || 'templates/layout/placeholder.png'}" alt="${produto.alt || 'Produto'}" class="product-img" loading="lazy" onerror="this.onerror=null;this.src='templates/layout/placeholder.png';">
             </div>
             <div class="product-info">
-              <div> <h3 class="product-title">${produto.titulo || 'Produto sem título'}</h3>
+              <div>
+                  <h3 class="product-title">${produto.titulo || 'Produto sem título'}</h3>
                   <div class="product-price">R$ ${(produto.preco || 0).toFixed(2).replace('.', ',')}</div>
               </div>
               <button class="buy-button" data-link="${produto.link || '#'}" ${!(produto.link && produto.link !== '#') ? 'disabled' : ''}>
@@ -925,13 +946,12 @@
             <div class="code-display">${cupom.codigo || '------'}</div>
             <button class="copy-button" data-code="${cupom.codigo || ''}" ${!cupom.codigo ? 'disabled' : ''}>Copiar</button>
           </div>
-          <button class="shopee-button" onclick="window.open('https://shopee.com.br/CarollShop', '_blank')">Usar na Shopee</button>
+          <button class="shopee-button" onclick="window.open('https://shopee.com.br/CarollShop', '_blank', 'noopener,noreferrer')">Usar na Shopee</button>
           <p class="coupon-validity">${cupom.validade || ''}</p>
         </div>
       `;
       container.insertAdjacentHTML('beforeend', cupomHTML);
     }
-
 
     // Função para inicializar os carrosséis e cupons
     async function inicializarConteudo() {
@@ -939,7 +959,6 @@
         const loadingPlaceholders = document.querySelectorAll('.loading-spinner');
 
         try {
-            // Carregar dados em paralelo
             const [moldes, personalizados, parceiros, cupons] = await Promise.all([
                 carregarDados('dados/moldes/moldes.json'),
                 carregarDados('dados/personalizados/personalizados.json'),
@@ -949,68 +968,51 @@
 
             console.log("Dados carregados:", { moldes, personalizados, parceiros, cupons });
 
-            // Renderizar moldes
+            // Moldes
             const moldesContainer = document.getElementById('moldes-carousel');
             if (moldesContainer) {
-                moldesContainer.innerHTML = ''; // Limpar spinner
-                if (moldes.length > 0) {
-                    moldes.forEach(produto => renderizarProdutoMercadoPago(produto, moldesContainer));
-                } else {
-                    moldesContainer.innerHTML = '<p style="text-align: center; width: 100%; color: var(--gray-500);">Nenhum molde digital encontrado.</p>';
-                }
-                moveCarousel('moldes-carousel', 0); // Initialize position
+                moldesContainer.innerHTML = '';
+                if (moldes.length > 0) moldes.forEach(p => renderizarProdutoMercadoPago(p, moldesContainer));
+                else moldesContainer.innerHTML = '<p class="carousel-empty">Nenhum molde digital encontrado.</p>';
             }
 
-            // Renderizar personalizados
+            // Personalizados
             const personalizadosContainer = document.getElementById('personalizados-carousel');
             if (personalizadosContainer) {
-                personalizadosContainer.innerHTML = ''; // Limpar spinner
-                if (personalizados.length > 0) {
-                    personalizados.forEach(produto => renderizarProduto(produto, personalizadosContainer));
-                } else {
-                    personalizadosContainer.innerHTML = '<p style="text-align: center; width: 100%; color: var(--gray-500);">Nenhum personalizado encontrado.</p>';
-                }
-                 moveCarousel('personalizados-carousel', 0); // Initialize position
+                personalizadosContainer.innerHTML = '';
+                if (personalizados.length > 0) personalizados.forEach(p => renderizarProduto(p, personalizadosContainer));
+                else personalizadosContainer.innerHTML = '<p class="carousel-empty">Nenhum personalizado encontrado.</p>';
             }
 
-            // Renderizar parceiros
-            const parceirosContainer = document.getElementById('parceiros-carousel');
-            if (parceirosContainer) {
-                parceirosContainer.innerHTML = ''; // Limpar spinner
-                if (parceiros.length > 0) {
-                    parceiros.forEach(produto => renderizarProduto(produto, parceirosContainer));
-                } else {
-                    parceirosContainer.innerHTML = '<p style="text-align: center; width: 100%; color: var(--gray-500);">Nenhum produto de parceiro encontrado.</p>';
-                }
-                 moveCarousel('parceiros-carousel', 0); // Initialize position
-            }
+             // Parceiros
+             const parceirosContainer = document.getElementById('parceiros-carousel');
+             if (parceirosContainer) {
+                 parceirosContainer.innerHTML = '';
+                 if (parceiros.length > 0) parceiros.forEach(p => renderizarProduto(p, parceirosContainer));
+                 else parceirosContainer.innerHTML = '<p class="carousel-empty">Nenhum produto de parceiro encontrado.</p>';
+             }
 
-            // Renderizar cupons
-            const cuponsContainer = document.getElementById('cupons-container');
-            if (cuponsContainer) {
-                cuponsContainer.innerHTML = ''; // Limpar spinner
-                if (cupons.length > 0) {
-                    cupons.forEach(cupom => renderizarCupom(cupom, cuponsContainer));
-                } else {
-                    cuponsContainer.innerHTML = '<p style="text-align: center; width: 100%; color: var(--gray-500);">Nenhum cupom disponível no momento.</p>';
-                }
-            }
+             // Cupons
+             const cuponsContainer = document.getElementById('cupons-container');
+             if (cuponsContainer) {
+                 cuponsContainer.innerHTML = '';
+                 if (cupons.length > 0) cupons.forEach(c => renderizarCupom(c, cuponsContainer));
+                 else cuponsContainer.innerHTML = '<p style="text-align: center; padding: 1rem; color: var(--gray-500);">Nenhum cupom disponível no momento.</p>';
+             }
 
-            // Ajustar layout inicial dos carrosséis
+            // Ajusta layout e visibilidade dos botões após renderizar
             adjustCarouselLayout();
+            Object.keys(carouselPositions).forEach(id => moveCarousel(id, 0)); // Atualiza posição inicial e botões
 
         } catch (erro) {
             console.error('Erro fatal ao inicializar conteúdo:', erro);
-            // Opcional: Mostrar mensagem de erro para o usuário em todos os containers
              loadingPlaceholders.forEach(ph => ph.innerHTML = '<p style="color: red; text-align: center;">Erro ao carregar conteúdo.</p>');
         } finally {
-            // Garante que spinners sejam removidos mesmo se houver erro parcial
              const stillLoading = document.querySelectorAll('.loading-spinner');
              stillLoading.forEach(spinner => spinner.style.display = 'none');
              console.log("Inicialização de conteúdo concluída.");
         }
     }
-
 
     // Navegação entre seções
     document.querySelectorAll('.nav-item').forEach(item => {
@@ -1022,112 +1024,93 @@
         const targetSection = document.getElementById(targetSectionId);
 
         if (currentActive !== this && targetSection) {
-          // Update active nav item
           if (currentActive) currentActive.classList.remove('active');
           this.classList.add('active');
-
-          // Switch content section with animation
           if (currentSection) currentSection.classList.remove('active');
           targetSection.classList.add('active');
         }
       });
     });
 
-    // Event listener para botões (delegação de evento no container principal)
+    // Event listener para botões de compra (delegação)
     document.getElementById('inicio').addEventListener('click', function(e) {
-        // Botão de compra (links externos)
-        if (e.target && e.target.classList.contains('buy-button')) {
+        if (e.target && e.target.classList.contains('buy-button') && !e.target.disabled) {
             const link = e.target.getAttribute('data-link');
             if (link && link !== '#') {
-            window.open(link, '_blank');
+              window.open(link, '_blank', 'noopener,noreferrer');
             }
-            // Se estiver desabilitado, não faz nada
         }
-        // Adicionar aqui outros listeners se necessário (ex: clique no card)
     });
 
-    // Copiar código do cupom (delegação no container de cupons)
+    // Copiar código do cupom (delegação)
     document.getElementById('cupons').addEventListener('click', function(e) {
       if (e.target && e.target.classList.contains('copy-button')) {
         const code = e.target.getAttribute('data-code');
-        if (code) {
+        if (code && !e.target.disabled) {
             navigator.clipboard.writeText(code).then(() => {
             const originalText = e.target.textContent;
             e.target.textContent = 'Copiado!';
-            e.target.disabled = true; // Desabilita temporariamente
+            e.target.disabled = true;
             setTimeout(() => {
                 e.target.textContent = originalText;
-                e.target.disabled = false; // Reabilita
+                e.target.disabled = false;
             }, 2000);
 
-            // Mostrar botão "Usar na Shopee" associado
             const couponCard = e.target.closest('.coupon-card');
             if (couponCard) {
                 const shopeeButton = couponCard.querySelector('.shopee-button');
                 if (shopeeButton) {
-                shopeeButton.style.display = 'block';
+                   shopeeButton.style.display = 'block';
                 }
             }
             }).catch(err => {
                 console.error('Erro ao copiar código:', err);
-                alert('Não foi possível copiar o código.');
+                // Opcional: Mostrar um feedback de erro para o usuário
+                // e.target.textContent = 'Erro!';
+                // setTimeout(() => { e.target.textContent = 'Copiar'; e.target.disabled = false; }, 2000);
+                alert('Não foi possível copiar o código. Verifique as permissões do navegador.');
             });
         }
       }
     });
 
-
     // Ajustar layout dos carrosséis (largura dos itens)
     function adjustCarouselLayout() {
-        const itemsPerViewDesktop = 3;
-        const itemsPerViewMobile = 2;
-        const gap = 15; // Deve ser o mesmo valor do CSS '.carousel { gap: 15px; }'
-        const isMobile = window.innerWidth <= 480; // Usa o breakpoint do CSS
+        const gap = 15; // Deve ser o mesmo valor do CSS
 
         document.querySelectorAll('.carousel').forEach(carousel => {
             const items = carousel.querySelectorAll('.carousel-item');
             if (!items.length) return;
 
-            const itemsToShow = isMobile ? itemsPerViewMobile : itemsPerViewDesktop;
-            const containerPadding = 2.5 * 16 * 2; // Padding left/right do .carousel-container em pixels (2.5rem * 16px * 2) - ajuste se o rem base mudar
-            // Calcula a largura total disponível dentro do container, descontando os gaps entre os itens visíveis
-            const availableWidth = carousel.parentElement.offsetWidth - containerPadding;
-            const totalGapWidth = (itemsToShow - 1) * gap;
-            const itemWidth = (availableWidth - totalGapWidth) / itemsToShow;
+            const itemsToShow = getItemsPerView(carousel.id);
+            const carouselContainer = carousel.closest('.carousel-container');
+            if (!carouselContainer) return;
+
+            const containerStyle = getComputedStyle(carouselContainer);
+            const paddingLeft = parseFloat(containerStyle.paddingLeft) || 0;
+            const paddingRight = parseFloat(containerStyle.paddingRight) || 0;
+            const availableWidth = carouselContainer.offsetWidth - paddingLeft - paddingRight;
+
+            const totalGapWidth = Math.max(0, (itemsToShow - 1)) * gap; // Garante que não seja negativo
+             let itemWidth = (availableWidth > totalGapWidth) ? (availableWidth - totalGapWidth) / itemsToShow : availableWidth;
+             itemWidth = Math.max(100, itemWidth); // Largura mínima
 
             items.forEach(item => {
                 item.style.width = `${itemWidth}px`;
             });
-
-            // Recalcula a posição do carrossel para evitar desalinhamento após redimensionar/recalcular largura
-             const currentPosition = carouselPositions[carousel.id];
-             const totalItemWidth = itemWidth + gap;
-             const newOffset = -1 * currentPosition * totalItemWidth;
-             carousel.style.transition = 'none'; // Remove transição para ajuste instantâneo
-             carousel.style.transform = `translateX(${newOffset}px)`;
-             // Força reflow para aplicar a transformação sem transição
-             void carousel.offsetWidth; 
-             carousel.style.transition = 'transform 0.5s ease'; // Readiciona a transição
-
         });
-        console.log("Carousel layout adjusted for", isMobile ? "mobile" : "desktop");
+        console.log("Carousel layout adjusted");
     }
 
-
-    // Ajustar carrosséis quando a janela for redimensionada
+    // Ajustar carrosséis quando a janela for redimensionada (com debounce)
     let resizeTimer;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
-            console.log("Window resized, adjusting layout...");
+            console.log("Window resized, adjusting layout and carousel positions...");
             adjustCarouselLayout();
-             // Resetar posição visual pode ser necessário se o número de itens visíveis mudar
-             Object.keys(carouselPositions).forEach(id => {
-                 // Opcional: resetar para 0 ou recalcular baseado no estado atual
-                 // carouselPositions[id] = 0; // Reset simples
-                 moveCarousel(id, 0); // Recalcula offset para a posição atual com novas dimensões
-             });
-        }, 250); // Debounce para evitar execuções excessivas
+            Object.keys(carouselPositions).forEach(id => moveCarousel(id, 0)); // Reavalia pos e botões
+        }, 250); // Atraso de 250ms
     });
 
     // Inicializar conteúdo quando o DOM estiver carregado
