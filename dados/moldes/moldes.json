@@ -26,7 +26,7 @@
   {
     "id": 4,
     "titulo": "Caixa Milk",
-    "preco": 0.99,
+    "preco": 4.99,
     "imagem": "templates/produto/molde4.jpg",
     "alt": "Calendário 2024",
     "mercadoPagoId": "1039323113-0b850a39-460a-4b48-b6f5-4a300a695649"
@@ -34,7 +34,7 @@
   {
     "id": 5,
     "titulo": "Caixa Pirâmide",
-    "preco": 2.99,
+    "preco": 4.99,
     "imagem": "templates/produto/molde5.jpg",
     "alt": "Kit Etiquetas",
     "mercadoPagoId": "1039323113-1a4bd448-33e3-42ed-abfc-dd82eb552799"
@@ -42,7 +42,7 @@
   {
     "id": 6,
     "titulo": "Sacolinha P",
-    "preco": 5.99,
+    "preco": 4.99,
     "imagem": "templates/produto/molde6.jpg",
     "alt": "Molde para Convites",
     "mercadoPagoId": "1039323113-6de3f6d4-9742-46e3-aab6-362bd9a1c332"
@@ -50,7 +50,7 @@
   {
     "id": 7,
     "titulo": "Sacolinha M",
-    "preco": 6.99,
+    "preco": 9.99,
     "imagem": "templates/produto/molde7.jpg",
     "alt": "Molde Extra",
     "mercadoPagoId": "1039323113-489880bd-01fa-48db-ae2b-0a895cfc8eaa"
@@ -58,7 +58,7 @@
   {
     "id": 8,
     "titulo": "Caixa Alça",
-    "preco": 7.99,
+    "preco": 4.99,
     "imagem": "templates/produto/molde8.jpg",
     "alt": "Molde Personalizado",
     "mercadoPagoId": "1039323113-f5e07b62-df74-4a30-9068-d28dd843efac"
@@ -66,7 +66,7 @@
   {
     "id": 9,
     "titulo": "Caixa Bala",
-    "preco": 8.99,
+    "preco": 4.99,
     "imagem": "templates/produto/molde9.jpg",
     "alt": "Molde Especial",
     "mercadoPagoId": "1039323113-a2b981de-cd4e-43a5-8017-e251060420f4"
