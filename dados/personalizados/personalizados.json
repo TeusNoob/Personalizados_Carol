@@ -5,7 +5,7 @@
     "preco": 45.00,
     "imagem": "templates/produto/produto_1.jpg",
     "alt": "Agenda Personalizada",
-    "link": "botoes/loja/produto1.html"
+    "link": "botoes/personalizados/produto1.html"
   },
   {
     "id": 2,
@@ -13,7 +13,7 @@
     "preco": 39.90,
     "imagem": "templates/produto/product_2.jpg",
     "alt": "Planner Financeiro",
-    "link": "botoes/loja/produto2.html"
+    "link": "botoes/personalizados/produto2.html"
   },
   {
     "id": 3,
@@ -21,7 +21,7 @@
     "preco": 19.90,
     "imagem": "templates/produto/produto_3.jpg",
     "alt": "Calendário 2024",
-    "link": "botoes/loja/produto3.html"
+    "link": "botoes/personalizados/produto3.html"
   },
   {
     "id": 4,
@@ -29,7 +29,7 @@
     "preco": 65.00,
     "imagem": "templates/produto/produto_4.jpg",
     "alt": "Kit Papelaria",
-    "link": "botoes/loja/produto4.html"
+    "link": "botoes/personalizados/produto4.html"
   },
   {
     "id": 5,
@@ -37,7 +37,7 @@
     "preco": 25.00,
     "imagem": "templates/produto/produto_5.jpg",
     "alt": "Convites Digitais",
-    "link": "botoes/loja/produto5.html"
+    "link": "botoes/personalizados/produto5.html"
   },
   {
     "id": 6,
@@ -45,7 +45,7 @@
     "preco": 18.50,
     "imagem": "templates/produto/produto_6.jpg",
     "alt": "Etiquetas Personalizadas",
-    "link": "botoes/loja/produto6.html"
+    "link": "botoes/personalizados/produto6.html"
   },
   {
     "id": 7,
@@ -53,7 +53,7 @@
     "preco": 22.00,
     "imagem": "templates/produto/produto_7.jpg",
     "alt": "Produto Extra",
-    "link": "botoes/loja/produto7.html"
+    "link": "botoes/personalizados/produto7.html"
   },
   {
     "id": 8,
@@ -61,7 +61,7 @@
     "preco": 30.00,
     "imagem": "templates/produto/produto_8.jpg",
     "alt": "Produto Personalizado",
-    "link": "botoes/loja/produto8.html"
+    "link": "botoes/personalizados/produto8.html"
   },
   {
     "id": 9,
@@ -69,6 +69,6 @@
     "preco": 40.00,
     "imagem": "templates/produto/produto_9.jpg",
     "alt": "Produto Especial",
-    "link": "botoes/loja/produto9.html"
+    "link": "botoes/personalizados/produto9.html"
   }
 ]
