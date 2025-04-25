@@ -2,33 +2,33 @@
   {
     "id": 1,
     "titulo": "Desconto para Iniciantes",
-    "descricao": "Use este cupom em sua primeira compra de qualquer template digital.",
-    "codigo": "CAROL20",
-    "desconto": "20% OFF",
-    "validade": "Válido até 31/12/2024"
+    "descricao": "Ganhe 30% off em compras na nossa loja",
+    "codigo": "CAROL2025",
+    "desconto": "30% OFF",
+    "validade": "Promoção válida enquanto durarem os cupons."
   },
   {
     "id": 2,
-    "titulo": "Desconto em Planners",
-    "descricao": "Economize em todos os planners e agendas digitais.",
-    "codigo": "PLANNER15",
-    "desconto": "15% OFF",
-    "validade": "Válido até 30/09/2024"
+    "titulo": "50% de desconto em tags adesivas",
+    "descricao": "Economize em tags adesivas personalizadas para tornar o Dia das Mães ainda mais especial!",
+    "codigo": "CARO50MAE",
+    "desconto": "50% OFF",
+    "validade": "Válido até os dias das Mães"
   },
   {
     "id": 3,
-    "titulo": "Pacote Completo",
-    "descricao": "Desconto especial para compra do pacote completo de templates.",
-    "codigo": "PACOTE25",
-    "desconto": "25% OFF",
-    "validade": "Válido até 15/10/2024"
+    "titulo": "ganhe 10% de cashback.",
+    "descricao": "10% de cashback em qualquer produto da loja!",
+    "codigo": "CAROMOEDA",
+    "desconto": "10% OFF",
+    "validade": "Promoção válida enquanto durarem os cupons."
   },
   {
     "id": 4,
-    "titulo": "Desconto para Seguidores",
-    "descricao": "Exclusivo para seguidores das nossas redes sociais.",
-    "codigo": "SOCIAL10",
+    "titulo": "Seguidor Especial",
+    "descricao": "Seguiu, ganhou: 10% OFF ao seguir nossa loja na Shopee!.",
+    "codigo": "Clique em copiar, acesse a loja e siga o perfil para liberar o cupom.",
     "desconto": "10% OFF",
-    "validade": "Sem data de expiração"
+    "validade": "valido até 31/12/2025"
   }
 ]
