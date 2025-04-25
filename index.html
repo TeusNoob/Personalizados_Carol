@@ -1086,36 +1086,46 @@
   <a href="https://shopee.com/CarollShop" class="whatsapp-float" target="_blank">
   </a>
   <script>
-    // Função para mover o carrossel
+    // Armazenar posições dos carrosséis
+    const carouselPositions = {
+      'moldes-carousel': 0,
+      'personalizados-carousel': 0,
+      'parceiros-carousel': 0
+    };
+    
+    // Função para mover o carrossel - completamente reescrita
     function moveCarousel(carouselId, direction) {
       const carousel = document.getElementById(carouselId);
       const items = carousel.querySelectorAll('.carousel-item');
-      const itemWidth = items[0].offsetWidth + 12; // largura + margem
-      // Obter a posição atual
-      const currentTransform = carousel.style.transform || 'translateX(0px)';
-      let currentPosition = 0;
-      const match = currentTransform.match(/translateX$$([-\d.]+)px$$/);
-      if (match) {
-        currentPosition = parseFloat(match[1]);
+      
+      if (!items.length) return;
+      
+      // Determinar quantos itens mostrar por vez (responsivo)
+      const itemsPerView = window.innerWidth <= 360 ? 2 : 3;
+      
+      // Calcular a largura de cada item incluindo margem
+      const itemWidth = items[0].offsetWidth + parseFloat(getComputedStyle(items[0]).marginRight);
+      
+      // Atualizar a posição atual
+      carouselPositions[carouselId] += direction;
+      
+      // Verificar limites e implementar loop circular
+      const maxPosition = Math.ceil(items.length / itemsPerView) - 1;
+      
+      if (carouselPositions[carouselId] > maxPosition) {
+        carouselPositions[carouselId] = 0; // Voltar ao início
+      } else if (carouselPositions[carouselId] < 0) {
+        carouselPositions[carouselId] = maxPosition; // Ir para o final
       }
-      // Calcular nova posição
-      let newPosition = currentPosition - (direction * itemWidth * 3);
-      // Verificar limites e ajustar para loop infinito
-      const visibleWidth = itemWidth * 3; // 3 itens visíveis por vez
-      const totalWidth = items.length * itemWidth;
-      if (newPosition < -(totalWidth - visibleWidth)) {
-        newPosition = 0;
-      } else if (newPosition > 0) {
-        newPosition = -(totalWidth - visibleWidth);
-      }
-      // Aplicar nova posição com animação
+      
+      // Calcular o deslocamento em pixels
+      const offset = -1 * carouselPositions[carouselId] * itemWidth * itemsPerView;
+      
+      // Aplicar a transformação com animação
       carousel.style.transition = 'transform 0.5s ease';
-      carousel.style.transform = `translateX(${newPosition}px)`;
-      // Resetar transição após a animação
-      setTimeout(() => {
-        carousel.style.transition = '';
-      }, 500);
-      console.log(`Movendo ${carouselId}: posição=${newPosition}px, direção=${direction}, itemWidth=${itemWidth}px`);
+      carousel.style.transform = `translateX(${offset}px)`;
+      
+      console.log(`Carrossel ${carouselId}: posição=${carouselPositions[carouselId]}, offset=${offset}px, direção=${direction}`);
     }
 
     // Navegação
@@ -1172,11 +1182,19 @@
 
     // Ajustar carrosséis para dispositivos móveis
     function adjustCarouselsForMobile() {
-      if (window.innerWidth <= 360) {
-        document.querySelectorAll('.carousel-item').forEach(item => {
-          item.style.flex = '0 0 calc(50% - 0.5rem)';
-        });
-      }
+      const isMobile = window.innerWidth <= 360;
+      document.querySelectorAll('.carousel-item').forEach(item => {
+        item.style.flex = isMobile ? '0 0 calc(50% - 0.5rem)' : '0 0 calc(33.333% - 0.5rem)';
+      });
+      
+      // Resetar posições dos carrosséis ao redimensionar
+      document.querySelectorAll('.carousel').forEach(carousel => {
+        const id = carousel.id;
+        if (id && carouselPositions[id] !== undefined) {
+          carouselPositions[id] = 0;
+          carousel.style.transform = 'translateX(0px)';
+        }
+      });
     }
 
     // Ajustar carrosséis quando a janela for redimensionada
