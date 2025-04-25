@@ -2,7 +2,7 @@
   {
     "id": 1,
     "titulo": "Base Para Corte De Mesa A4",
-    "preco": 673.99,
+    "preco": 12.99,
     "imagem": "templates/produto/parceiro1.jpg",
     "alt": "Canetas Coloridas",
     "link": "botoes/afiliados/parceiro1.html"
@@ -10,7 +10,7 @@
   {
     "id": 2,
     "titulo": "Encadernadora 2 em 1 Mimo Binding 2",
-    "preco": 73.99,
+    "preco": 673.03,
     "imagem": "templates/produto/parceiro2.jpg",
     "alt": "Kit Adesivos",
     "link": "botoes/afiliados/parceiro2.html"
