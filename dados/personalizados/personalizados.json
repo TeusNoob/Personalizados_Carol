@@ -57,7 +57,7 @@
   },
   {
     "id": 8,
-    "titulo": "BOBBIE GOODS folhas avulsas (miolo)",
+    "titulo": "BOBBIE GOODS folhas avulsas - miolo",
     "preco": 14.99,
     "imagem": "templates/produto/produto_8.jpg",
     "alt": "Produto Personalizado",
@@ -65,7 +65,7 @@
   },
   {
     "id": 9,
-    "titulo": "Desenhos Stitch - Estilo Bobbie Goods (miolo",
+    "titulo": "Desenhos Stitch - Estilo Bobbie Goods - miolo",
     "preco": 19.99,
     "imagem": "templates/produto/produto_9.jpg",
     "alt": "Produto Especial",
