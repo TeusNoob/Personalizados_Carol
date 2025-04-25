@@ -25,11 +25,11 @@
   },
   {
     "id": 4,
-    "titulo": "Molde Calendário",
-    "preco": 3.99,
+    "titulo": "Caixa Bala",
+    "preco": 0.99,
     "imagem": "templates/produto/molde4.jpg",
     "alt": "Calendário 2024",
-    "mercadoPagoId": "ID_UNICO_PRODUTO_4"
+    "mercadoPagoId": "148589415-70a9b21a-c546-4b1e-afab-9b8b870580b5"
   },
   {
     "id": 5,
