@@ -150,12 +150,13 @@
       overflow-y: auto; /* Ensure main content can scroll if needed */
     }
     .section {
-      padding: 1.5rem 1rem;
+      padding: 1.5rem 1rem; /* Padding around the section content */
       margin: 1rem 0.5rem;
       background-color: rgba(255, 255, 255, 0.95);
       border-radius: 1rem;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
       position: relative;
+      overflow: hidden; /* Prevents potential overflow issues */
     }
     .section-title {
       font-size: 1.25rem;
@@ -191,8 +192,8 @@
       position: relative;
       width: 100%;
       overflow: hidden; /* Hide overflow */
-      padding: 0 2.5rem; /* Make space for nav buttons */
-      margin: 0 -2.5rem; /* Counteract padding for alignment */
+      /* REMOVED negative margin */
+      padding: 0 2rem; /* Adjusted padding for arrows */
     }
 
     .carousel {
@@ -214,11 +215,11 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 2.5rem; /* Slightly larger hit area */
+      width: 2.5rem;
       height: 2.5rem;
       background-color: rgba(255, 255, 255, 0.9);
       border-radius: 50%;
-      display: flex; /* Changed from none to flex */
+      display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
@@ -231,10 +232,10 @@
       box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
     }
     .carousel-prev {
-      left: 0rem; /* Position inside the container padding */
+      left: 0.25rem; /* Adjusted position */
     }
     .carousel-next {
-      right: 0rem; /* Position inside the container padding */
+      right: 0.25rem; /* Adjusted position */
     }
     .carousel-nav-icon {
       width: 1.2rem;
@@ -292,7 +293,6 @@
       font-weight: 500;
       margin-bottom: 0.25rem;
       color: var(--gray-800);
-      /* Allow wrapping but limit lines */
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -309,9 +309,13 @@
       margin-top: auto; /* Push price down if title is short */
     }
 
-    .buy-button, .mercado-pago-button { /* Style MP button container */
+    .buy-button, .mercado-pago-button {
       width: 100%;
       margin-top: 0.5rem; /* Space above button */
+      min-height: calc(0.5rem * 2 + 1.5 * 0.75rem); /* Approx height of buy-button (padding + line-height * font-size) */
+      display: flex; /* Helps align content if MP script adds elements */
+      align-items: center;
+      justify-content: center;
     }
 
     .buy-button {
@@ -325,11 +329,12 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
       text-align: center;
+      line-height: 1.5; /* Added for height calculation */
     }
     .buy-button:hover {
       background-color: var(--pink-600);
     }
-    .buy-button[disabled] { /* Style for disabled button */
+    .buy-button[disabled] {
         background-color: var(--gray-300);
         cursor: not-allowed;
     }
@@ -424,6 +429,7 @@
       font-weight: 500;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      line-height: 1.5; /* Added for consistency */
     }
     .copy-button:hover {
       background-color: var(--pink-600);
@@ -452,6 +458,7 @@
       cursor: pointer;
       text-align: center;
       transition: background-color 0.3s ease;
+       line-height: 1.5; /* Added for consistency */
     }
     .shopee-button:hover {
       background-color: #d03a18;
@@ -557,17 +564,17 @@
     .icon-3 { bottom: 0.5rem; left: 2rem; transform: rotate(10deg); }
     .icon-4 { bottom: 1rem; right: 2rem; transform: rotate(-20deg); }
 
-    /* Botão flutuante do WhatsApp */
+    /* Botão flutuante */
     .whatsapp-float {
       position: fixed;
-      bottom: 5.5rem; /* Increased bottom margin to avoid overlap with bottom nav */
+      bottom: 5.5rem; /* Adjusted bottom margin */
       right: 1.5rem;
-      width: 50px; /* Slightly smaller */
+      width: 50px;
       height: 50px;
-      background-size: contain; /* Use contain to ensure icon is fully visible */
+      background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
-      background-image: url('templates/layout/Botao_flutuante.png'); /* Original file name */
+      background-image: url('templates/layout/Botao_flutuante.png');
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -605,14 +612,14 @@
 
     /* Responsive adjustments */
     @media (max-width: 480px) { /* Breakpoint for 2 items */
-        /* .carousel-item width is handled by JS */
         .social-buttons {
             gap: 0.75rem;
-            flex-wrap: wrap; /* Allow wrapping if needed */
+            flex-wrap: wrap;
         }
         .nav-item {
-            padding: 0 1rem; /* Adjust nav padding */
+            padding: 0 1rem;
         }
+        /* item width handled by JS */
     }
 
     @media (max-width: 360px) {
@@ -624,24 +631,28 @@
             height: 2.5rem;
         }
         .nav-item {
-            padding: 0 0.8rem; /* Further reduce nav padding */
+            padding: 0 0.8rem;
         }
         .product-title {
-            font-size: 0.7rem; /* Slightly smaller title */
+            font-size: 0.7rem;
             min-height: calc(2 * 1.5 * 0.7rem);
         }
         .product-price {
             font-size: 0.8rem;
         }
-        .buy-button {
+        .buy-button, .copy-button, .shopee-button {
             font-size: 0.7rem;
             padding: 0.4rem;
         }
-        .whatsapp-float { /* Adjust floating button on small screens */
+        .whatsapp-float {
              bottom: 5rem;
              right: 1rem;
              width: 45px;
              height: 45px;
+        }
+         /* Recalculate button min-height */
+        .buy-button, .mercado-pago-button {
+            min-height: calc(0.4rem * 2 + 1.5 * 0.7rem);
         }
     }
     /* Style for empty carousel message */
@@ -776,11 +787,10 @@
 
     // Função auxiliar para obter quantos itens estão visíveis baseado na largura da tela
     function getItemsPerView(carouselId) {
-        // Usa o mesmo breakpoint da media query CSS
         if (window.innerWidth <= 480) {
-            return 2; // 2 itens em telas menores
+            return 2;
         }
-        return 3; // 3 itens em telas maiores
+        return 3;
     }
 
     // Função para mover o carrossel e atualizar visibilidade das setas
@@ -809,7 +819,6 @@
       const itemsPerView = getItemsPerView(carouselId);
        if (itemsPerView <= 0) {
            console.error(`Calculated itemsPerView is invalid: ${itemsPerView}`);
-            // Hide buttons if calculation is wrong
             prevButton.style.display = 'none';
             nextButton.style.display = 'none';
            return;
@@ -821,10 +830,10 @@
       const maxPosition = Math.max(0, items.length - itemsPerView);
 
       let newPosition = carouselPositions[carouselId];
-      if (direction !== 0) { // Only change position if direction is non-zero
+      if (direction !== 0) {
         newPosition += direction;
       }
-      newPosition = Math.max(0, Math.min(newPosition, maxPosition)); // Clamping
+      newPosition = Math.max(0, Math.min(newPosition, maxPosition));
 
       if (newPosition === carouselPositions[carouselId] && direction !== 0) {
            console.log(`Carousel ${carouselId} reached boundary.`);
@@ -833,7 +842,6 @@
       carouselPositions[carouselId] = newPosition;
       const offset = -1 * newPosition * totalItemWidth;
 
-      // Apply transform (no transition if direction is 0, e.g., on resize)
       carousel.style.transition = (direction === 0) ? 'none' : 'transform 0.5s ease';
       carousel.style.transform = `translateX(${offset}px)`;
 
@@ -846,13 +854,12 @@
           nextButton.style.display = (newPosition >= maxPosition) ? 'none' : 'flex';
       }
 
-      // Re-apply transition after potential removal for resize adjustment
       if (direction === 0) {
            void carousel.offsetWidth; // Force reflow
            carousel.style.transition = 'transform 0.5s ease';
       }
 
-      console.log(`Carousel ${carouselId}: newPos=${newPosition}, maxPos=${maxPosition}, offset=${offset}px, items=${items.length}, perView=${itemsPerView}`);
+      // console.log(`Carousel ${carouselId}: newPos=${newPosition}, maxPos=${maxPosition}, offset=${offset}px, items=${items.length}, perView=${itemsPerView}`);
     }
 
     // Função para carregar dados JSON
@@ -905,7 +912,10 @@
             script.src = "https://www.mercadopago.com.br/integrations/v1/web-payment-checkout.js";
             script.setAttribute('data-preference-id', produto.mercadoPagoId);
             script.setAttribute('data-source', 'button');
-            mpButtonContainer.appendChild(script);
+            // Adiciona um pequeno atraso para garantir que o container exista no DOM
+             setTimeout(() => {
+                 mpButtonContainer.appendChild(script);
+             }, 0);
           } else {
               console.warn(`Container do botão MP não encontrado para produto ID: ${produto.id}`);
           }
@@ -968,6 +978,7 @@
 
             console.log("Dados carregados:", { moldes, personalizados, parceiros, cupons });
 
+            // --- Renderização ---
             // Moldes
             const moldesContainer = document.getElementById('moldes-carousel');
             if (moldesContainer) {
@@ -1001,8 +1012,12 @@
              }
 
             // Ajusta layout e visibilidade dos botões após renderizar
-            adjustCarouselLayout();
-            Object.keys(carouselPositions).forEach(id => moveCarousel(id, 0)); // Atualiza posição inicial e botões
+            // Adiciona um pequeno delay para garantir que o DOM foi atualizado pelas renderizações
+            setTimeout(() => {
+                adjustCarouselLayout();
+                Object.keys(carouselPositions).forEach(id => moveCarousel(id, 0));
+                console.log("Layout e botões inicializados.");
+            }, 50); // 50ms delay
 
         } catch (erro) {
             console.error('Erro fatal ao inicializar conteúdo:', erro);
@@ -1065,9 +1080,6 @@
             }
             }).catch(err => {
                 console.error('Erro ao copiar código:', err);
-                // Opcional: Mostrar um feedback de erro para o usuário
-                // e.target.textContent = 'Erro!';
-                // setTimeout(() => { e.target.textContent = 'Copiar'; e.target.disabled = false; }, 2000);
                 alert('Não foi possível copiar o código. Verifique as permissões do navegador.');
             });
         }
@@ -1076,7 +1088,7 @@
 
     // Ajustar layout dos carrosséis (largura dos itens)
     function adjustCarouselLayout() {
-        const gap = 15; // Deve ser o mesmo valor do CSS
+        const gap = 15;
 
         document.querySelectorAll('.carousel').forEach(carousel => {
             const items = carousel.querySelectorAll('.carousel-item');
@@ -1091,9 +1103,9 @@
             const paddingRight = parseFloat(containerStyle.paddingRight) || 0;
             const availableWidth = carouselContainer.offsetWidth - paddingLeft - paddingRight;
 
-            const totalGapWidth = Math.max(0, (itemsToShow - 1)) * gap; // Garante que não seja negativo
-             let itemWidth = (availableWidth > totalGapWidth) ? (availableWidth - totalGapWidth) / itemsToShow : availableWidth;
-             itemWidth = Math.max(100, itemWidth); // Largura mínima
+            const totalGapWidth = Math.max(0, (itemsToShow - 1)) * gap;
+            let itemWidth = (availableWidth > totalGapWidth) ? (availableWidth - totalGapWidth) / itemsToShow : availableWidth;
+            itemWidth = Math.max(100, itemWidth); // Largura mínima de 100px
 
             items.forEach(item => {
                 item.style.width = `${itemWidth}px`;
@@ -1109,8 +1121,8 @@
         resizeTimer = setTimeout(() => {
             console.log("Window resized, adjusting layout and carousel positions...");
             adjustCarouselLayout();
-            Object.keys(carouselPositions).forEach(id => moveCarousel(id, 0)); // Reavalia pos e botões
-        }, 250); // Atraso de 250ms
+            Object.keys(carouselPositions).forEach(id => moveCarousel(id, 0));
+        }, 250);
     });
 
     // Inicializar conteúdo quando o DOM estiver carregado
