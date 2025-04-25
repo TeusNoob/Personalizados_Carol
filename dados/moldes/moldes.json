@@ -5,7 +5,7 @@
     "preco": 9.99,
     "imagem": "templates/produto/molde1.jpg",
     "alt": "Pack de Moldes Essencial",
-    "mercadoPagoId": "1039323113-b37cc4a4-dd32-47d2-ab05-fcbb821d99f3"
+    "mercadoPagoId": "1039323113-84ec7164-5053-4b63-ab40-236e0625d67c"
   },
   {
     "id": 2,
@@ -13,7 +13,7 @@
     "preco": 4.99,
     "imagem": "templates/produto/molde2.jpg",
     "alt": "Molde para Agenda",
-    "mercadoPagoId": "1039323113-b37cc4a4-dd32-47d2-ab05-fcbb821d99f3"
+    "mercadoPagoId": "1039323113-4eb74c01-bd23-47f0-86b3-900120ca504d"
   },
   {
     "id": 3,
@@ -21,54 +21,54 @@
     "preco": 4.99,
     "imagem": "templates/produto/molde3.jpg",
     "alt": "Planner Semanal",
-    "mercadoPagoId": "ID_UNICO_PRODUTO_3"
+    "mercadoPagoId": "1039323113-b0c2e386-a5e7-43d3-b3d3-bd759892b73a"
   },
   {
     "id": 4,
-    "titulo": "Caixa Bala",
+    "titulo": "Caixa Milk",
     "preco": 0.99,
     "imagem": "templates/produto/molde4.jpg",
     "alt": "Calendário 2024",
-    "mercadoPagoId": "148589415-70a9b21a-c546-4b1e-afab-9b8b870580b5"
+    "mercadoPagoId": "1039323113-0b850a39-460a-4b48-b6f5-4a300a695649"
   },
   {
     "id": 5,
-    "titulo": "Kit Etiquetas",
+    "titulo": "Caixa Pirâmide",
     "preco": 2.99,
     "imagem": "templates/produto/molde5.jpg",
     "alt": "Kit Etiquetas",
-    "mercadoPagoId": "ID_UNICO_PRODUTO_5"
+    "mercadoPagoId": "1039323113-1a4bd448-33e3-42ed-abfc-dd82eb552799"
   },
   {
     "id": 6,
-    "titulo": "Molde para Convites",
+    "titulo": "Sacolinha P",
     "preco": 5.99,
     "imagem": "templates/produto/molde6.jpg",
     "alt": "Molde para Convites",
-    "mercadoPagoId": "ID_UNICO_PRODUTO_6"
+    "mercadoPagoId": "1039323113-6de3f6d4-9742-46e3-aab6-362bd9a1c332"
   },
   {
     "id": 7,
-    "titulo": "Molde Especial",
+    "titulo": "Sacolinha M",
     "preco": 6.99,
     "imagem": "templates/produto/molde7.jpg",
     "alt": "Molde Extra",
-    "mercadoPagoId": "ID_UNICO_PRODUTO_7"
+    "mercadoPagoId": "1039323113-489880bd-01fa-48db-ae2b-0a895cfc8eaa"
   },
   {
     "id": 8,
-    "titulo": "Molde Personalizado",
+    "titulo": "Caixa Alça",
     "preco": 7.99,
     "imagem": "templates/produto/molde8.jpg",
     "alt": "Molde Personalizado",
-    "mercadoPagoId": "ID_UNICO_PRODUTO_8"
+    "mercadoPagoId": "1039323113-f5e07b62-df74-4a30-9068-d28dd843efac"
   },
   {
     "id": 9,
-    "titulo": "Molde Premium",
+    "titulo": "Caixa Bala",
     "preco": 8.99,
     "imagem": "templates/produto/molde9.jpg",
     "alt": "Molde Especial",
-    "mercadoPagoId": "ID_UNICO_PRODUTO_9"
+    "mercadoPagoId": "1039323113-a2b981de-cd4e-43a5-8017-e251060420f4"
   }
 ]
